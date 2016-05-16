@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.martynaskairys.walltip">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <compatible-screens>
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="420"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="560"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="640"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="420"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="560"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="640"
+            android:screenSize="large" />
+    </compatible-screens>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/Wallpee">
+        <activity
+            android:name=".ChoosingFolderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PictureActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".ThumbnailActivity"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+        </activity>
+
+        <receiver android:name=".DeviceBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".AlarmReceiver" />
+
+        <activity
+            android:name=".ExitAppActivity"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+        </activity>
+
+        <service android:name=".WallpaperService" />
+
+        <activity
+            android:name=".StartActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="eac7ab5814950a79763329837711332f2c0fdcdf" />
+
+        <activity android:name=".ThumbnailActivity1"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+        </activity>
+        <activity android:name=".ThumbnailActivity2"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+        </activity>
+        <activity android:name=".ThumbnailActivity3"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+        </activity>
+        <activity android:name=".PictureActivity1"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+        </activity>
+        <activity android:name=".PictureActivity2"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+        </activity>
+        <activity android:name=".PictureActivity3"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+        </activity>
+               </application>
+
+</manifest>

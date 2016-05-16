@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="indicator_unselected">#4D000000</color>
+    <color name="primary">#8C62CE</color>
+    <color name="primary_dark">#8C62CE</color>
+    <color name="accent">#FFEB3B</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="cyan">#8C62CE</color>
+    <color name="green">#4CAF50</color>
+    <color name="orange">#FF9800</color>
+    <color name="colorPrimaryDark">#8c62ce</color>
+
+
+</resources>

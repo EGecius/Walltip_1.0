@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Walltip</string>
+    <string name="folder_a">Get Daily Inspiration</string>
+    <string name="folder_b">Live Healthy Life</string>
+    <string name="folder_c">Be More Positive</string>
+    <string name="text_explaining_folder_content_a">Here you can see some walltips as examples from
+        "Get Daily Inspiration" category. Every day you
+        will randomly receive a new Wallpaper with an inspiring message, advice or a tip for your
+        personal or professional growth. Enjoy!
+    </string>
+    <string name="text_explaining_folder_content_b">Here you can see some walltips as examples from
+        "Live Healthy Life" category. Every day you
+        will randomly receive a new Wallpaper with an inspiring message, advice or a tip for your
+        personal or professional growth. Enjoy!
+    </string>
+    <string name="text_explaining_folder_content_c">Here you can see some walltips as examples from
+        "Be More Positive" category. Every day you
+        will randomly receive a new Wallpaper with an inspiring message, advice or a tip for your
+        personal or professional growth. Enjoy!
+    </string>
+    <string name="text_app_purpose">This app changes wallpapers on your device based on your chosen
+        goal that you want to achieve
+    </string>
+    <string name="show_me_the_pictures">Show me pictures</string>
+    <string name="let_see_wallpapers_first">Check Wallpapers</string>
+    <string name="ok_lets_do_it">MAKE MAGIC</string>
+    <string name="do_you_like_your_new_wallpaper">"Do you like your new wallpaper? "</string>
+    <string name="alarm_set_from_device_boot_message">Alarm Set from device boot. Is it working?
+    </string>
+    <string name="main_activity_small_text">We check mobile phones more than 237 times a day on
+        average. If we do that, why don\'t we set our phones for a better use.
+    </string>
+    <string name="this_is_company_logo_main_activity">This is company logo</string>
+    <string name="exit_app_button_message">Have a nice day</string>
+    <string name="add_a_long_description_about_app_s_feature">Add a long description here about your
+        app\'s important feature.
+    </string>
+    <string name="something_not_right">something is not right</string>
+    <string name="retry">retry</string>
+    <string name="choice_1">Even the most motivated of us — you, me, Tony Robbins — can feel
+        unmotivated at times.
+    </string>
+    <string name="choice_2">Check out these ways to be healthier and live longer</string>
+    <string name="choice_3">Life is easy with a positive attitude, wouldn\'t you agree? Well, easier
+        at least
+    </string>
+    <string name="exit_app_textview_text">The Magic start at night. Have fun.</string>
+    <string name="exit_app_button_text">Exit App</string>
+    <string name="choose_one_goal">Choose one goal</string>
+    <string name="i_want_to">I want to</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="button_label">Show Dialog Box</string>
+    <string name="dialog_button_label">OK</string>
+    <string name="intro_large_text">New Walltip.
+        \nAutomatically.
+        \nEvery day.</string>
+    <string name="intro_small_text">We check mobile phones more than 200 times a day on
+        average. If we set our phones in such a way that we read an inspiring message or advice on
+        our screens we could change our lives for good. Based on your choice, you will automatically be receiving a new wallpaper with a message on it everyday.
+    </string>
+    <string name="intro_button_text">LET\'S GO</string>
+    <string name="exit_text_large">Magic starts today</string>
+    <string name="exit_text_small">Go and enjoy your daily activities. Come back if you want to change
+        Walltips theme.
+    </string>
+    <string name="exit_app_greeting">Enjoy</string>
+    <string name="information_message_window_popup">"If you have suggestions or questions - just let us know by writing to martynaskairys@gmail.com"
+    </string>
+
+
+</resources>
