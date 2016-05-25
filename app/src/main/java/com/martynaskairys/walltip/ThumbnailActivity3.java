@@ -8,8 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 //Shows a list of pictures
 public class ThumbnailActivity3 extends AppCompatActivity {
@@ -60,7 +57,7 @@ public class ThumbnailActivity3 extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(context, PictureActivity3.class);
+                Intent intent = new Intent(context, PictureActivity1.class);
                 intent.putExtra("Image Int", mThumbIds[position]);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO (setFlags are not recommended?)
                 context.startActivity(intent);

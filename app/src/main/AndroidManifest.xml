@@ -137,22 +137,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
         </activity>
-        <activity android:name=".PictureActivity2"
-            android:parentActivityName=".ChoosingFolderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
-        </activity>
-        <activity android:name=".PictureActivity3"
-            android:parentActivityName=".ChoosingFolderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
-        </activity>
-               </application>
+    </application>
 
 </manifest>
