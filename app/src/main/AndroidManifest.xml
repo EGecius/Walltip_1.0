@@ -59,9 +59,6 @@
         <activity
             android:name=".ChoosingFolderActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".PictureActivity"
-            android:screenOrientation="sensorPortrait" />
 
         <receiver android:name=".DeviceBootReceiver">
             <intent-filter>
@@ -104,7 +101,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
         </activity>
-        <activity android:name=".PictureActivity1"
+        <activity android:name=".PictureActivity"
                   android:parentActivityName=".ChoosingFolderActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/Theme.AppCompat.Light">

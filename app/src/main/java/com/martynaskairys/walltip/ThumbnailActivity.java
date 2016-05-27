@@ -49,7 +49,7 @@ public class ThumbnailActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(context, PictureActivity1.class);
+                Intent intent = new Intent(context, PictureActivity.class);
                 intent.putExtra("Image Int", mThumbIds[position]);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO (setFlags are not recommended?)
                 context.startActivity(intent);
