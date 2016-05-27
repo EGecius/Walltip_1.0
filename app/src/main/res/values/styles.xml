@@ -10,8 +10,6 @@
         <item name="android:colorBackground">@color/background_material_light</item>
     </style>
 
-
-
         <!-- Customize your theme here. -->
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
@@ -19,8 +17,21 @@
 
     <style name="Walltip" parent="Theme.AppCompat.Light.NoActionBar"/>
 
-    
+    <!-- 2. AppTheme.ActionBarTransparent -->
 
+    <style name="AppTheme.ActionBarTransparent" parent="AppTheme.ActionBarTransparentBase"/>
 
+    <!-- base common to all versions, screens, etc. -->
+    <style name="AppTheme.ActionBarTransparentBase" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBarOverlay">true</item>
+        <item name="displayOptions">homeAsUp</item>
+        <item name="actionBarStyle">@style/ActionBarTransparent</item>
+    </style>
+
+    <!-- ActionBar styles -->
+
+    <style name="ActionBarTransparent" parent="Base.Widget.AppCompat.ActionBar">
+        <item name="background">@android:color/transparent</item>
+    </style>
 
 </resources>

@@ -105,7 +105,7 @@
                   android:parentActivityName=".ChoosingFolderActivity"
                   android:label=""
                   android:screenOrientation="portrait"
-                  android:theme="@style/Theme.AppCompat.Light">
+                  android:theme="@style/AppTheme.ActionBarTransparent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
