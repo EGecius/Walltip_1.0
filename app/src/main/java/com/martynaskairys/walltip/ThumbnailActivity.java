@@ -16,38 +16,30 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
+
 //Shows a list of pictures
-public class ThumbnailActivity2 extends AppCompatActivity {
+public class ThumbnailActivity extends AppCompatActivity {
 
     public static final String EXPLANATION = "explanation";
     public static final String TEXTS = "texts";
-    final Context context = this;
+	public static final String IMAGES = "images";
+	public static final String THUMB_IDS = "thumb_ids";
 
-    public Integer[] mThumbIds = {
-            R.drawable.b1,
-            R.drawable.b2,
-            R.drawable.b3,
-            R.drawable.b4,
-            R.drawable.b5,
-            R.drawable.b6,
-            R.drawable.b7,
-            R.drawable.b8,
-            R.drawable.b9,
-            R.drawable.b10,
-            R.drawable.b11
+	final Context context = this;
 
-
-    };
-
+    private int[] mThumbIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thumbnail2);
+        setContentView(R.layout.activity_thumbnail1);
+
+		mThumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
 
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
 
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
@@ -61,6 +53,7 @@ public class ThumbnailActivity2 extends AppCompatActivity {
                 intent.putExtra("Image Int", mThumbIds[position]);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO (setFlags are not recommended?)
                 context.startActivity(intent);
+
             }
         });
 
@@ -72,10 +65,10 @@ public class ThumbnailActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String[] IMAGES = getIntent().getStringArrayExtra("images");
+                final String[] images = getIntent().getStringArrayExtra(IMAGES);
 
-                Intent intent = new Intent(ThumbnailActivity2.this, ExitAppActivity.class);
-                intent.putExtra("images", IMAGES);
+                Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
+                intent.putExtra("images", images);
 
                 startActivity(intent);
             }

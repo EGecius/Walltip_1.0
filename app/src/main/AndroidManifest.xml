@@ -96,23 +96,7 @@
             android:name="io.fabric.ApiKey"
             android:value="eac7ab5814950a79763329837711332f2c0fdcdf" />
 
-        <activity android:name=".ThumbnailActivity1"
-            android:parentActivityName=".ChoosingFolderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
-        </activity>
-        <activity android:name=".ThumbnailActivity2"
-            android:parentActivityName=".ChoosingFolderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
-        </activity>
-        <activity android:name=".ThumbnailActivity3"
+        <activity android:name=".ThumbnailActivity"
             android:parentActivityName=".ChoosingFolderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light">
@@ -121,9 +105,9 @@
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
         </activity>
         <activity android:name=".PictureActivity1"
-            android:parentActivityName=".ChoosingFolderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light">
+                  android:parentActivityName=".ChoosingFolderActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />

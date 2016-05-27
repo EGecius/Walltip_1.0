@@ -13,9 +13,9 @@ public class ImageAdapter extends BaseAdapter {
 
     private Context mContext;
 	// references to our images
-	private final Integer[] mThumbIds;
+	private final int[] mThumbIds;
 
-    public ImageAdapter(Context c, final Integer[] thumbIds) {
+    public ImageAdapter(Context c, final int[] thumbIds) {
         mContext = c;
 		mThumbIds = thumbIds;
     }
