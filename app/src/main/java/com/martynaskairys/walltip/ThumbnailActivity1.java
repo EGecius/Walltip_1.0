@@ -8,8 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 //Shows a list of pictures
@@ -27,9 +24,7 @@ public class ThumbnailActivity1 extends AppCompatActivity {
     public static final String TEXTS = "texts";
     final Context context = this;
 
-
-    public Integer[] mThumbIds = {
-
+    private Integer[] mThumbIds = {
             R.drawable.a1,
             R.drawable.a2,
             R.drawable.a3,
@@ -59,7 +54,7 @@ public class ThumbnailActivity1 extends AppCompatActivity {
 
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter1(this));
+        gridview.setAdapter(new ImageAdapter(this, mThumbIds));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -91,7 +86,7 @@ public class ThumbnailActivity1 extends AppCompatActivity {
         });
     }
 
-    private void setTitle(){
+	private void setTitle(){
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();

@@ -49,9 +49,8 @@ public class ThumbnailActivity3 extends AppCompatActivity {
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter3(this));
+        gridview.setAdapter(new ImageAdapter(this, mThumbIds));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

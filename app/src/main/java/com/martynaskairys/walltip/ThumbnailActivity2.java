@@ -51,7 +51,7 @@ public class ThumbnailActivity2 extends AppCompatActivity {
 
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter2(this));
+        gridview.setAdapter(new ImageAdapter(this, mThumbIds));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,9 +61,6 @@ public class ThumbnailActivity2 extends AppCompatActivity {
                 intent.putExtra("Image Int", mThumbIds[position]);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO (setFlags are not recommended?)
                 context.startActivity(intent);
-
-                // Toast.makeText(ThumbnailActivityTest1.this, "" + position,
-                //       Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -85,9 +82,7 @@ public class ThumbnailActivity2 extends AppCompatActivity {
         });
     }
 
-
-
-    private void setTitle(){
+	private void setTitle(){
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
