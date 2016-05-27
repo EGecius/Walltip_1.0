@@ -5,19 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 /**
  * Created by Martynas on 2016-04-28.
  */
-public class ImageAdapter extends BaseAdapter {
+public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Holder> {
 
 	private Activity mActivity;
     private Context mContext;
-	// references to our images
+	/** references to our images */
 	private final int[] mThumbIds;
 
 	/**
@@ -30,40 +31,24 @@ public class ImageAdapter extends BaseAdapter {
 		mThumbIds = thumbIds;
     }
 
-    public int getCount() {
-        return mThumbIds.length;
-    }
+	@Override
+	public Holder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_adapter_item, parent, false);
+		return new Holder(view);
+	}
 
-    public Object getItem(int position) {
-        return null;
-    }
+	@Override
+	public void onBindViewHolder(final Holder holder, final int position) {
+		setClickListener(holder.imageView, position);
+		holder.imageView.setImageResource(mThumbIds[position]);
+	}
 
-    public long getItemId(int position) {
-        return 0;
-    }
+	@Override
+	public int getItemCount() {
+		return mThumbIds.length;
+	}
 
-    // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        SquareImageView imageView;
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            imageView = new SquareImageView(mContext);
-            // imageView.setLayoutParams(new GridView.LayoutParams(185,185));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
-
-			setClickListener(imageView, position);
-
-		} else {
-            imageView = (SquareImageView) convertView;
-        }
-
-        imageView.setImageResource(mThumbIds[position]);
-        return imageView;
-    }
-
-	private void setClickListener(final SquareImageView imageView, final int position) {
+	private void setClickListener(final ImageView imageView, final int position) {
 		imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(final View v) {
@@ -75,6 +60,16 @@ public class ImageAdapter extends BaseAdapter {
 				ActivityCompat.startActivity(mActivity, intent, options.toBundle());
 			}
 		});
+	}
+
+	static class Holder extends RecyclerView.ViewHolder {
+
+		final ImageView imageView;
+
+		public Holder(final View itemView) {
+			super(itemView);
+			imageView = (ImageView) itemView.findViewById(R.id.imageView);
+		}
 	}
 
 }

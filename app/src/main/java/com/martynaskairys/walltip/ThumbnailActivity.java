@@ -8,11 +8,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.TextView;
 
 
@@ -39,8 +40,9 @@ public class ThumbnailActivity extends AppCompatActivity {
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-		gridview.setAdapter(new ImageAdapter(this, mThumbIds));
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.gridview);
+		recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+		recyclerView.setAdapter(new ImageAdapter(this, mThumbIds));
 
         setTitle();
 
