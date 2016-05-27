@@ -40,7 +40,7 @@ public class ThumbnailActivity extends AppCompatActivity {
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.gridview);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 		recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
 		recyclerView.setAdapter(new ImageAdapter(this, mThumbIds));
 
@@ -48,7 +48,8 @@ public class ThumbnailActivity extends AppCompatActivity {
 
         setExplanationText();
 
-        findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
+		//noinspection ConstantConditions
+		findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

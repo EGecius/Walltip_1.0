@@ -22,7 +22,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/gridview"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/RL"
