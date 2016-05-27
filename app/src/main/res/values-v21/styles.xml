@@ -1,2 +1,9 @@
 <resources>
+
+    <!-- 2. AppTheme.ActionBarTransparent -->
+
+    <style name="AppTheme.ActionBarTransparent" parent="AppTheme.ActionBarTransparentBase">
+        <item name="android:statusBarColor">@null</item>
+    </style>
+
 </resources>

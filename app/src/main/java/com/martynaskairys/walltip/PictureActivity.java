@@ -1,42 +1,30 @@
 package com.martynaskairys.walltip;
 
-
-
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
-//Shows a large resolution picture for the user to decide whether they want to to use it as a background
 public class PictureActivity extends AppCompatActivity {
 
-    public static final String PICTURE = "picture";
+	public static final String IMAGE_INT = "Image Int";
 
-    @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.picture_activity);
+        setContentView(R.layout.activity_picture);
 
-        setPicture();
-    }
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-    private void setPicture() {
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        int imageInt = getIntent().getIntExtra(IMAGE_INT, R.drawable.mok);
+        ImageView imageView = (ImageView)findViewById(R.id.imageView);
+		ViewCompat.setTransitionName(imageView, IMAGE_INT);
+        imageView.setImageResource(imageInt);
 
-        Intent intent = getIntent();
-        Bundle b = intent.getExtras();
-
-        String imageUrl = null;
-        if (b != null) {
-            imageUrl = (String) b.get(PICTURE);
-        }
-
-        Picasso.with(this)
-                .load(imageUrl)
-                .into(imageView);
     }
 }
-
-

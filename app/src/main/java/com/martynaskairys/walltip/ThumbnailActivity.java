@@ -3,7 +3,10 @@ package com.martynaskairys.walltip;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,48 +16,54 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 //Shows a list of pictures
 public class ThumbnailActivity extends AppCompatActivity {
 
     public static final String EXPLANATION = "explanation";
     public static final String TEXTS = "texts";
-    final Context context = this;
+	public static final String IMAGES = "images";
+	public static final String THUMB_IDS = "thumb_ids";
 
+	final Context context = this;
 
-
-    //Populates list items
-    private RecyclerAdapter adapter;
+    private int[] mThumbIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.thumbnail_activity);
+        setContentView(R.layout.activity_thumbnail);
+
+		mThumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
+
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+		recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+		recyclerView.setAdapter(new ImageAdapter(this, mThumbIds));
 
         setTitle();
 
         setExplanationText();
 
-        initRecyclerView();
-
-
-        String[] IMAGES = getIntent().getStringArrayExtra("images");
-        showList(IMAGES);
-
-        findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
+		//noinspection ConstantConditions
+		findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final String[] IMAGES = getIntent().getStringArrayExtra("images");
+                final String[] images = getIntent().getStringArrayExtra(IMAGES);
 
                 Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
-                intent.putExtra("images", IMAGES);
+                intent.putExtra("images", images);
 
                 startActivity(intent);
             }
         });
     }
 
-    private void setTitle(){
+	private void setTitle(){
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
@@ -77,23 +86,9 @@ public class ThumbnailActivity extends AppCompatActivity {
         }
     }
 
-
-    private void initRecyclerView() {
-        adapter = new RecyclerAdapter(getApplicationContext());
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
-        recyclerView.setAdapter(adapter);
-    }
-
-
-    //Shows list of images
-    private void showList(String[] IMAGES) {
-        adapter.setData(IMAGES);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-                 getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -142,6 +137,11 @@ public class ThumbnailActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
+
+
+
+
 
 }
 

@@ -24,157 +24,163 @@ import retrofit.client.Response;
  */
 public class ChoosingFolderActivity extends AppCompatActivity {
 
-    private ViewGroup content;
-    private ProgressBar progressBar;
-    private Button buttonA;
-    private Button buttonB;
-    private Button buttonC;
-    private ViewGroup rootView;
+	private ViewGroup content;
+	private ProgressBar progressBar;
+	private Button buttonA;
+	private Button buttonB;
+	private Button buttonC;
+	private ViewGroup rootView;
+
+	private int[] dailyInspirationThumbIds = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4, R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9, R.drawable.a10, R.drawable.a11, R.drawable.a12};
+	private int[] healthyLifeThumbIds = {R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4, R.drawable.b5, R.drawable.b6, R.drawable.b7, R.drawable.b8, R.drawable.b9, R.drawable.b10, R.drawable.b11};
+	private int[] bePositiveThumbIds = {R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5, R.drawable.c6, R.drawable.c7, R.drawable.c8, R.drawable.c9, R.drawable.c10, R.drawable.c11, R.drawable.c12};
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_choosing_folder);
+
+		findViews();
+
+		fetchImageUrlsAndUpdateUiAccordingly();
+
+	}
+
+	private void findViews() {
+		rootView = (ViewGroup) findViewById(R.id.root);
+		content = (ViewGroup) findViewById(R.id.content);
+		progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+		buttonA = (Button) findViewById(R.id.button_folder_a);
+		buttonB = (Button) findViewById(R.id.button_folder_b);
+		buttonC = (Button) findViewById(R.id.button_folder_c);
 
 
-        setContentView(R.layout.activity_choosing_folder);
+	}
 
-        findViews();
+	private void fetchImageUrlsAndUpdateUiAccordingly() {
 
-        fetchImageUrlsAndUpdateUiAccordingly();
+		showProgressBarOnly();
 
-    }
+		ApiService service = new RetrofitSetup().getService();
+		service.getFolders(new Callback<List<Folder>>() {
+			@Override
+			public void success(List<Folder> folders, Response response) {
+				setupButtons(folders);
+				showContentOnly();
+			}
 
-    private void findViews() {
-        rootView = (ViewGroup) findViewById(R.id.root);
-        content = (ViewGroup) findViewById(R.id.content);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        buttonA = (Button) findViewById(R.id.button_folder_a);
-        buttonB = (Button) findViewById(R.id.button_folder_b);
-        buttonC = (Button) findViewById(R.id.button_folder_c);
+			@Override
+			public void failure(RetrofitError error) {
+				showRetryButtonOnly();
+			}
+		});
+	}
 
+	private void showRetryButtonOnly() {
+		content.setVisibility(View.INVISIBLE);
+		progressBar.setVisibility(View.INVISIBLE);
 
-    }
+		Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE).setAction(R.string.retry, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				fetchImageUrlsAndUpdateUiAccordingly();
+			}
+		}).show();
+	}
 
-    private void fetchImageUrlsAndUpdateUiAccordingly() {
+	private void showContentOnly() {
+		content.setVisibility(View.VISIBLE);
+		progressBar.setVisibility(View.INVISIBLE);
+	}
 
-        showProgressBarOnly();
+	private void showProgressBarOnly() {
+		content.setVisibility(View.INVISIBLE);
+		progressBar.setVisibility(View.VISIBLE);
+	}
 
-        ApiService service = new RetrofitSetup().getService();
-        service.getFolders(new Callback<List<Folder>>() {
-            @Override
-            public void success(List<Folder> folders, Response response) {
-                setupButtons(folders);
-                showContentOnly();
-            }
+	private void setupButtons(List<Folder> folders) {
 
-            @Override
-            public void failure(RetrofitError error) {
-                showRetryButtonOnly();
-            }
-        });
-    }
+		String[] urlsFolderA = toArray(folders.get(0));
+		String[] urlsFolderB = toArray(folders.get(1));
+		String[] urlsFolderC = toArray(folders.get(2));
 
-    private void showRetryButtonOnly() {
-        content.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.INVISIBLE);
+		setupFolderAButton(urlsFolderA);
+		setupFolderBButton(urlsFolderB);
+		setupFolderCButton(urlsFolderC);
+	}
 
-        Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE).setAction(R.string.retry, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fetchImageUrlsAndUpdateUiAccordingly();
-            }
-        }).show();
-    }
+	private String[] toArray(Folder folder) {
 
-    private void showContentOnly() {
-        content.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.INVISIBLE);
-    }
+		List<String> urlsList = folder.getUrls();
 
-    private void showProgressBarOnly() {
-        content.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
-    }
+		String[] strings = new String[urlsList.size()];
+		for (int i = 0; i < urlsList.size(); i++) {
+			strings[i] = urlsList.get(i);
+		}
 
-    private void setupButtons(List<Folder> folders) {
-
-        String[] urlsFolderA = toArray(folders.get(0));
-        String[] urlsFolderB = toArray(folders.get(1));
-        String[] urlsFolderC = toArray(folders.get(2));
-
-        setupFolderAButton(urlsFolderA);
-        setupFolderBButton(urlsFolderB);
-        setupFolderCButton(urlsFolderC);
-    }
-
-    private String[] toArray(Folder folder) {
-
-        List<String> urlsList = folder.getUrls();
-
-        String[] strings = new String[urlsList.size()];
-        for (int i = 0; i < urlsList.size(); i++) {
-            strings[i] = urlsList.get(i);
-        }
-
-        return strings;
-    }
+		return strings;
+	}
 
 
-    private void setupFolderAButton(final String[] urlsFolderA) {
-        buttonA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+	private void setupFolderAButton(final String[] urlsFolderA) {
+		buttonA.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
 
-                String folderA = getString(R.string.text_explaining_folder_content_a);
-                //Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
-                Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity1.class);
-                intent.putExtra(ThumbnailActivity.EXPLANATION, folderA);
-                intent.putExtra("images", urlsFolderA);
-                intent.putExtra("texts", getString(R.string.folder_a));
-                Bundle bundle = new Bundle();
-                bundle.putInt("image", R.drawable.pic1a);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-    }
+				String folderA = getString(R.string.text_explaining_folder_content_a);
+				//Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
+				Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
+				intent.putExtra(ThumbnailActivity.EXPLANATION, folderA);
+				intent.putExtra(ThumbnailActivity.IMAGES, urlsFolderA);
+				intent.putExtra(ThumbnailActivity.TEXTS, getString(R.string.folder_a));
+				intent.putExtra(ThumbnailActivity.THUMB_IDS, dailyInspirationThumbIds);
+				Bundle bundle = new Bundle();
+				bundle.putInt("image", R.drawable.pic1a);
+				intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
+	}
 
-    private void setupFolderBButton(final String[] urlsFolderB) {
-        buttonB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String folderB = getString(R.string.text_explaining_folder_content_b);
-                Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity2.class);
-                intent.putExtra(ThumbnailActivity.EXPLANATION, folderB);
-                intent.putExtra("images", urlsFolderB);
-                intent.putExtra("texts", getString(R.string.folder_b));
-                Bundle bundle = new Bundle();
-                bundle.putInt("image", R.drawable.pic1b);
-                intent.putExtras(bundle);
+	private void setupFolderBButton(final String[] urlsFolderB) {
+		buttonB.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String folderB = getString(R.string.text_explaining_folder_content_b);
+				Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
+				intent.putExtra(ThumbnailActivity.EXPLANATION, folderB);
+				intent.putExtra(ThumbnailActivity.IMAGES, urlsFolderB);
+				intent.putExtra(ThumbnailActivity.TEXTS, getString(R.string.folder_b));
+				intent.putExtra(ThumbnailActivity.THUMB_IDS, healthyLifeThumbIds);
+				Bundle bundle = new Bundle();
+				bundle.putInt("image", R.drawable.pic1b);
+				intent.putExtras(bundle);
 
-                startActivity(intent);
+				startActivity(intent);
 
-            }
-        });
-    }
+			}
+		});
+	}
 
-    private void setupFolderCButton(final String[] urlsFolderC) {
-        buttonC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String folderC = getString(R.string.text_explaining_folder_content_c);
-                Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity3.class);
-                intent.putExtra(ThumbnailActivity.EXPLANATION, folderC);
-                intent.putExtra("images", urlsFolderC);
-                intent.putExtra("texts", getString(R.string.folder_c));
-                Bundle bundle = new Bundle();
-                bundle.putInt("image", R.drawable.pic1c);
-                intent.putExtras(bundle);
+	private void setupFolderCButton(final String[] urlsFolderC) {
+		buttonC.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String folderC = getString(R.string.text_explaining_folder_content_c);
+				Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
+				intent.putExtra(ThumbnailActivity.EXPLANATION, folderC);
+				intent.putExtra(ThumbnailActivity.IMAGES, urlsFolderC);
+				intent.putExtra(ThumbnailActivity.TEXTS, getString(R.string.folder_c));
+				intent.putExtra(ThumbnailActivity.THUMB_IDS, bePositiveThumbIds);
+				Bundle bundle = new Bundle();
+				bundle.putInt("image", R.drawable.pic1c);
+				intent.putExtras(bundle);
 
-                startActivity(intent);
-            }
-        });
-    }
+				startActivity(intent);
+			}
+		});
+	}
 
 }
