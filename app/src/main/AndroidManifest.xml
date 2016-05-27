@@ -62,15 +62,6 @@
         <activity
             android:name=".PictureActivity"
             android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name=".ThumbnailActivity"
-            android:parentActivityName=".ChoosingFolderActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
-        </activity>
 
         <receiver android:name=".DeviceBootReceiver">
             <intent-filter>

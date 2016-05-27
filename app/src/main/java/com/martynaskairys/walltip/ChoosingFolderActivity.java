@@ -129,7 +129,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
                 String folderA = getString(R.string.text_explaining_folder_content_a);
                 //Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
                 Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity1.class);
-                intent.putExtra(ThumbnailActivity.EXPLANATION, folderA);
+                intent.putExtra(ThumbnailActivity1.EXPLANATION, folderA);
                 intent.putExtra("images", urlsFolderA);
                 intent.putExtra("texts", getString(R.string.folder_a));
                 Bundle bundle = new Bundle();
@@ -146,7 +146,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String folderB = getString(R.string.text_explaining_folder_content_b);
                 Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity2.class);
-                intent.putExtra(ThumbnailActivity.EXPLANATION, folderB);
+                intent.putExtra(ThumbnailActivity1.EXPLANATION, folderB);
                 intent.putExtra("images", urlsFolderB);
                 intent.putExtra("texts", getString(R.string.folder_b));
                 Bundle bundle = new Bundle();
@@ -165,7 +165,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String folderC = getString(R.string.text_explaining_folder_content_c);
                 Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity3.class);
-                intent.putExtra(ThumbnailActivity.EXPLANATION, folderC);
+                intent.putExtra(ThumbnailActivity1.EXPLANATION, folderC);
                 intent.putExtra("images", urlsFolderC);
                 intent.putExtra("texts", getString(R.string.folder_c));
                 Bundle bundle = new Bundle();
