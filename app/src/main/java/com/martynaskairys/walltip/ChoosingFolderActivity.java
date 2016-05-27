@@ -147,8 +147,8 @@ public class ChoosingFolderActivity extends AppCompatActivity {
                 String folderB = getString(R.string.text_explaining_folder_content_b);
                 Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity2.class);
                 intent.putExtra(ThumbnailActivity1.EXPLANATION, folderB);
-                intent.putExtra("images", urlsFolderB);
-                intent.putExtra("texts", getString(R.string.folder_b));
+                intent.putExtra(ThumbnailActivity1.IMAGES, urlsFolderB);
+                intent.putExtra(ThumbnailActivity1.TEXTS, getString(R.string.folder_b));
                 Bundle bundle = new Bundle();
                 bundle.putInt("image", R.drawable.pic1b);
                 intent.putExtras(bundle);

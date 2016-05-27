@@ -22,7 +22,9 @@ public class ThumbnailActivity1 extends AppCompatActivity {
 
     public static final String EXPLANATION = "explanation";
     public static final String TEXTS = "texts";
-    final Context context = this;
+	public static final String IMAGES = "images";
+
+	final Context context = this;
 
     private Integer[] mThumbIds = {
             R.drawable.a1,
@@ -76,10 +78,10 @@ public class ThumbnailActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String[] IMAGES = getIntent().getStringArrayExtra("images");
+                final String[] images = getIntent().getStringArrayExtra(IMAGES);
 
                 Intent intent = new Intent(ThumbnailActivity1.this, ExitAppActivity.class);
-                intent.putExtra("images", IMAGES);
+                intent.putExtra("images", images);
 
                 startActivity(intent);
             }
