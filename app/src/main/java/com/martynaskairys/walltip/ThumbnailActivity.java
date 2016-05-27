@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -39,23 +38,9 @@ public class ThumbnailActivity extends AppCompatActivity {
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
-
-
+		
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this, mThumbIds));
-
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent intent = new Intent(context, PictureActivity.class);
-                intent.putExtra("Image Int", mThumbIds[position]);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO (setFlags are not recommended?)
-                context.startActivity(intent);
-
-            }
-        });
+		gridview.setAdapter(new ImageAdapter(this, mThumbIds));
 
         setTitle();
 

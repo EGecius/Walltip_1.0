@@ -1,6 +1,10 @@
 package com.martynaskairys.walltip;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,12 +15,18 @@ import android.widget.ImageView;
  */
 public class ImageAdapter extends BaseAdapter {
 
+	private Activity mActivity;
     private Context mContext;
 	// references to our images
 	private final int[] mThumbIds;
 
-    public ImageAdapter(Context c, final int[] thumbIds) {
-        mContext = c;
+	/**
+	 * @param activity activity where this adapter is used
+	 * @param thumbIds ids of images to show
+	 */
+    public ImageAdapter(final Activity activity, final int[] thumbIds) {
+		mActivity = activity;
+        mContext = activity.getApplicationContext();
 		mThumbIds = thumbIds;
     }
 
@@ -43,12 +53,28 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
 
-        } else {
+			setClickListener(imageView, position);
+
+		} else {
             imageView = (SquareImageView) convertView;
         }
 
         imageView.setImageResource(mThumbIds[position]);
         return imageView;
     }
+
+	private void setClickListener(final SquareImageView imageView, final int position) {
+		imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(final View v) {
+				final Intent intent = new Intent(mActivity, PictureActivity.class);
+				intent.putExtra(PictureActivity.IMAGE_INT, mThumbIds[position]);
+
+				final ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity,
+						imageView, PictureActivity.IMAGE_INT);
+				ActivityCompat.startActivity(mActivity, intent, options.toBundle());
+			}
+		});
+	}
 
 }
