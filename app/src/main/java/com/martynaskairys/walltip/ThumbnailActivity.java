@@ -32,7 +32,7 @@ public class ThumbnailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thumbnail1);
+        setContentView(R.layout.activity_thumbnail);
 
 		mThumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
 
