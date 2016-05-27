@@ -1,7 +1,6 @@
 package com.martynaskairys.walltip;
 
 import android.app.AlarmManager;
-import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -11,11 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Collections;
@@ -48,7 +43,8 @@ public class ExitAppActivity extends AppCompatActivity {
         Intent alarmIntent = new Intent(ExitAppActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(ExitAppActivity.this, 0, alarmIntent, 0);
 
-        setWallpapersToWork();
+        changeWallpaperNow();
+        scheduleWallpapersToWork();
 
 
         findViewById(R.id.buttonExitApp).setOnClickListener(new View.OnClickListener() {
@@ -66,7 +62,12 @@ public class ExitAppActivity extends AppCompatActivity {
 
     }
 
-	private void saveUrls() {
+    private void changeWallpaperNow() {
+        Intent intent = new Intent(this, WallpaperService.class);
+        startService(intent);
+    }
+
+    private void saveUrls() {
 		Set<String> urlsSet = new HashSet<>();
 		Collections.addAll(urlsSet, imageUrls);
 
@@ -85,11 +86,13 @@ public class ExitAppActivity extends AppCompatActivity {
         return imageUrls[randomNumber];
     }
 
-    public void setWallpapersToWork() {
+    public void scheduleWallpapersToWork() {
 
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         int interval = 1000*60*60*24;
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+
+        long firstTrigger = System.currentTimeMillis() + interval;
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, interval, pendingIntent);
 
         Intent intent = new Intent();
         intent.setAction("AlarmReceiver");
