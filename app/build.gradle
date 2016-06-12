@@ -24,8 +24,8 @@ android {
         applicationId "com.martynaskairys.walltip"
         minSdkVersion 19
         targetSdkVersion 23
-        versionName '1.4.1'
-        versionCode 7
+        versionName '1.5.2'
+        versionCode 11
     }
     buildTypes {
         release {
@@ -46,7 +46,8 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.android.support:design:23.2.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar')
+    {
         transitive = true;
     }
 }

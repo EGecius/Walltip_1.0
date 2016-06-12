@@ -71,6 +71,7 @@
             android:name=".ExitAppActivity"
             android:parentActivityName=".ChoosingFolderActivity"
             android:screenOrientation="portrait"
+            android:label=""
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
