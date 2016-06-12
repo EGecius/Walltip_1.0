@@ -19,16 +19,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Holder> {
 	private Activity mActivity;
     private Context mContext;
 	/** references to our images */
-	private final int[] mThumbIds;
+	private int[] mThumbIds = new int[0];
 
 	/**
 	 * @param activity activity where this adapter is used
-	 * @param thumbIds ids of images to show
+	 *
 	 */
-    public ImageAdapter(final Activity activity, final int[] thumbIds) {
+    public ImageAdapter(final Activity activity) {
 		mActivity = activity;
         mContext = activity.getApplicationContext();
-		mThumbIds = thumbIds;
     }
 
 	@Override
@@ -70,6 +69,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Holder> {
 			super(itemView);
 			imageView = (ImageView) itemView.findViewById(R.id.imageView);
 		}
+	}
+
+	/** sets thumb ids on the adapter */
+	void setData(int[] thumbIds) {
+		mThumbIds = thumbIds;
+		notifyDataSetChanged();
 	}
 
 }
