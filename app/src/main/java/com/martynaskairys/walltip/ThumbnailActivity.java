@@ -93,7 +93,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 
 	/** set thumbnails while minimizing chances of frame loss. Since we are loading images from drawables, once set,
 	 * they are immediately loaded on the main thread, thus adding a long queue of work immediately on the main
-	 * thread. Testing has shown that frame loss happens much more rarely if this is delayed by 100 ms */
+	 * thread. Testing has shown activity loads faster if setting of drawables is delayed */
 	private void setThumbnailsSmoothly(final ImageAdapter adapter) {
 		new Handler().postDelayed(new Runnable() {
 			@Override
