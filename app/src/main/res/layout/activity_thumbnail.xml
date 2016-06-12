@@ -29,6 +29,12 @@
         android:layout_marginTop="8dp"
         tools:listitem="@layout/image_adapter_item"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <RelativeLayout
         android:id="@+id/RL"
         android:layout_width="match_parent"

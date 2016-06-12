@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,10 +15,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-//Shows a list of pictures
+/** Shows a list of pictures */
 public class ThumbnailActivity extends AppCompatActivity {
 
     public static final String EXPLANATION = "explanation";
@@ -27,64 +29,96 @@ public class ThumbnailActivity extends AppCompatActivity {
 
 	final Context context = this;
 
-    private int[] mThumbIds;
+    private int[] thumbIds;
+	private ProgressBar progressBar;
 
-    @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+		thumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
+
         setContentView(R.layout.activity_thumbnail);
+		findViews();
 
-		mThumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
+		setActionBar();
+		setExplanationText();
+		setTitle();
+		setGridView();
+		setOnClickListener();
+	}
 
-        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+	private void findViews() {
+		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+	}
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-		recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
-		recyclerView.setAdapter(new ImageAdapter(this, mThumbIds));
+	private void setActionBar() {
+		final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+		upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
+		getSupportActionBar().setHomeAsUpIndicator(upArrow);
+	}
 
-        setTitle();
+	private void setExplanationText() {
+		TextView textExplainingFolderChoice = (TextView) findViewById(R.id.text_explaining_folder_content);
 
-        setExplanationText();
+		Intent intent = getIntent();
+		Bundle b = intent.getExtras();
 
-		//noinspection ConstantConditions
-		findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                final String[] images = getIntent().getStringArrayExtra(IMAGES);
-
-                Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
-                intent.putExtra("images", images);
-
-                startActivity(intent);
-            }
-        });
-    }
+		if (b != null) {
+			String j = (String) b.get(EXPLANATION);
+			textExplainingFolderChoice.setText(j);
+		}
+	}
 
 	private void setTitle(){
 
-        Intent intent = getIntent();
-        Bundle b = intent.getExtras();
+		Intent intent = getIntent();
+		Bundle b = intent.getExtras();
 
-        if (b != null) {
-            String j = (String) b.get(TEXTS);
-            setTitle(j);
-        }
+		if (b != null) {
+			String j = (String) b.get(TEXTS);
+			setTitle(j);
+		}
+	}
 
-    }
-    private void setExplanationText() {
-        TextView textExplainingFolderChoice = (TextView) findViewById(R.id.text_explaining_folder_content);
+	private void setGridView() {
 
-        Intent intent = getIntent();
-        Bundle b = intent.getExtras();
+		final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+		recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+		final ImageAdapter adapter = new ImageAdapter(ThumbnailActivity.this);
+		recyclerView.setAdapter(adapter);
 
-        if (b != null) {
-            String j = (String) b.get(EXPLANATION);
-            textExplainingFolderChoice.setText(j);
-        }
-    }
+		setThumbnailsSmoothly(adapter);
+	}
+
+	/** set thumbnails while minimizing chances of frame loss. Since we are loading images from drawables, once set,
+	 * they are immediately loaded on the main thread, thus adding a long queue of work immediately on the main
+	 * thread. Testing has shown activity loads faster if setting of drawables is delayed */
+	private void setThumbnailsSmoothly(final ImageAdapter adapter) {
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				adapter.setData(thumbIds);
+				progressBar.setVisibility(View.GONE);
+			}
+		}, 1000 /* ms */ );
+	}
+
+	private void setOnClickListener() {
+		//noinspection ConstantConditions
+		findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				final String[] images = getIntent().getStringArrayExtra(IMAGES);
+
+				Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
+				intent.putExtra("images", images);
+
+				startActivity(intent);
+			}
+		});
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,16 +166,9 @@ public class ThumbnailActivity extends AppCompatActivity {
 
         });
 
-
-
         dialog.show();
 
     }
-
-
-
-
-
 
 }
 
