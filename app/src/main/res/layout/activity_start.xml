@@ -60,7 +60,7 @@
             android:textColor="#8C62CE" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/arrowBtn"
             android:layout_width="20dp"
             android:layout_height="50dp"
             android:layout_alignBottom="@+id/button"
