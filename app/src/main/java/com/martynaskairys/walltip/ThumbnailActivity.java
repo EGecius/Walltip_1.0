@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -29,19 +30,26 @@ public class ThumbnailActivity extends AppCompatActivity {
 	final Context context = this;
 
     private int[] thumbIds;
+	private ProgressBar progressBar;
 
-    @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thumbnail);
-		
+
 		thumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
+
+        setContentView(R.layout.activity_thumbnail);
+		findViews();
 
 		setActionBar();
 		setExplanationText();
 		setTitle();
-		setGridview();
+		setGridView();
 		setOnClickListener();
+	}
+
+	private void findViews() {
+		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 	}
 
 	private void setActionBar() {
@@ -73,7 +81,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 		}
 	}
 
-	private void setGridview() {
+	private void setGridView() {
 
 		final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 		recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
@@ -91,6 +99,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 			@Override
 			public void run() {
 				adapter.setData(thumbIds);
+				progressBar.setVisibility(View.GONE);
 			}
 		}, 1000 /* ms */ );
 	}
