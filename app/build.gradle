@@ -24,8 +24,8 @@ android {
         applicationId "com.martynaskairys.walltip"
         minSdkVersion 19
         targetSdkVersion 23
-        versionName '1.5.6'
-        versionCode 15
+        versionName '1.5.8'
+        versionCode 17
     }
     buildTypes {
         release {
