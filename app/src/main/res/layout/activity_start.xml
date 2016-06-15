@@ -66,6 +66,7 @@
             android:layout_alignBottom="@+id/button"
             android:layout_below="@+id/textView2"
             android:layout_toEndOf="@+id/button"
+            android:layout_toRightOf="@+id/button"
             android:background="?android:attr/selectableItemBackground"
             android:padding="16dp"
             android:scaleType="centerCrop"

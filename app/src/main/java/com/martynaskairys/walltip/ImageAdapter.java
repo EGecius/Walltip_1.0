@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by Martynas on 2016-04-28.
  */
@@ -38,8 +40,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Holder> {
 
 	@Override
 	public void onBindViewHolder(final Holder holder, final int position) {
+		Picasso.with(mContext)
+						.load(mThumbIds[position])
+				.fit()
+				.centerCrop()
+				.placeholder(R.drawable.mok)
+				.into(holder.imageView);
+
 		setClickListener(holder.imageView, position);
-		holder.imageView.setImageResource(mThumbIds[position]);
 	}
 
 	@Override
