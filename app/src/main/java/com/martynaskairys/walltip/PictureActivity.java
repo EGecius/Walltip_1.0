@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 public class PictureActivity extends AppCompatActivity {
@@ -26,5 +27,16 @@ public class PictureActivity extends AppCompatActivity {
 		ViewCompat.setTransitionName(imageView, IMAGE_INT);
         imageView.setImageResource(imageInt);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return(super.onOptionsItemSelected(item));
     }
 }

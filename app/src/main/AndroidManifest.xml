@@ -69,7 +69,7 @@
 
         <activity
             android:name=".ExitAppActivity"
-            android:parentActivityName=".ChoosingFolderActivity"
+            android:parentActivityName=".ThumbnailActivity"
             android:screenOrientation="portrait"
             android:label=""
             android:theme="@style/Theme.AppCompat.Light">
@@ -103,10 +103,10 @@
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
         </activity>
         <activity android:name=".PictureActivity"
-                  android:parentActivityName=".ChoosingFolderActivity"
+                  android:parentActivityName=".ThumbnailActivity"
                   android:label=""
                   android:screenOrientation="portrait"
-                  android:theme="@style/AppTheme.ActionBarTransparent">
+                  android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
