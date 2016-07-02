@@ -1,0 +1,32 @@
+#
+# Build configuration for Circle CI
+#
+
+general:
+    artifacts:
+        - /home/ubuntu/Demo_CircleCI_Android/app/build/outputs/apk/
+
+machine:
+    environment:
+        ANDROID_HOME: /usr/local/android-sdk-linux
+
+dependencies:
+    pre:
+        - echo yes | android update sdk --no-ui --all --filter build-tools-23.0.3
+        - echo yes | android update sdk --no-ui --all --filter extra-android-m2repository,extra-google-m2repository
+
+test:
+    override:
+        - (./gradlew assemble test -PdisablePreDex):
+            timeout: 600
+
+#        - emulator -avd circleci-android22 -no-audio -no-window:
+#            background: true
+#            parallel: true
+#        - circle-android wait-for-boot
+#
+#        - adb install /home/ubuntu/Demo_CircleCI_Android/app/build/outputs/apk/app-debug.apk
+#
+#        - (./gradlew connectedAndroidTest):
+#            timeout: 360
+#
