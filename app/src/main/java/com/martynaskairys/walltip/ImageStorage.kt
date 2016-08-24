@@ -5,7 +5,7 @@ import java.util.*
 
 /** Store image Urls */
 class ImageStorage(val context: Context) {
-    
+
     fun saveUrls(imageUrls: Array<String>) {
 
         val urlsSet = HashSet<String>()

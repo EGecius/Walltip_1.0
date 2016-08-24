@@ -65,7 +65,8 @@ public class WallpaperService extends IntentService {
     }
 
     private Set<String> getSavedUrls() {
-        SharedPreferences preferences = getSharedPreferences(STANDARD, Context.MODE_PRIVATE);
+		// TODO: 24/08/2016 extact retrieving of images to ImageStorage.kt 
+		SharedPreferences preferences = getSharedPreferences(STANDARD, Context.MODE_PRIVATE);
         return preferences.getStringSet(ImageStorage.Companion.getCHOSEN_FOLDER_URLS(), null);
     }
 
