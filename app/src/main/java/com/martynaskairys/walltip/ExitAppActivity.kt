@@ -4,19 +4,12 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
-
-import java.util.Collections
-import java.util.HashSet
-import java.util.Random
 
 
 class ExitAppActivity : AppCompatActivity() {
@@ -46,7 +39,11 @@ class ExitAppActivity : AppCompatActivity() {
         }
 
         saveUrls()
+    }
 
+    private fun saveUrls() {
+        val imageUrls = intent.getStringArrayExtra("images")
+        ImageStorage(applicationContext).saveUrls(imageUrls)
     }
 
     private fun showArrow() {
@@ -60,16 +57,7 @@ class ExitAppActivity : AppCompatActivity() {
         startService(intent)
     }
 
-    private fun saveUrls() {
-        val urlsSet = HashSet<String>()
-        val imageUrls = intent.getStringArrayExtra("images")
-        Collections.addAll(urlsSet, *imageUrls!!)
 
-        val preferences = getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
-        val edit = preferences.edit()
-        edit.putStringSet(CHOSEN_FOLDER_URLS, urlsSet)
-        edit.apply()
-    }
 
     fun scheduleWallpapersToWork() {
 
@@ -84,11 +72,6 @@ class ExitAppActivity : AppCompatActivity() {
 
     }
 
-    companion object {
-
-        val CHOSEN_FOLDER_URLS = "chosen_folder_urls"
-        val STANDARD = "standard"
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
