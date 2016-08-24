@@ -40,6 +40,7 @@ android {
 
 ext {
     supportLibraryVersion = "23.4.0"
+    assertJVersion = '1.1.0'
     mockitoVersion = '1.10.19'
 }
 
@@ -54,6 +55,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {transitive = true}
 
+    testCompile "com.squareup.assertj:assertj-android:${assertJVersion}"
     testCompile ("org.mockito:mockito-core:${mockitoVersion}") {
         exclude group: 'org.hamcrest'
     }
