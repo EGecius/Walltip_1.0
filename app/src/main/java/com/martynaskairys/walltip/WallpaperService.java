@@ -4,7 +4,6 @@ import android.app.IntentService;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -65,9 +64,7 @@ public class WallpaperService extends IntentService {
     }
 
     private Set<String> getSavedUrls() {
-		// TODO: 24/08/2016 extact retrieving of images to ImageStorage.kt 
-		SharedPreferences preferences = getSharedPreferences(STANDARD, Context.MODE_PRIVATE);
-        return preferences.getStringSet(ImageStorage.Companion.getCHOSEN_FOLDER_URLS(), null);
+		return new ImageStorage(getApplicationContext()).getUrls();
     }
 
     private String getRandomUrl(Set<String> urls) {

@@ -17,6 +17,11 @@ class ImageStorage(val context: Context) {
         edit.apply()
     }
 
+    fun getUrls() : Set<String> {
+        val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
+        return preferences.getStringSet(CHOSEN_FOLDER_URLS, null)
+    }
+
     companion object {
         val CHOSEN_FOLDER_URLS = "chosen_folder_urls"
         val STANDARD = "standard"
