@@ -55,7 +55,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {transitive = true}
 
-    testCompile "com.squareup.assertj:assertj-android:${assertJVersion}"
+    testCompile("com.squareup.assertj:assertj-android:${assertJVersion}") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
     testCompile ("org.mockito:mockito-core:${mockitoVersion}") {
         exclude group: 'org.hamcrest'
     }
