@@ -13,46 +13,44 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-
+/** Sets wallpapers for device's home-screen */
 public class WallpaperService extends IntentService {
 
-    public WallpaperService() {
-        super("WallpaperService");
-    }
+	public WallpaperService() {
+		super("WallpaperService");
+	}
 
-    @Override
-    protected void onHandleIntent(Intent intent) {
-        changeRandomly(this);
-    }
+	@Override
+	protected void onHandleIntent(Intent intent) {
+		changeRandomly(this);
+	}
 
+	public void changeRandomly(Context context) {
 
-    public void changeRandomly(Context context) {
+		DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+		int height = metrics.heightPixels;
+		int width = metrics.widthPixels;
 
+		String randomImageUrl = getRandomUrl();
 
-            DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-            int height = metrics.heightPixels;
-            int width = metrics.widthPixels;
+		try {
+			InputStream ins = new URL(randomImageUrl).openStream();
 
-        String randomUrl = getRandomUrl();
+			Bitmap tempBitmap = BitmapFactory.decodeStream(ins);
+			Bitmap bitmap = Bitmap.createScaledBitmap(tempBitmap, width, height, true);
 
-        try {
-            InputStream ins = new URL(randomUrl).openStream();
+			WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
+			wallpaperManager.setWallpaperOffsetSteps(1, 1);
+			wallpaperManager.suggestDesiredDimensions(width, height);
+			wallpaperManager.setBitmap(bitmap);
 
-            Bitmap tempbitMap = BitmapFactory.decodeStream(ins);
-            Bitmap bitmap = Bitmap.createScaledBitmap(tempbitMap, width, height, true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+	}
 
-            WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
-            wallpaperManager.setWallpaperOffsetSteps(1, 1);
-            wallpaperManager.suggestDesiredDimensions(width, height);
-            wallpaperManager.setBitmap(bitmap);
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-        }
-    }
-
-    private String getRandomUrl() {
+	private String getRandomUrl() {
 		RandomImageGenerator randomGenerator = new RandomImageGenerator(new ImageStorageImpl(getApplicationContext()));
 		return randomGenerator.takeRandomImage();
-    }
+	}
 }
