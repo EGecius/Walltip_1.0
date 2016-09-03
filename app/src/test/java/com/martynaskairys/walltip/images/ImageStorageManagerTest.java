@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -25,7 +26,9 @@ public final class ImageStorageManagerTest {
 
 	@Captor ArgumentCaptor<ArrayList<String>> captor;
 
-	ImageStorageManager generator;
+	ImageStorageManager manager;
+
+	String[] urlsArray = new String[] {IMAGE_0, IMAGE_1, IMAGE_1};
 
 	ArrayList<String> originalRemainingUrls = new ArrayList<>();
 	ArrayList<String> remainingUrls = new ArrayList<>();
@@ -35,7 +38,7 @@ public final class ImageStorageManagerTest {
 
 	@Before
 	public void setup() {
-		generator = new ImageStorageManager(imageStorage);
+		manager = new ImageStorageManager(imageStorage);
 
 		populateUrlLists();
 
@@ -64,7 +67,7 @@ public final class ImageStorageManagerTest {
 	}
 
 	private void whenIsAskedToTakeRandomImage() {
-		takenUrl = generator.takeRandomImage();
+		takenUrl = manager.takeRandomImage();
 	}
 
 	private void thenRetrievesImageFromStorage() {
@@ -96,14 +99,27 @@ public final class ImageStorageManagerTest {
 
 	private void whenLastImageIsTakenFromRemaining() {
 		//take all 3 stored images
-		takenUrl = generator.takeRandomImage();
-		takenUrl = generator.takeRandomImage();
-		takenUrl = generator.takeRandomImage();
+		takenUrl = manager.takeRandomImage();
+		takenUrl = manager.takeRandomImage();
+		takenUrl = manager.takeRandomImage();
 	}
 
 	private void thenFullListIsSavedToRemainingList() {
 		verify(imageStorage).getUrls();
 		verify(imageStorage).saveRemainingUrls(fullListOfUrls);
+	}
+
+	@Test
+	public void when_saveUrlsCalled_then_bothFullUrlAndRemainingUrlListAreSavedTo() {
+		//WHEN
+		manager.saveUrls(urlsArray);
+
+		//THEN
+		verify(imageStorage).saveUrls(urlsArray);
+		verify(imageStorage).saveRemainingUrls(anyList());
+
+		// todo verify same list was called
+
 	}
 
 }

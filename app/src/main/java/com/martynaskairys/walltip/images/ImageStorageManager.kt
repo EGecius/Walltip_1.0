@@ -36,5 +36,16 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
 
     fun saveUrls(imageUrls: Array<String>) {
         imageStorage.saveUrls(imageUrls)
+        imageStorage.saveRemainingUrls(toList(imageUrls))
+    }
+    
+    //todo  same method exists in other classes - remove duplication
+
+    private fun toList(imageUrls: Array<String>): List<String> {
+        val arrayList = ArrayList<String>()
+        for (url in imageUrls) {
+            arrayList.add(url)
+        }
+        return arrayList
     }
 }
