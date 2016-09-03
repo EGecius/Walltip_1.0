@@ -10,7 +10,7 @@ import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 
 import com.martynaskairys.walltip.images.ImageStorageImpl;
-import com.martynaskairys.walltip.images.RandomImageGenerator;
+import com.martynaskairys.walltip.images.ImageStorageManager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +53,7 @@ public class WallpaperService extends IntentService {
 	}
 
 	private String getRandomUrl() {
-		RandomImageGenerator randomGenerator = new RandomImageGenerator(new ImageStorageImpl(getApplicationContext()));
+		ImageStorageManager randomGenerator = new ImageStorageManager(new ImageStorageImpl(getApplicationContext()));
 		return randomGenerator.takeRandomImage();
 	}
 }

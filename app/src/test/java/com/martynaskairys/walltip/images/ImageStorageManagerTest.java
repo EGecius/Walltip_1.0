@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public final class RandomImageGeneratorTest {
+public final class ImageStorageManagerTest {
 
 	public static final String IMAGE_0 = "IMAGE_0";
 	public static final String IMAGE_1 = "IMAGE_1";
@@ -25,7 +25,7 @@ public final class RandomImageGeneratorTest {
 
 	@Captor ArgumentCaptor<ArrayList<String>> captor;
 
-	RandomImageGenerator generator;
+	ImageStorageManager generator;
 
 	ArrayList<String> originalRemainingUrls = new ArrayList<>();
 	ArrayList<String> remainingUrls = new ArrayList<>();
@@ -35,7 +35,7 @@ public final class RandomImageGeneratorTest {
 
 	@Before
 	public void setup() {
-		generator = new RandomImageGenerator(imageStorage);
+		generator = new ImageStorageManager(imageStorage);
 
 		populateUrlLists();
 
