@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
 import com.martynaskairys.walltip.images.ImageStorageImpl
+import com.martynaskairys.walltip.images.ImageStorageManager
 
 
 class ExitAppActivity : AppCompatActivity() {
@@ -44,7 +45,8 @@ class ExitAppActivity : AppCompatActivity() {
 
     private fun saveUrls() {
         val imageUrls = intent.getStringArrayExtra("images")
-        ImageStorageImpl(applicationContext).saveUrls(imageUrls)
+        val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
+        imageStorageManager.saveUrls(imageUrls)
     }
 
     private fun showArrow() {

@@ -1,6 +1,5 @@
 package com.martynaskairys.walltip.images
 
-import com.martynaskairys.walltip.images.ImageStorage
 import java.util.*
 
 /**
@@ -33,5 +32,9 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
     private fun getRandomImage(urls: List<String>): String {
         val randomNumber = Random().nextInt(urls.size)
         return urls[randomNumber]
+    }
+
+    fun saveUrls(imageUrls: Array<String>) {
+        imageStorage.saveUrls(imageUrls)
     }
 }
