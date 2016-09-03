@@ -5,7 +5,7 @@ import java.util.*
 /**
  * Takes random images, also ensuring they won't repeat until all images have been taken from a collection
  */
-internal class RandomGenerator(private val imageStorage: ImageStorage) {
+internal class RandomImageGenerator(private val imageStorage: ImageStorage) {
 
     /** Takes random image from the list of not shown remaining images. Once this list is empty, it is restored to its
      * original full state */

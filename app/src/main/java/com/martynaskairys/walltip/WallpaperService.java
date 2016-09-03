@@ -12,18 +12,12 @@ import android.util.DisplayMetrics;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
 
 
 public class WallpaperService extends IntentService {
 
-    public static final String STANDARD = "standard";
-
     public WallpaperService() {
-        super("martynas_notification_service");
+        super("WallpaperService");
     }
 
     @Override
@@ -39,17 +33,9 @@ public class WallpaperService extends IntentService {
             int height = metrics.heightPixels;
             int width = metrics.widthPixels;
 
-
-        Set<String> urls = new HashSet<>(getSavedUrls());
-
-        if (urls == null) {
-            return;
-        }
-
-        String randomUrl = getRandomUrl(urls);
+        String randomUrl = getRandomUrl();
 
         try {
-
             InputStream ins = new URL(randomUrl).openStream();
 
             Bitmap tempbitMap = BitmapFactory.decodeStream(ins);
@@ -65,13 +51,8 @@ public class WallpaperService extends IntentService {
         }
     }
 
-    private ArrayList<String> getSavedUrls() {
-		return new ImageStorageImpl(getApplicationContext()).getUrls();
-    }
-
-    private String getRandomUrl(Set<String> urls) {
-        Random randomGenerator = new Random();
-        int randomNumber = randomGenerator.nextInt(urls.size());
-        return (String) urls.toArray()[randomNumber];
+    private String getRandomUrl() {
+		RandomImageGenerator randomGenerator = new RandomImageGenerator(new ImageStorageImpl(getApplicationContext()));
+		return randomGenerator.takeRandomImage();
     }
 }
