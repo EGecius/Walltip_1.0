@@ -4,9 +4,9 @@ import android.content.Context
 import java.util.*
 
 /** Store image Urls */
-open class ImageStorage(val context: Context) {
+open class ImageStorageImpl(val context: Context) : ImageStorage {
 
-    fun saveUrls(imageUrls: Array<String>) {
+    override fun saveUrls(imageUrls: Array<String>) {
         val imagesList = toList(imageUrls)
         saveInternal(ALL_CHOSEN_FOLDER_URLS, imagesList)
     }
@@ -19,7 +19,7 @@ open class ImageStorage(val context: Context) {
         return arrayList
     }
 
-    fun saveRemainingUrls(imageUrls: List<String>) {
+    override fun saveRemainingUrls(imageUrls: ArrayList<String>) {
         saveInternal(REMAINING_URLS, imageUrls)
     }
 
@@ -33,15 +33,19 @@ open class ImageStorage(val context: Context) {
     }
 
     /** Returns all urls from chosen folder */
-    fun getUrls() : Set<String> {
+    override fun getUrls() : ArrayList<String> {
         val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
-        return preferences.getStringSet(ALL_CHOSEN_FOLDER_URLS, null)
+        val stringSet = preferences.getStringSet(ALL_CHOSEN_FOLDER_URLS, null)
+        return ArrayList(stringSet)
     }
 
+    // todo have every method return List
+
     /** Returns urls from chosen folder that have not been shown yet */
-    fun getRemainingUrls() : Set<String> {
+    override fun getRemainingUrls() : ArrayList<String> {
         val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
-        return preferences.getStringSet(REMAINING_CHOSEN_FOLDER_URLS, null)
+        val stringSet = preferences.getStringSet(REMAINING_CHOSEN_FOLDER_URLS, null)
+        return ArrayList(stringSet)
     }
 
     companion object {
@@ -50,5 +54,16 @@ open class ImageStorage(val context: Context) {
         val REMAINING_CHOSEN_FOLDER_URLS = "remaining_folder_urls"
         val STANDARD = "standard"
     }
+
+}
+
+interface ImageStorage {
+    fun saveUrls(imageUrls: Array<String>)
+    fun saveRemainingUrls(imageUrls: ArrayList<String>)
+    /** Returns all urls from chosen folder */
+    fun getUrls() : ArrayList<String>
+
+    /** Returns urls from chosen folder that have not been shown yet */
+    fun getRemainingUrls() : ArrayList<String>
 
 }

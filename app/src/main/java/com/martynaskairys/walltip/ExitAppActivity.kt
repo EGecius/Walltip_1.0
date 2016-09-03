@@ -43,7 +43,7 @@ class ExitAppActivity : AppCompatActivity() {
 
     private fun saveUrls() {
         val imageUrls = intent.getStringArrayExtra("images")
-        ImageStorage(applicationContext).saveUrls(imageUrls)
+        ImageStorageImpl(applicationContext).saveUrls(imageUrls)
     }
 
     private fun showArrow() {

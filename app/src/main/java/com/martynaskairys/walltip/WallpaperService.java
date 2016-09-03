@@ -12,6 +12,8 @@ import android.util.DisplayMetrics;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -38,7 +40,7 @@ public class WallpaperService extends IntentService {
             int width = metrics.widthPixels;
 
 
-        Set<String> urls = getSavedUrls();
+        Set<String> urls = new HashSet<>(getSavedUrls());
 
         if (urls == null) {
             return;
@@ -63,8 +65,8 @@ public class WallpaperService extends IntentService {
         }
     }
 
-    private Set<String> getSavedUrls() {
-		return new ImageStorage(getApplicationContext()).getUrls();
+    private ArrayList<String> getSavedUrls() {
+		return new ImageStorageImpl(getApplicationContext()).getUrls();
     }
 
     private String getRandomUrl(Set<String> urls) {
