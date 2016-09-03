@@ -1,10 +1,10 @@
-package com.martynaskairys.walltip
+package com.martynaskairys.walltip.images
 
 import android.content.Context
 import java.util.*
 
 /** Store image Urls */
-open class ImageStorageImpl(val context: Context) : ImageStorage {
+internal class ImageStorageImpl(val context: Context) : ImageStorage {
 
     override fun saveUrls(imageUrls: Array<String>) {
         val imagesList = toList(imageUrls)

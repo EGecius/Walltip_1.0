@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.images;
 
 import org.junit.Before;
 import org.junit.Test;

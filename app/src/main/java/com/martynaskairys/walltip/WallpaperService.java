@@ -9,6 +9,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 
+import com.martynaskairys.walltip.images.ImageStorageImpl;
+import com.martynaskairys.walltip.images.RandomImageGenerator;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
