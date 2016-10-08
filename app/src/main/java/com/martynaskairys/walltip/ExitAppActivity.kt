@@ -18,14 +18,17 @@ class ExitAppActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_exit_app)
-
         showArrow()
+        setupExiButton()
 
+        saveUrls()
         changeWallpaperNow()
-        scheduleWallpapersChangingRegularly()
+        scheduleRegularWallpaperUpdates()
+    }
 
-
+    private fun setupExiButton() {
         findViewById(R.id.buttonExitApp)!!.setOnClickListener {
             val intent = Intent(Intent.ACTION_MAIN)
             intent.addCategory(Intent.CATEGORY_HOME)
@@ -33,14 +36,16 @@ class ExitAppActivity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this@ExitAppActivity, R.string.exit_app_button_message, Toast.LENGTH_LONG).show()
         }
-
-        saveUrls()
     }
 
     private fun saveUrls() {
         val imageUrls = intent.getStringArrayExtra("images")
-        val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
-        imageStorageManager.saveUserChosenUrls(imageUrls)
+        if (imageUrls.isEmpty()) {
+            throw IllegalArgumentException("ExitAppActivity received empty urls list: " + imageUrls)
+        } else {
+            val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
+            imageStorageManager.saveUserChosenUrls(imageUrls)
+        }
     }
 
     private fun showArrow() {
@@ -54,7 +59,7 @@ class ExitAppActivity : AppCompatActivity() {
         startService(intent)
     }
 
-    fun scheduleWallpapersChangingRegularly() {
+    fun scheduleRegularWallpaperUpdates() {
 
         /* Retrieve a PendingIntent that will perform a broadcast */
         val wallpaperReceiverIntent = Intent(this@ExitAppActivity, WallpaperServiceReceiver::class.java)
