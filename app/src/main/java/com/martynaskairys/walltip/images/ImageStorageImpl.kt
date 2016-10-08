@@ -6,7 +6,7 @@ import java.util.*
 /** Store image Urls */
 internal class ImageStorageImpl(val context: Context) : ImageStorage {
 
-    override fun saveUrls(imageUrls: Array<String>) {
+    override fun saveAllUrls(imageUrls: Array<String>) {
         val imagesList = toList(imageUrls)
         saveInternal(ALL_CHOSEN_FOLDER_URLS, imagesList)
     }
@@ -33,7 +33,7 @@ internal class ImageStorageImpl(val context: Context) : ImageStorage {
     }
 
     /** Returns all urls from chosen folder */
-    override fun getUrls() : ArrayList<String> {
+    override fun getAllUrls() : ArrayList<String> {
         val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
         val stringSet = preferences.getStringSet(ALL_CHOSEN_FOLDER_URLS, Collections.emptySet())
         return ArrayList(stringSet)
@@ -57,11 +57,11 @@ internal class ImageStorageImpl(val context: Context) : ImageStorage {
 }
 
 interface ImageStorage {
-    fun saveUrls(imageUrls: Array<String>)
+    /** Saves full list image urls chose by user */
+    fun saveAllUrls(imageUrls: Array<String>)
     fun saveRemainingUrls(imageUrls: List<String>)
     /** Returns all urls from chosen folder */
-    fun getUrls() : ArrayList<String>
+    fun getAllUrls() : ArrayList<String>
     /** Returns urls from chosen folder that have not been shown yet */
     fun getRemainingUrls() : ArrayList<String>
-
 }
