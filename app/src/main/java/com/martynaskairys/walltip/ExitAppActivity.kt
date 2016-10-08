@@ -15,38 +15,17 @@ import com.martynaskairys.walltip.images.ImageStorageManager
 
 
 class ExitAppActivity : AppCompatActivity() {
-    private var pendingIntent: PendingIntent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_exit_app)
-
         showArrow()
-
-
-        /* Retrieve a PendingIntent that will perform a broadcast */
-        val alarmIntent = Intent(this@ExitAppActivity, AlarmReceiver::class.java)
-        pendingIntent = PendingIntent.getBroadcast(this@ExitAppActivity, 0, alarmIntent, 0)
-
-        changeWallpaperNow()
-        scheduleWallpapersToWork()
-
-
-        findViewById(R.id.buttonExitApp)!!.setOnClickListener {
-            val intent = Intent(Intent.ACTION_MAIN)
-            intent.addCategory(Intent.CATEGORY_HOME)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            Toast.makeText(this@ExitAppActivity, R.string.exit_app_button_message, Toast.LENGTH_LONG).show()
-        }
+        setupExiButton()
 
         saveUrls()
-    }
-
-    private fun saveUrls() {
-        val imageUrls = intent.getStringArrayExtra("images")
-        val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
-        imageStorageManager.saveUrls(imageUrls)
+        changeWallpaperNow()
+        scheduleRegularWallpaperUpdates()
     }
 
     private fun showArrow() {
@@ -55,26 +34,50 @@ class ExitAppActivity : AppCompatActivity() {
         supportActionBar!!.setHomeAsUpIndicator(upArrow)
     }
 
+    private fun setupExiButton() {
+        findViewById(R.id.buttonExitApp)!!.setOnClickListener {
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            Toast.makeText(this@ExitAppActivity, R.string.exit_app_button_message, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun saveUrls() {
+        val imageUrls = intent.getStringArrayExtra("images")
+        if (imageUrls.isEmpty()) {
+            throw IllegalArgumentException("ExitAppActivity received empty urls list: " + imageUrls)
+        } else {
+            val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
+            imageStorageManager.saveUserChosenUrls(imageUrls)
+        }
+    }
+
     private fun changeWallpaperNow() {
         val intent = Intent(this, WallpaperService::class.java)
         startService(intent)
     }
 
-
-
-    fun scheduleWallpapersToWork() {
+    fun scheduleRegularWallpaperUpdates() {
 
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val dayInMillis: Long = 1000 * 60 * 60 * 24
         val firstTrigger = System.currentTimeMillis() + dayInMillis
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, dayInMillis, pendingIntent)
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, dayInMillis, getWallpaperPendingIntent())
 
         val intent = Intent()
-        intent.action = "AlarmReceiver"
+        intent.action = "WallpaperServiceReceiver"
         sendBroadcast(intent)
-
     }
 
+    private fun getWallpaperPendingIntent(): PendingIntent? {
+        /* Retrieve a PendingIntent that will perform a broadcast */
+        val wallpaperReceiverIntent = Intent(this@ExitAppActivity, WallpaperServiceReceiver::class.java)
+        val wallpaperReceiverPendingIntent = PendingIntent.getBroadcast(this@ExitAppActivity, 0,
+                wallpaperReceiverIntent, 0)
+        return wallpaperReceiverPendingIntent
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -86,8 +89,6 @@ class ExitAppActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
-
-
 }
 
 

@@ -43,7 +43,7 @@ public final class ImageStorageManagerTest {
 		populateUrlLists();
 
 		when(imageStorage.getRemainingUrls()).thenReturn(remainingUrls);
-		when(imageStorage.getUrls()).thenReturn(fullListOfUrls);
+		when(imageStorage.getAllUrls()).thenReturn(fullListOfUrls);
 	}
 
 	private void populateUrlLists() {
@@ -105,17 +105,17 @@ public final class ImageStorageManagerTest {
 	}
 
 	private void thenFullListIsSavedToRemainingList() {
-		verify(imageStorage).getUrls();
+		verify(imageStorage).getAllUrls();
 		verify(imageStorage).saveRemainingUrls(fullListOfUrls);
 	}
 
 	@Test
 	public void when_saveUrlsCalled_then_bothFullUrlAndRemainingUrlListAreSavedTo() {
 		//WHEN
-		manager.saveUrls(urlsArray);
+		manager.saveUserChosenUrls(urlsArray);
 
 		//THEN
-		verify(imageStorage).saveUrls(urlsArray);
+		verify(imageStorage).saveAllUrls(urlsArray);
 		verify(imageStorage).saveRemainingUrls(anyList());
 
 		// todo verify same list was called
