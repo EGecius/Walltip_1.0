@@ -15,7 +15,7 @@ import com.martynaskairys.walltip.images.ImageStorageManager
 
 
 class ExitAppActivity : AppCompatActivity() {
-    private var pendingIntent: PendingIntent? = null
+    private var wallpaperReceiverPendingIntent: PendingIntent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +23,9 @@ class ExitAppActivity : AppCompatActivity() {
 
         showArrow()
 
-
         /* Retrieve a PendingIntent that will perform a broadcast */
-        val alarmIntent = Intent(this@ExitAppActivity, AlarmReceiver::class.java)
-        pendingIntent = PendingIntent.getBroadcast(this@ExitAppActivity, 0, alarmIntent, 0)
+        val wallpaperReceiverIntent = Intent(this@ExitAppActivity, WallpaperServiceReceiver::class.java)
+        wallpaperReceiverPendingIntent = PendingIntent.getBroadcast(this@ExitAppActivity, 0, wallpaperReceiverIntent, 0)
 
         changeWallpaperNow()
         scheduleWallpapersToWork()
@@ -67,10 +66,10 @@ class ExitAppActivity : AppCompatActivity() {
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val dayInMillis: Long = 1000 * 60 * 60 * 24
         val firstTrigger = System.currentTimeMillis() + dayInMillis
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, dayInMillis, pendingIntent)
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, dayInMillis, wallpaperReceiverPendingIntent)
 
         val intent = Intent()
-        intent.action = "AlarmReceiver"
+        intent.action = "WallpaperServiceReceiver"
         sendBroadcast(intent)
 
     }

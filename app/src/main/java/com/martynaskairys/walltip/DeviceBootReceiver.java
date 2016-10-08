@@ -4,7 +4,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 
 /**
@@ -19,7 +18,7 @@ public class DeviceBootReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
 
             /* Setting the alarm here */
-            Intent alarmIntent = new Intent(context, AlarmReceiver.class);
+            Intent alarmIntent = new Intent(context, WallpaperServiceReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
 
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
