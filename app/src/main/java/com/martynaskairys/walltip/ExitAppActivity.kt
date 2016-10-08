@@ -28,6 +28,12 @@ class ExitAppActivity : AppCompatActivity() {
         scheduleRegularWallpaperUpdates()
     }
 
+    private fun showArrow() {
+        val upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha)
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP)
+        supportActionBar!!.setHomeAsUpIndicator(upArrow)
+    }
+
     private fun setupExiButton() {
         findViewById(R.id.buttonExitApp)!!.setOnClickListener {
             val intent = Intent(Intent.ACTION_MAIN)
@@ -48,12 +54,6 @@ class ExitAppActivity : AppCompatActivity() {
         }
     }
 
-    private fun showArrow() {
-        val upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha)
-        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP)
-        supportActionBar!!.setHomeAsUpIndicator(upArrow)
-    }
-
     private fun changeWallpaperNow() {
         val intent = Intent(this, WallpaperService::class.java)
         startService(intent)
@@ -61,22 +61,23 @@ class ExitAppActivity : AppCompatActivity() {
 
     fun scheduleRegularWallpaperUpdates() {
 
-        /* Retrieve a PendingIntent that will perform a broadcast */
-        val wallpaperReceiverIntent = Intent(this@ExitAppActivity, WallpaperServiceReceiver::class.java)
-        val wallpaperReceiverPendingIntent = PendingIntent.getBroadcast(this@ExitAppActivity, 0,
-                wallpaperReceiverIntent, 0)
-
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val dayInMillis: Long = 1000 * 60 * 60 * 24
         val firstTrigger = System.currentTimeMillis() + dayInMillis
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, dayInMillis, wallpaperReceiverPendingIntent)
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, dayInMillis, getWallpaperPendingIntent())
 
         val intent = Intent()
         intent.action = "WallpaperServiceReceiver"
         sendBroadcast(intent)
-
     }
 
+    private fun getWallpaperPendingIntent(): PendingIntent? {
+        /* Retrieve a PendingIntent that will perform a broadcast */
+        val wallpaperReceiverIntent = Intent(this@ExitAppActivity, WallpaperServiceReceiver::class.java)
+        val wallpaperReceiverPendingIntent = PendingIntent.getBroadcast(this@ExitAppActivity, 0,
+                wallpaperReceiverIntent, 0)
+        return wallpaperReceiverPendingIntent
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -88,8 +89,6 @@ class ExitAppActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
-
-
 }
 
 
