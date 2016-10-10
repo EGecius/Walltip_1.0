@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.martynaskairys.walltip.DataTypes.Folder;
 import com.martynaskairys.walltip.networking.ApiService;
 import com.martynaskairys.walltip.networking.RetrofitSetup;
@@ -51,6 +53,14 @@ public class ThumbnailActivity extends AppCompatActivity {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+		// TODO: Use your own attributes to track content views in your app
+		Answers.getInstance().logContentView(new ContentViewEvent()
+				.putContentName("ThumbnailActivity langas")
+				.putContentType("Video")
+				.putContentId("1234")
+				.putCustomAttribute("Favorites Count", 15)
+				.putCustomAttribute("Screen Orientation", "Portrait"));
 
 		thumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
 

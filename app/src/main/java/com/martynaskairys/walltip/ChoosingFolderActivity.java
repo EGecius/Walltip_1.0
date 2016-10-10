@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.martynaskairys.walltip.DataTypes.Folder;
 import com.martynaskairys.walltip.networking.ApiService;
 import com.martynaskairys.walltip.networking.RetrofitSetup;
@@ -44,6 +46,14 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 
 
 		setContentView(R.layout.activity_choosing_folder);
+
+		// TODO: Use your own attributes to track content views in your app
+		Answers.getInstance().logContentView(new ContentViewEvent()
+				.putContentName("ChoosingActivity window")
+				.putContentType("Video")
+				.putContentId("1234")
+				.putCustomAttribute("Favorites Count", 15)
+				.putCustomAttribute("Screen Orientation", "Portrait"));
 
 		findViews();
 
@@ -142,7 +152,14 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 				Bundle bundle = new Bundle();
 				bundle.putInt("image", R.drawable.pic1a);
 				intent.putExtras(bundle);
+
+
+				Answers.getInstance().logContentView(new ContentViewEvent()
+						.putContentName("FolderA window"));
+
 				startActivity(intent);
+
+
 			}
 		});
 	}
@@ -160,6 +177,9 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 				Bundle bundle = new Bundle();
 				bundle.putInt("image", R.drawable.pic1b);
 				intent.putExtras(bundle);
+
+				Answers.getInstance().logContentView(new ContentViewEvent()
+						.putContentName("FolderB window"));
 
 				startActivity(intent);
 
@@ -180,6 +200,9 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 				Bundle bundle = new Bundle();
 				bundle.putInt("image", R.drawable.pic1c);
 				intent.putExtras(bundle);
+
+				Answers.getInstance().logContentView(new ContentViewEvent()
+						.putContentName("FolderC window"));
 
 				startActivity(intent);
 			}
