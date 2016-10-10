@@ -69,5 +69,9 @@
     <string name="information_message_window_popup">"If you have suggestions or questions - just let us know by writing to martynaskairys@gmail.com"
     </string>
 
+    <string name="menu_1">Your questions / suggestions</string>
+    <string name="menu_2">Ffff</string>
+    <string name="email_subject_line">Questions, Suggestions, Ideas</string>
+
 
 </resources>

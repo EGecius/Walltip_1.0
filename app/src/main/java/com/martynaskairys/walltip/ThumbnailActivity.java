@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -132,43 +133,27 @@ public class ThumbnailActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
 
-            case R.id.action_favorite:
-                displayPopupWindow();
-                return true;
+			case R.id.menu_1:
+				composeEmail();
+				break;
         }
 
         return super.onOptionsItemSelected(item);
 
     }
 
-    public void displayPopupWindow() {
 
-        final Dialog dialog = new Dialog(context);
 
-        dialog.setContentView(R.layout.popup);
-        dialog.setTitle("Info");
 
-        TextView txt = (TextView) dialog.findViewById(R.id.txt);
-
-        txt.setText(R.string.information_message_window_popup);
-
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButton);
-
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-
-            public void onClick(View v) {
-
-                dialog.dismiss();
-
-            }
-
-        });
-
-        dialog.show();
-
-    }
+	public void composeEmail() {
+		Intent intent = new Intent(Intent.ACTION_SENDTO);
+		intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+		intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "martynaskairys@gmail.com" });
+		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line));
+		if (intent.resolveActivity(getPackageManager()) != null) {
+			startActivity(intent);
+		}
+	}
 
 }
 
