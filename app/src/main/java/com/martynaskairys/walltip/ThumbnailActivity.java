@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,9 +16,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.martynaskairys.walltip.DataTypes.Folder;
+import com.martynaskairys.walltip.networking.ApiService;
+import com.martynaskairys.walltip.networking.RetrofitSetup;
+
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 /** Shows a list of pictures */
@@ -27,6 +39,9 @@ public class ThumbnailActivity extends AppCompatActivity {
     public static final String TEXTS = "texts";
 	public static final String IMAGES = "images";
 	public static final String THUMB_IDS = "thumb_ids";
+
+	private ViewGroup rootView;
+
 
 	final Context context = this;
 
@@ -51,6 +66,8 @@ public class ThumbnailActivity extends AppCompatActivity {
 
 	private void findViews() {
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		rootView = (ViewGroup) findViewById(R.id.root);
+
 	}
 
 	private void setActionBar() {
@@ -111,14 +128,40 @@ public class ThumbnailActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 
-				final String[] images = getIntent().getStringArrayExtra(IMAGES);
 
-				Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
-				intent.putExtra("images", images);
+				ApiService service = new RetrofitSetup().getService();
+				service.getFolders(new Callback<List<Folder>>() {
+					@Override
+					public void success(List<Folder> folders, Response response) {
 
-				startActivity(intent);
+						final String[] images = getIntent().getStringArrayExtra(IMAGES);
+						Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
+						intent.putExtra("images", images);
+
+						startActivity(intent);
+					}
+
+					@Override
+					public void failure(RetrofitError error) {
+						showRetryButtonOnly();
+					}
+				});
+
+
+
 			}
 		});
+	}
+
+	private void showRetryButtonOnly() {
+
+
+		Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE).setAction(R.string.retry, new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				setOnClickListener();
+			}
+		}).show();
 	}
 
     @Override

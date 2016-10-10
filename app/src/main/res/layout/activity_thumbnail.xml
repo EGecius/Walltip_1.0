@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context=".ThumbnailActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ThumbnailActivity">
 
     <TextView
         android:id="@+id/text_explaining_folder_content"
@@ -19,7 +20,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceSmall"/>
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -27,13 +28,13 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/RL"
         android:layout_marginTop="8dp"
-        tools:listitem="@layout/image_adapter_item"/>
+        tools:listitem="@layout/image_adapter_item" />
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
     <RelativeLayout
         android:id="@+id/RL"
@@ -56,7 +57,7 @@
             android:gravity="center"
             android:text="@string/ok_lets_do_it"
             android:textColor="#ffffff"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
