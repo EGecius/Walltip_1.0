@@ -66,7 +66,6 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".WallpaperServiceReceiver" />
-
         <receiver
             android:name=".widgets.WidgetInspiration"
             android:label="Inspiration">
@@ -89,7 +88,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
-
         <receiver
             android:name=".widgets.WidgetPositivity"
             android:label="Positivity">
@@ -104,9 +102,9 @@
 
         <activity
             android:name=".ExitAppActivity"
+            android:label=""
             android:parentActivityName=".ThumbnailActivity"
             android:screenOrientation="portrait"
-            android:label=""
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -129,7 +127,8 @@
             android:name="io.fabric.ApiKey"
             android:value="eac7ab5814950a79763329837711332f2c0fdcdf" />
 
-        <activity android:name=".ThumbnailActivity"
+        <activity
+            android:name=".ThumbnailActivity"
             android:parentActivityName=".ChoosingFolderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light">
@@ -137,15 +136,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
         </activity>
-        <activity android:name=".PictureActivity"
-                  android:parentActivityName=".ThumbnailActivity"
-                  android:label=""
-                  android:screenOrientation="portrait"
-                  android:theme="@style/Theme.AppCompat.Light">
+        <activity
+            android:name=".PictureActivity"
+            android:label=""
+            android:parentActivityName=".ThumbnailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
         </activity>
+        <activity android:name=".LauncherInfoActivity"></activity>
     </application>
 
 </manifest>
