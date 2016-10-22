@@ -18,7 +18,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.martynaskairys.walltip.networking.NetworkingUtils;
+import com.martynaskairys.walltip.tracking.UserTracker;
+import com.martynaskairys.walltip.tracking.UserTrackerImpl;
 
 
 /** Shows a list of pictures */
@@ -34,9 +38,13 @@ public class ThumbnailActivity extends AppCompatActivity {
 	private ProgressBar progressBar;
 	private View makeMagicButtonContainer;
 
+	private UserTracker userTracker = new UserTrackerImpl();
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+		userTracker.reportInThumbnailActivityOnCreate();
 
 		thumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
 
