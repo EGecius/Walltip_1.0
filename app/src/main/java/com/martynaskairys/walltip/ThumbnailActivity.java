@@ -1,6 +1,5 @@
 package com.martynaskairys.walltip;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -17,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -166,7 +164,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -176,7 +174,7 @@ public class ThumbnailActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
 
-			case R.id.menu_1:
+			case R.id.questions:
 				composeEmail();
 				break;
         }
