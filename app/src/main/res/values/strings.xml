@@ -45,7 +45,7 @@
         at least
     </string>
     <string name="exit_app_textview_text">The Magic start at night. Have fun.</string>
-    <string name="exit_app_button_text">Exit App</string>
+    <string name="exit_app_button_text">Enjoy</string>
     <string name="choose_one_goal">Choose one goal</string>
     <string name="i_want_to">I want to</string>
 
@@ -62,8 +62,8 @@
     </string>
     <string name="intro_button_text">LET\'S GO</string>
     <string name="exit_text_large">Magic starts today</string>
-    <string name="exit_text_small">Go and enjoy your daily activities. Come back if you want to change
-        Walltips theme.
+    <string name="exit_text_small">Go and enjoy your daily activities. Wallpaper changes automatically every 24 hours.
+        Come back if you want to change Walltips theme.
     </string>
     <string name="exit_app_greeting">Enjoy</string>
     <string name="information_message_window_popup">"If you have suggestions or questions - just let us know by writing to martynaskairys@gmail.com"
@@ -112,6 +112,11 @@
         <item>Avoid social comparison</item>
         <item>Take care of your body</item>
     </string-array>
+
+    <string name="info_message_regarding_google_launcher">If your wallpaper is not showing properly please contact us or download Google Now Launcher to your phone</string>
+    <string name="download_link_google_launcher">and Download Google Now Launcher</string>
+    <string name="exit_button_text">Exit</string>
+    <string name="exit_message">"Have a good day"</string>
 
 
 </resources>

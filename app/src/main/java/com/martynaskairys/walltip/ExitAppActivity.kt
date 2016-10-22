@@ -36,11 +36,8 @@ class ExitAppActivity : AppCompatActivity() {
 
     private fun setupExiButton() {
         findViewById(R.id.buttonExitApp)!!.setOnClickListener {
-            val intent = Intent(Intent.ACTION_MAIN)
-            intent.addCategory(Intent.CATEGORY_HOME)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            val intent = Intent (this@ExitAppActivity, LauncherInfoActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this@ExitAppActivity, R.string.exit_app_button_message, Toast.LENGTH_LONG).show()
         }
     }
 
