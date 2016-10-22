@@ -9,25 +9,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.ContentViewEvent;
+import com.martynaskairys.walltip.tracking.UserTracker;
+import com.martynaskairys.walltip.tracking.UserTrackerImpl;
 
 public class PictureActivity extends AppCompatActivity {
 
 	public static final String IMAGE_INT = "Image Int";
+
+	private UserTracker userTracker = new UserTrackerImpl();
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture);
 
-        // TODO: Use your own attributes to track content views in your app
-        Answers.getInstance().logContentView(new ContentViewEvent()
-                .putContentName("PictureActivity")
-                .putContentType("Video")
-                .putContentId("1234")
-                .putCustomAttribute("Favorites Count", 15)
-                .putCustomAttribute("Screen Orientation", "Portrait"));
+		userTracker.reportInPictureActivityOnCreate();
 
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
