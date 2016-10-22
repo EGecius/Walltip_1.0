@@ -8,5 +8,12 @@ import com.martynaskairys.walltip.ChoosingFolderActivity;
 public interface UserTracker {
 	
 	/** Reports to tracking system that use has entered {@link ChoosingFolderActivity} */
-	void reportInChoosingFolderActivity();
+	void reportInChoosingFolderActivityOnCreate();
+
+	void reportInChoosingFolderActivityFolderA();
+
+	void reportInChoosingFolderActivityFolderB();
+
+	void reportInChoosingFolderActivityFolderC();
+
 }

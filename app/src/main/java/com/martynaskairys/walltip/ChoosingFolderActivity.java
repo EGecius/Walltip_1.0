@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.ContentViewEvent;
 import com.martynaskairys.walltip.DataTypes.Folder;
 import com.martynaskairys.walltip.networking.ApiService;
 import com.martynaskairys.walltip.networking.RetrofitSetup;
@@ -51,7 +49,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 
 		findViews();
 		fetchImageUrlsAndUpdateUiAccordingly();
-		userTracker.reportInChoosingFolderActivity();
+		userTracker.reportInChoosingFolderActivityOnCreate();
 	}
 
 	private void findViews() {
@@ -144,9 +142,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 				bundle.putInt("image", R.drawable.pic1a);
 				intent.putExtras(bundle);
 
-
-				Answers.getInstance().logContentView(new ContentViewEvent()
-						.putContentName("FolderA window"));
+				userTracker.reportInChoosingFolderActivityFolderA();
 
 				startActivity(intent);
 			}
@@ -167,11 +163,9 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 				bundle.putInt("image", R.drawable.pic1b);
 				intent.putExtras(bundle);
 
-				Answers.getInstance().logContentView(new ContentViewEvent()
-						.putContentName("FolderB window"));
+				userTracker.reportInChoosingFolderActivityFolderB();
 
 				startActivity(intent);
-
 			}
 		});
 	}
@@ -190,8 +184,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 				bundle.putInt("image", R.drawable.pic1c);
 				intent.putExtras(bundle);
 
-				Answers.getInstance().logContentView(new ContentViewEvent()
-						.putContentName("FolderC window"));
+				userTracker.reportInChoosingFolderActivityFolderC();
 
 				startActivity(intent);
 			}

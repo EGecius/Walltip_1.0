@@ -15,7 +15,7 @@ public class UserTrackerImpl implements UserTracker {
 	}
 
 	@Override
-	public void reportInChoosingFolderActivity() {
+	public void reportInChoosingFolderActivityOnCreate() {
 		// TODO: Use your own attributes to track content views in your app
 		answers.logContentView(new ContentViewEvent()
 				.putContentName("ChoosingActivity window")
@@ -23,5 +23,23 @@ public class UserTrackerImpl implements UserTracker {
 				.putContentId("1234")
 				.putCustomAttribute("Favorites Count", 15)
 				.putCustomAttribute("Screen Orientation", "Portrait"));
+	}
+
+	@Override
+	public void reportInChoosingFolderActivityFolderB() {
+		answers.logContentView(new ContentViewEvent()
+				.putContentName("FolderB window"));
+	}
+
+	@Override
+	public void reportInChoosingFolderActivityFolderC() {
+		answers.logContentView(new ContentViewEvent()
+				.putContentName("FolderC window"));
+	}
+
+	@Override
+	public void reportInChoosingFolderActivityFolderA() {
+		answers.logContentView(new ContentViewEvent()
+				.putContentName("FolderA window"));
 	}
 }
