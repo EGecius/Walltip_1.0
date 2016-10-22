@@ -25,13 +25,13 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/RL"
+        android:layout_below="@+id/make_magic_button_container"
         android:layout_marginTop="8dp"
         tools:listitem="@layout/list_item" />
 
 
     <RelativeLayout
-        android:id="@+id/RL"
+        android:id="@+id/make_magic_button_container"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@id/text_explaining_folder_content"
