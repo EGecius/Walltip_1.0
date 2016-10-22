@@ -21,8 +21,6 @@ public class LauncherInfoActivity extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
-
-
     }
 
     public void linkToPlayStore (View view){
@@ -31,8 +29,6 @@ public class LauncherInfoActivity extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
-
-
     }
 
     public void exitApp (View view){
@@ -44,10 +40,7 @@ public class LauncherInfoActivity extends AppCompatActivity {
 
         Toast.makeText(this, R.string.exit_message, Toast.LENGTH_SHORT).show();
 
-
         startActivity(intent1);
         startActivity(intent2);
-
-
     }
 }
