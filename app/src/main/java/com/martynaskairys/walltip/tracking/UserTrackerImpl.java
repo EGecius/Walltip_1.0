@@ -42,4 +42,27 @@ public class UserTrackerImpl implements UserTracker {
 		answers.logContentView(new ContentViewEvent()
 				.putContentName("FolderA window"));
 	}
+
+	@Override
+	public void reportInPictureActivityOnCreate() {
+		// TODO: Use your own attributes to track content views in your app
+		answers.logContentView(new ContentViewEvent()
+				.putContentName("PictureActivity")
+				.putContentType("Video")
+				.putContentId("1234")
+				.putCustomAttribute("Favorites Count", 15)
+				.putCustomAttribute("Screen Orientation", "Portrait"));
+	}
+
+	@Override
+	public void reportInThumbnailActivityOnCreate() {
+		// TODO: Use your own attributes to track content views in your app
+		answers.logContentView(new ContentViewEvent()
+				.putContentName("ThumbnailActivity window")
+				.putContentType("Video")
+				.putContentId("1234")
+				.putCustomAttribute("Favorites Count", 15)
+				.putCustomAttribute("Screen Orientation", "Portrait"));
+	}
+
 }

@@ -21,6 +21,8 @@ import android.widget.TextView;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
 import com.martynaskairys.walltip.networking.NetworkingUtils;
+import com.martynaskairys.walltip.tracking.UserTracker;
+import com.martynaskairys.walltip.tracking.UserTrackerImpl;
 
 
 /** Shows a list of pictures */
@@ -36,17 +38,13 @@ public class ThumbnailActivity extends AppCompatActivity {
 	private ProgressBar progressBar;
 	private View makeMagicButtonContainer;
 
+	private UserTracker userTracker = new UserTrackerImpl();
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-		// TODO: Use your own attributes to track content views in your app
-		Answers.getInstance().logContentView(new ContentViewEvent()
-				.putContentName("ThumbnailActivity langas")
-				.putContentType("Video")
-				.putContentId("1234")
-				.putCustomAttribute("Favorites Count", 15)
-				.putCustomAttribute("Screen Orientation", "Portrait"));
+		userTracker.reportInThumbnailActivityOnCreate();
 
 		thumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
 
