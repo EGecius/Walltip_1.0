@@ -1,13 +1,12 @@
 package com.martynaskairys.walltip;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,9 +14,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.martynaskairys.walltip.networking.NetworkingUtils;
 
 
 /** Shows a list of pictures */
@@ -28,10 +29,10 @@ public class ThumbnailActivity extends AppCompatActivity {
 	public static final String IMAGES = "images";
 	public static final String THUMB_IDS = "thumb_ids";
 
-	final Context context = this;
-
-    private int[] thumbIds;
+	private int[] thumbIds;
+	private ViewGroup rootView;
 	private ProgressBar progressBar;
+	private View makeMagicButtonContainer;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +47,13 @@ public class ThumbnailActivity extends AppCompatActivity {
 		setExplanationText();
 		setTitle();
 		setGridView();
-		setOnClickListener();
+		setupShowingRetryMessageIfThereIsNoNetwork();
 	}
 
 	private void findViews() {
+		rootView = (ViewGroup) findViewById(R.id.root);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		makeMagicButtonContainer = findViewById(R.id.make_magic_button_container);
 	}
 
 	private void setActionBar() {
@@ -105,45 +108,59 @@ public class ThumbnailActivity extends AppCompatActivity {
 		}, 1000 /* ms */ );
 	}
 
-	private void setOnClickListener() {
+	private void setupShowingRetryMessageIfThereIsNoNetwork() {
 		//noinspection ConstantConditions
-		findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
+		makeMagicButtonContainer.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
-				final String[] images = getIntent().getStringArrayExtra(IMAGES);
-
-				Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
-				intent.putExtra("images", images);
-
-				startActivity(intent);
+				onUserClickedMakeMagicButton();
 			}
 		});
 	}
 
+	private void onUserClickedMakeMagicButton() {
+		if (isConnectedToNetwork()) {
+			goToExitAppActivity();
+		} else {
+			showRetryButtonOnly();
+		}
+	}
+
+	private void goToExitAppActivity() {
+		final String[] images = getIntent().getStringArrayExtra(IMAGES);
+		Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
+		intent.putExtra("images", images);
+		startActivity(intent);
+	}
+
+	private boolean isConnectedToNetwork() {
+		return new NetworkingUtils(getApplicationContext()).isConnectedToNetwork();
+	}
+
+	private void showRetryButtonOnly() {
+		Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE)
+				.setAction(R.string.retry, new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						onUserClickedMakeMagicButton();
+					}
+		}).show();
+	}
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-        switch (id) {
-
-			case R.id.menu_1:
-				composeEmail();
-				break;
-        }
-
+		if (id == R.id.questions) {
+			composeEmail();
+		}
         return super.onOptionsItemSelected(item);
-
     }
-
-
-
 
 	public void composeEmail() {
 		Intent intent = new Intent(Intent.ACTION_SENDTO);

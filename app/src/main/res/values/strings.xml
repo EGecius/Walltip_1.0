@@ -35,7 +35,7 @@
     <string name="add_a_long_description_about_app_s_feature">Add a long description here about your
         app\'s important feature.
     </string>
-    <string name="something_not_right">something is not right</string>
+    <string name="something_not_right">check your internet connection</string>
     <string name="retry">retry</string>
     <string name="choice_1">Even the most motivated of us — you, me, Tony Robbins — can feel
         unmotivated at times.
