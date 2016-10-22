@@ -72,4 +72,46 @@
     <string name="menu_feedback">Your questions / suggestions</string>
     <string name="email_subject_line">Questions, Suggestions, Ideas</string>
 
+    <string-array name="tips_inspiration">
+        <item>Sometimes the wrong choices bring us to the right places.  - Unknown</item>
+        <item>You are afraid to die, and you’re afraid to live. What a way to exist – Neale Donald Walsch</item>
+        <item>He who knows nothing is closer to the truth than he whose mind is filled with falsehoods and errors. – Thomas Jefferson</item>
+        <item>Its not up to you how you fall. Its up to you how far you let yourself fall and how long it takes you to get back up and stand on your own two feet” - Sr. Tac Jeffrey Mitchell</item>
+        <item>”Keep on going, and the chances are that you will stumble on something, perhaps when you are least expecting it. I never heard of anyone ever stumbling on something sitting down.” - Charles F. Kettering</item>
+        <item>If you can’t be criticized for it, it’s probably not remarkable. Are you devoting yourself to something devoid of criticism?</item>
+        <item>“It’s human nature to start taking things for granted again when danger isn’t banging loudly on the door.” – David Hackworth</item>
+        <item>Push through the pain, and conquer the obstacles. Regardless of what you think today, it wont matter 5 years from now. SO DON’T BE AFRAID!  - Unknown</item>
+        <item>Think outside of the box, create your own path in life. “You laugh at me because I am different; I laugh because you are all the same.”~ Daniel Knode</item>
+        <item>”The two most powerful warriors are patience and time.” …so remember: great achievements take time, there is no overnight success. – Leo Tolstoy</item>
+        <item>Even the greatest was once a beginner. Don’t be afraid to take that first step.  - Unknown</item>
+        <item>Do you give as much energy to your dreams as you do to your fears?  - Unknown</item>
+    </string-array>
+
+    <string-array name="tips_health">
+        <item>Have a glass of water</item>
+        <item>Take a walk</item>
+        <item>Eat more fruits</item>
+        <item>Eat more vegetables</item>
+        <item>Bring water bottle when you go out.</item>
+        <item>Hang out with healthy people</item>
+        <item>Go to bed early</item>
+        <item>Smile more often</item>
+        <item>Take the stairs whenever possible</item>
+    </string-array>
+
+    <string-array name="tips_positivity">
+        <item>Express gratitude</item>
+        <item>Practice acts of kindness</item>
+        <item>Call an old friend or relative</item>
+        <item>Talk with a positive person</item>
+        <item>Ask for a hug from one person a day</item>
+        <item>Enjoy a sunset or sunrise</item>
+        <item>Learn to forgive</item>
+        <item>Practice acts of kindness</item>
+        <item>Savor life\'s joys</item>
+        <item>Avoid social comparison</item>
+        <item>Take care of your body</item>
+    </string-array>
+
+
 </resources>
