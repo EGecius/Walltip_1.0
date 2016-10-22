@@ -14,6 +14,8 @@ import com.crashlytics.android.answers.ContentViewEvent;
 import com.martynaskairys.walltip.DataTypes.Folder;
 import com.martynaskairys.walltip.networking.ApiService;
 import com.martynaskairys.walltip.networking.RetrofitSetup;
+import com.martynaskairys.walltip.tracking.UserTracker;
+import com.martynaskairys.walltip.tracking.UserTrackerImpl;
 
 import java.util.List;
 
@@ -40,25 +42,16 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 	private int[] bePositiveThumbIds = {R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5, R.drawable.c6,
 			R.drawable.c7, R.drawable.c8, R.drawable.c9, R.drawable.c10, R.drawable.c11, R.drawable.c12};
 
+	private UserTracker userTracker = new UserTrackerImpl();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-
 		setContentView(R.layout.activity_choosing_folder);
 
-		// TODO: Use your own attributes to track content views in your app
-		Answers.getInstance().logContentView(new ContentViewEvent()
-				.putContentName("ChoosingActivity window")
-				.putContentType("Video")
-				.putContentId("1234")
-				.putCustomAttribute("Favorites Count", 15)
-				.putCustomAttribute("Screen Orientation", "Portrait"));
-
 		findViews();
-
 		fetchImageUrlsAndUpdateUiAccordingly();
-
+		userTracker.reportInChoosingFolderActivity();
 	}
 
 	private void findViews() {
@@ -68,8 +61,6 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 		buttonA = (Button) findViewById(R.id.button_folder_a);
 		buttonB = (Button) findViewById(R.id.button_folder_b);
 		buttonC = (Button) findViewById(R.id.button_folder_c);
-
-
 	}
 
 	private void fetchImageUrlsAndUpdateUiAccordingly() {
@@ -158,8 +149,6 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 						.putContentName("FolderA window"));
 
 				startActivity(intent);
-
-
 			}
 		});
 	}
