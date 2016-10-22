@@ -26,7 +26,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/RL"
+        android:layout_below="@+id/make_magic_button_container"
         android:layout_marginTop="8dp"
         tools:listitem="@layout/image_adapter_item" />
 
@@ -37,7 +37,7 @@
         android:layout_centerInParent="true" />
 
     <RelativeLayout
-        android:id="@+id/RL"
+        android:id="@+id/make_magic_button_container"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@id/text_explaining_folder_content"

@@ -1,6 +1,5 @@
 package com.martynaskairys.walltip;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -19,15 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.martynaskairys.walltip.DataTypes.Folder;
-import com.martynaskairys.walltip.networking.ApiService;
-import com.martynaskairys.walltip.networking.RetrofitSetup;
-
-import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import com.martynaskairys.walltip.networking.NetworkingUtils;
 
 
 /** Shows a list of pictures */
@@ -38,13 +29,10 @@ public class ThumbnailActivity extends AppCompatActivity {
 	public static final String IMAGES = "images";
 	public static final String THUMB_IDS = "thumb_ids";
 
+	private int[] thumbIds;
 	private ViewGroup rootView;
-
-
-	final Context context = this;
-
-    private int[] thumbIds;
 	private ProgressBar progressBar;
+	private View makeMagicButtonContainer;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +47,13 @@ public class ThumbnailActivity extends AppCompatActivity {
 		setExplanationText();
 		setTitle();
 		setGridView();
-		setOnClickListener();
+		setupShowingRetryMessageIfThereIsNoNetwork();
 	}
 
 	private void findViews() {
-		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		rootView = (ViewGroup) findViewById(R.id.root);
-
+		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		makeMagicButtonContainer = findViewById(R.id.make_magic_button_container);
 	}
 
 	private void setActionBar() {
@@ -120,45 +108,42 @@ public class ThumbnailActivity extends AppCompatActivity {
 		}, 1000 /* ms */ );
 	}
 
-	private void setOnClickListener() {
+	private void setupShowingRetryMessageIfThereIsNoNetwork() {
 		//noinspection ConstantConditions
-		findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
+		makeMagicButtonContainer.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
-
-				ApiService service = new RetrofitSetup().getService();
-				service.getFolders(new Callback<List<Folder>>() {
-					@Override
-					public void success(List<Folder> folders, Response response) {
-
-						final String[] images = getIntent().getStringArrayExtra(IMAGES);
-						Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
-						intent.putExtra("images", images);
-
-						startActivity(intent);
-					}
-
-					@Override
-					public void failure(RetrofitError error) {
-						showRetryButtonOnly();
-					}
-				});
-
-
-
+				onUserClickedMakeMagicButton();
 			}
 		});
 	}
 
+	private void onUserClickedMakeMagicButton() {
+		if (isConnectedToNetwork()) {
+			goToExitAppActivity();
+		} else {
+			showRetryButtonOnly();
+		}
+	}
+
+	private void goToExitAppActivity() {
+		final String[] images = getIntent().getStringArrayExtra(IMAGES);
+		Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
+		intent.putExtra("images", images);
+		startActivity(intent);
+	}
+
+	private boolean isConnectedToNetwork() {
+		return new NetworkingUtils(getApplicationContext()).isConnectedToNetwork();
+	}
+
 	private void showRetryButtonOnly() {
-
-
-		Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE).setAction(R.string.retry, new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				setOnClickListener();
-			}
+		Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE)
+				.setAction(R.string.retry, new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						onUserClickedMakeMagicButton();
+					}
 		}).show();
 	}
 
@@ -170,21 +155,12 @@ public class ThumbnailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-        switch (id) {
-
-			case R.id.questions:
-				composeEmail();
-				break;
-        }
-
+		if (id == R.id.questions) {
+			composeEmail();
+		}
         return super.onOptionsItemSelected(item);
-
     }
-
-
-
 
 	public void composeEmail() {
 		Intent intent = new Intent(Intent.ACTION_SENDTO);
