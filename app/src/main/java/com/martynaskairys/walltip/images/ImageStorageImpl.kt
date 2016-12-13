@@ -19,8 +19,8 @@ internal class ImageStorageImpl(val context: Context) : ImageStorage {
         return arrayList
     }
 
-    override fun saveRemainingUrls(imageUrls: List<String>) {
-        saveInternal(REMAINING_CHOSEN_FOLDER_URLS, imageUrls)
+    override fun saveShownUrls(imageUrls: List<String>) {
+        saveInternal(SHOWN_URLS, imageUrls)
     }
 
     private fun saveInternal(key: String, imageUrls: List<String>) {
@@ -41,16 +41,16 @@ internal class ImageStorageImpl(val context: Context) : ImageStorage {
 
     // todo have every method return List
 
-    /** Returns urls from chosen folder that have not been shown yet */
-    override fun getRemainingUrls() : ArrayList<String> {
+    /** TODO Update comment Returns urls from chosen folder that have not been shown yet */
+    override fun getShownUrls() : ArrayList<String> {
         val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
-        val stringSet = preferences.getStringSet(REMAINING_CHOSEN_FOLDER_URLS, Collections.emptySet())
+        val stringSet = preferences.getStringSet(SHOWN_URLS, Collections.emptySet())
         return ArrayList(stringSet)
     }
 
     companion object {
         val ALL_CHOSEN_FOLDER_URLS = "chosen_folder_urls"
-        val REMAINING_CHOSEN_FOLDER_URLS = "remaining_folder_urls"
+        val SHOWN_URLS = "shown_urls"
         val STANDARD = "standard"
     }
 
@@ -59,9 +59,9 @@ internal class ImageStorageImpl(val context: Context) : ImageStorage {
 interface ImageStorage {
     /** Saves full list image urls chose by user */
     fun saveAllUrls(imageUrls: Array<String>)
-    fun saveRemainingUrls(imageUrls: List<String>)
+    fun saveShownUrls(imageUrls: List<String>)
     /** Returns all urls from chosen folder */
     fun getAllUrls() : ArrayList<String>
-    /** Returns urls from chosen folder that have not been shown yet */
-    fun getRemainingUrls() : ArrayList<String>
+    /** Returns urls from chosen folder that have been shown already */
+    fun getShownUrls() : ArrayList<String>
 }

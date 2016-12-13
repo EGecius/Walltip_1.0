@@ -11,30 +11,26 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
      * original full state */
     fun takeRandomImage(): String {
 
-        val remainingUrls = imageStorage.getRemainingUrls()
+        val allUrls = imageStorage.getAllUrls()
+        val shownUrls = imageStorage.getShownUrls()
 
-        val workingUrlSet : ArrayList<String>
-        if (remainingUrls.isEmpty()) {
-            workingUrlSet = imageStorage.getAllUrls()
-        } else {
-            workingUrlSet = remainingUrls
+        val availableUrls = ArrayList(allUrls)  // copy allUrls list, so original arrayList would not be modified
+        for (shownUrl in shownUrls){
+            availableUrls.remove(shownUrl)
         }
 
-        val randomImage = getRandomImage(workingUrlSet)
-        workingUrlSet.remove(randomImage)
+        if(allUrls.size > 0 && availableUrls.size == 0)
+        {
+            // shown urls list needs to be reset
+            imageStorage.saveShownUrls(ArrayList<String>())
+        }
 
-        updateRemainingList(workingUrlSet)
+        val randomImage = getRandomImage(availableUrls)
+
+        shownUrls.add(randomImage)
+        imageStorage.saveShownUrls(shownUrls)
 
         return randomImage
-    }
-
-    private fun updateRemainingList(remainingUrls: ArrayList<String>) {
-        if (remainingUrls.size == 0) {
-            val allUrls = imageStorage.getAllUrls()
-            imageStorage.saveRemainingUrls(allUrls)
-        } else {
-            imageStorage.saveRemainingUrls(remainingUrls);
-        }
     }
 
     private fun getRandomImage(urls: List<String>): String {
@@ -45,7 +41,6 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
     /** Saves urls of images chosen by user */
     fun saveUserChosenUrls(imageUrls: Array<String>) {
         imageStorage.saveAllUrls(imageUrls)
-        imageStorage.saveRemainingUrls(toList(imageUrls))
     }
     
     //todo  same method exists in other classes - remove duplication
