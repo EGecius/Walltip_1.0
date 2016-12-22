@@ -1,11 +1,14 @@
 package com.martynaskairys.walltip.images
 
+
+import android.util.Log
 import java.util.*
 
 /**
  * Takes random images, also ensuring they won't repeat until all images have been taken from a collection
  */
 class ImageStorageManager(private val imageStorage: ImageStorage) {
+
 
     /** Takes random image from the list of not shown remaining images. Once this list is empty, it is restored to its
      * original full state */
@@ -15,14 +18,19 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
         val shownUrls = imageStorage.getShownUrls()
 
         val availableUrls = ArrayList(allUrls)  // copy allUrls list, so original arrayList would not be modified
-        for (shownUrl in shownUrls){
+        for (shownUrl in shownUrls) {
             availableUrls.remove(shownUrl)
         }
 
-        if(allUrls.size > 0 && availableUrls.size == 0)
-        {
+        if (allUrls.size > 0 && availableUrls.size == 0) {
+
+            Log.d ("tes", "test")
             // shown urls list needs to be reset
             imageStorage.saveShownUrls(ArrayList<String>())
+
+            availableUrls.addAll(allUrls)
+            shownUrls.clear()
+
         }
 
         val randomImage = getRandomImage(availableUrls)
@@ -34,15 +42,20 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
     }
 
     private fun getRandomImage(urls: List<String>): String {
-        val randomNumber = Random().nextInt(urls.size)
-        return urls[randomNumber]
+
+
+         val randomNumber = Random().nextInt(urls.size)
+            return urls[randomNumber]
+
+
+
     }
 
     /** Saves urls of images chosen by user */
     fun saveUserChosenUrls(imageUrls: Array<String>) {
         imageStorage.saveAllUrls(imageUrls)
     }
-    
+
     //todo  same method exists in other classes - remove duplication
 
     private fun toList(imageUrls: Array<String>): List<String> {
