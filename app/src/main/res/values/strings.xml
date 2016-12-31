@@ -49,14 +49,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="button_label">Show Dialog Box</string>
-    <string name="dialog_button_label">OK</string>
+    <string name="dialog_button_label">Got it</string>
     <string name="intro_large_text">New Walltip.
         \nPowering your day.
         \nEvery day.</string>
-    <string name="intro_small_text">Your phone is a magical thing. It must be, since you’re touching it 200 times a day.
-        Use that magic to live your life to the max. Get inspiring messages and advice on your phone screen to keep focused
-        on your goals or to find a path to success. One message a day can change the way you live it. The choice is in your hands.
-        Literally.
+    <string name="intro_small_text">Your phone is a magical thing. It must be, since you’re touching it 200 times a day. Use that magic to live your life to the max. Get practical tips and advice on your phone screen to keep focused on your goals or to find a path to success. Personal or professional, one walltip a day on your phone screen can change the way you live it. The choice is in your hands. Literally.
     </string>
     <string name="intro_button_text">Choose now</string>
     <string name="exit_text_large">The magic is already happening</string>
@@ -64,7 +61,7 @@
         Want to get the Walltips on a different theme? You can always change your choice.
     </string>
     <string name="exit_app_greeting">Enjoy</string>
-    <string name="information_message_window_popup">"If you have suggestions or questions - just let us know by writing to martynaskairys@gmail.com"
+    <string name="information_message_window_popup">"Have ideas on how Walltip could make your day even better? Let us know martynaskairys@gmail.com"
     </string>
 
     <string name="menu_feedback">Your questions / suggestions</string>
