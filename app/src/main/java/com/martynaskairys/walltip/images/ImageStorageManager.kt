@@ -1,5 +1,7 @@
 package com.martynaskairys.walltip.images
 
+
+import android.util.Log
 import java.util.*
 
 /**
@@ -7,47 +9,53 @@ import java.util.*
  */
 class ImageStorageManager(private val imageStorage: ImageStorage) {
 
+
     /** Takes random image from the list of not shown remaining images. Once this list is empty, it is restored to its
      * original full state */
     fun takeRandomImage(): String {
 
-        val remainingUrls = imageStorage.getRemainingUrls()
+        val allUrls = imageStorage.getAllUrls()
+        val shownUrls = imageStorage.getShownUrls()
 
-        val workingUrlSet : ArrayList<String>
-        if (remainingUrls.isEmpty()) {
-            workingUrlSet = imageStorage.getAllUrls()
-        } else {
-            workingUrlSet = remainingUrls
+        val availableUrls = ArrayList(allUrls)  // copy allUrls list, so original arrayList would not be modified
+        for (shownUrl in shownUrls) {
+            availableUrls.remove(shownUrl)
         }
 
-        val randomImage = getRandomImage(workingUrlSet)
-        workingUrlSet.remove(randomImage)
+        if (allUrls.size > 0 && availableUrls.size == 0) {
 
-        updateRemainingList(workingUrlSet)
+            Log.d ("tes", "test")
+            // shown urls list needs to be reset
+//            imageStorage.saveShownUrls(ArrayList<String>())
+
+            availableUrls.addAll(allUrls)
+            shownUrls.clear()
+
+        }
+
+        val randomImage = getRandomImage(availableUrls)
+
+        shownUrls.add(randomImage)
+        imageStorage.saveShownUrls(shownUrls)
 
         return randomImage
     }
 
-    private fun updateRemainingList(remainingUrls: ArrayList<String>) {
-        if (remainingUrls.size == 0) {
-            val allUrls = imageStorage.getAllUrls()
-            imageStorage.saveRemainingUrls(allUrls)
-        } else {
-            imageStorage.saveRemainingUrls(remainingUrls);
-        }
-    }
-
     private fun getRandomImage(urls: List<String>): String {
-        val randomNumber = Random().nextInt(urls.size)
-        return urls[randomNumber]
+
+
+         val randomNumber = Random().nextInt(urls.size)
+            return urls[randomNumber]
+
+
+
     }
 
     /** Saves urls of images chosen by user */
     fun saveUserChosenUrls(imageUrls: Array<String>) {
         imageStorage.saveAllUrls(imageUrls)
-        imageStorage.saveRemainingUrls(toList(imageUrls))
     }
-    
+
     //todo  same method exists in other classes - remove duplication
 
     private fun toList(imageUrls: Array<String>): List<String> {

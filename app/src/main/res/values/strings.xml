@@ -1,29 +1,26 @@
 <resources>
     <string name="app_name">Walltip</string>
-    <string name="folder_a">Get Daily Inspiration</string>
-    <string name="folder_b">Live Healthy Life</string>
-    <string name="folder_c">Be More Positive</string>
-    <string name="text_explaining_folder_content_a">Here you can see some walltips as examples from
-        "Get Daily Inspiration" category. Every day you
-        will randomly receive a new Wallpaper with an inspiring message, advice or a tip for your
-        personal or professional growth. Enjoy!
+    <string name="folder_a">Improve work habits</string>
+    <string name="folder_b">Live healthier</string>
+    <string name="folder_c">Boost positivity</string>
+    <string name="text_explaining_folder_content_a">Don\’t let distraction and procrastination define the way you work.
+        Everyone has 24 hours a day, but your work life can become dramatically better with exciting results. Only one message a day.
+        These walltips work like magic. Check out what your phone screen could look like.
     </string>
-    <string name="text_explaining_folder_content_b">Here you can see some walltips as examples from
-        "Live Healthy Life" category. Every day you
-        will randomly receive a new Wallpaper with an inspiring message, advice or a tip for your
-        personal or professional growth. Enjoy!
+    <string name="text_explaining_folder_content_b">Not everyone has a personal trainer, but everyone can live a healthier life.
+        Just a little reminder can inspire you to go for a jog or get a protein filled breakfast. Only one message a day.
+        These walltips work like magic. Check out what your phone screen could look like.
     </string>
-    <string name="text_explaining_folder_content_c">Here you can see some walltips as examples from
-        "Be More Positive" category. Every day you
-        will randomly receive a new Wallpaper with an inspiring message, advice or a tip for your
-        personal or professional growth. Enjoy!
+    <string name="text_explaining_folder_content_c">Don\’t let a bad hair day or a tough Monday stand in your way to success.
+        A speck of positive thinking is all we might need for a better day and bigger achievements. Only one message a day.
+        These walltips work like magic. Check out what your phone screen could look like.
     </string>
     <string name="text_app_purpose">This app changes wallpapers on your device based on your chosen
         goal that you want to achieve
     </string>
     <string name="show_me_the_pictures">Show me pictures</string>
     <string name="let_see_wallpapers_first">Check Wallpapers</string>
-    <string name="ok_lets_do_it">MAKE MAGIC</string>
+    <string name="ok_lets_do_it">Get The Magic</string>
     <string name="do_you_like_your_new_wallpaper">"Do you like your new wallpaper? "</string>
     <string name="alarm_set_from_device_boot_message">Alarm Set from device boot. Is it working?
     </string>
@@ -45,7 +42,7 @@
         at least
     </string>
     <string name="exit_app_textview_text">The Magic start at night. Have fun.</string>
-    <string name="exit_app_button_text">Enjoy</string>
+    <string name="exit_app_button_text">ENJOY</string>
     <string name="choose_one_goal">Choose one goal</string>
     <string name="i_want_to">I want to</string>
 
@@ -54,23 +51,26 @@
     <string name="button_label">Show Dialog Box</string>
     <string name="dialog_button_label">OK</string>
     <string name="intro_large_text">New Walltip.
-        \nAutomatically.
+        \nPowering your day.
         \nEvery day.</string>
-    <string name="intro_small_text">We check mobile phones more than 200 times a day on
-        average. If we set our phones in such a way that we read an inspiring message or advice on
-        our screens we could change our lives for good. Based on your choice, you will automatically be receiving a new wallpaper with a message on it everyday.
+    <string name="intro_small_text">Your phone is a magical thing. It must be, since you’re touching it 200 times a day.
+        Use that magic to live your life to the max. Get inspiring messages and advice on your phone screen to keep focused
+        on your goals or to find a path to success. One message a day can change the way you live it. The choice is in your hands.
+        Literally.
     </string>
-    <string name="intro_button_text">LET\'S GO</string>
-    <string name="exit_text_large">Magic starts today</string>
-    <string name="exit_text_small">Go and enjoy your daily activities. Wallpaper changes automatically every 24 hours.
-        Come back if you want to change Walltips theme.
+    <string name="intro_button_text">Choose now</string>
+    <string name="exit_text_large">The magic is already happening</string>
+    <string name="exit_text_small">Make the most of your day with your phone.
+        Want to get the Walltips on a different theme? You can always change your choice.
     </string>
     <string name="exit_app_greeting">Enjoy</string>
     <string name="information_message_window_popup">"If you have suggestions or questions - just let us know by writing to martynaskairys@gmail.com"
     </string>
 
     <string name="menu_feedback">Your questions / suggestions</string>
+    <string name="menu_2">Ffff</string>
     <string name="email_subject_line">Questions, Suggestions, Ideas</string>
+
 
     <string-array name="tips_inspiration">
         <item>Sometimes the wrong choices bring us to the right places.  - Unknown</item>
@@ -113,10 +113,12 @@
         <item>Take care of your body</item>
     </string-array>
 
-    <string name="info_message_regarding_google_launcher">If your wallpaper is not showing properly please contact us or download Google Now Launcher to your phone</string>
+    <string name="info_message_regarding_google_launcher">If your wallpaper is not showing properly please contact us
+        or go to Google Play Store</string>
     <string name="download_link_google_launcher">and Download Google Now Launcher</string>
     <string name="exit_button_text">Exit</string>
     <string name="exit_message">"Have a good day"</string>
+    <string name="back_button_info_launcher_activity">Back to themes</string>
 
 
 </resources>

@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
+import com.martynaskairys.walltip.images.ImageStorage
 import com.martynaskairys.walltip.images.ImageStorageImpl
 import com.martynaskairys.walltip.images.ImageStorageManager
 
@@ -45,10 +46,13 @@ class ExitAppActivity : AppCompatActivity() {
         val imageUrls = intent.getStringArrayExtra("images")
         if (imageUrls.isEmpty()) {
             throw IllegalArgumentException("ExitAppActivity received empty urls list: " + imageUrls)
-        } else {
+        }
+        else{
             val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
             imageStorageManager.saveUserChosenUrls(imageUrls)
+
         }
+
     }
 
     private fun changeWallpaperNow() {
@@ -59,6 +63,7 @@ class ExitAppActivity : AppCompatActivity() {
     fun scheduleRegularWallpaperUpdates() {
 
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//        val dayInMillis: Long = 1000 * 60
         val dayInMillis: Long = 1000 * 60 * 60 * 24
         val firstTrigger = System.currentTimeMillis() + dayInMillis
         manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, dayInMillis, getWallpaperPendingIntent())

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
@@ -101,6 +102,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 		recyclerView.setAdapter(adapter);
 
 		setThumbnailsSmoothly(adapter);
+
 	}
 
 	/** set thumbnails while minimizing chances of frame loss. Since we are loading images from drawables, once set,
