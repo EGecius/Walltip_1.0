@@ -26,7 +26,7 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
 
             Log.d ("tes", "test")
             // shown urls list needs to be reset
-            imageStorage.saveShownUrls(ArrayList<String>())
+//            imageStorage.saveShownUrls(ArrayList<String>())
 
             availableUrls.addAll(allUrls)
             shownUrls.clear()
