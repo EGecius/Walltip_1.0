@@ -37,7 +37,6 @@ public class ThumbnailActivity extends AppCompatActivity {
 	private int[] thumbIds;
 	private ViewGroup rootView;
 	private ProgressBar progressBar;
-	private View makeMagicButtonContainer;
 
 	private UserTracker userTracker = new UserTrackerImpl();
 
@@ -62,7 +61,6 @@ public class ThumbnailActivity extends AppCompatActivity {
 	private void findViews() {
 		rootView = (ViewGroup) findViewById(R.id.root);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		makeMagicButtonContainer = findViewById(R.id.make_magic_button_container);
 	}
 
 	private void setActionBar() {
@@ -120,7 +118,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 
 	private void setupShowingRetryMessageIfThereIsNoNetwork() {
 		//noinspection ConstantConditions
-		makeMagicButtonContainer.setOnClickListener(new View.OnClickListener() {
+		findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				onUserClickedMakeMagicButton();

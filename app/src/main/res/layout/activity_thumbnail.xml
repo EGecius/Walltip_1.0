@@ -26,7 +26,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/make_magic_button_container"
+        android:layout_below="@+id/RL"
         android:layout_marginTop="8dp"
         tools:listitem="@layout/image_adapter_item" />
 
@@ -36,30 +36,37 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-    <RelativeLayout
-        android:id="@+id/make_magic_button_container"
+    <LinearLayout
+        android:id="@+id/RL"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@id/text_explaining_folder_content"
-        android:layout_centerHorizontal="true"
         android:layout_margin="8dp"
         android:background="@drawable/button"
-        android:clickable="true">
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:adjustViewBounds="true"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_magic_wand" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:background="@drawable/button"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/ic_magic_wand_small"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/ok_lets_do_it"
             android:textColor="#ffffff"
             android:textStyle="bold" />
 
-    </RelativeLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>

@@ -31,10 +31,11 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 	private Button buttonA;
 	private Button buttonB;
 	private Button buttonC;
+	private Button buttonD;
 	private ViewGroup rootView;
 
 	private int[] dailyInspirationThumbIds = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4,
-			R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9, R.drawable.a10, R.drawable.a11, R.drawable.a12};
+			R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9};
 	private int[] healthyLifeThumbIds = {R.drawable.b1,R.drawable.b2, R.drawable.b3,R.drawable.b4
 			,R.drawable.b5,R.drawable.b6,R.drawable.b7,R.drawable.b8,R.drawable.b9,R.drawable.b10,R.drawable.b11};
 	private int[] bePositiveThumbIds = {R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5, R.drawable.c6,
@@ -59,6 +60,15 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 		buttonA = (Button) findViewById(R.id.button_folder_a);
 		buttonB = (Button) findViewById(R.id.button_folder_b);
 		buttonC = (Button) findViewById(R.id.button_folder_c);
+		buttonD = (Button) findViewById(R.id.button_folder_d);
+
+		buttonD.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(ChoosingFolderActivity.this, SurveyActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	private void fetchImageUrlsAndUpdateUiAccordingly() {

@@ -146,7 +146,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
         </activity>
-        <activity android:name=".LauncherInfoActivity"></activity>
+        <activity android:name=".LauncherInfoActivity" />
+        <activity android:name=".SurveyActivity"
+            android:parentActivityName=".ChoosingFolderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="Make your suggestion"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+
+        </activity>
     </application>
 
 </manifest>
