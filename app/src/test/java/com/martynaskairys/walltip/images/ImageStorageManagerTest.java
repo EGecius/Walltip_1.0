@@ -11,7 +11,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -42,8 +41,8 @@ public final class ImageStorageManagerTest {
 
 		populateUrlLists();
 
-		when(imageStorage.getRemainingUrls()).thenReturn(remainingUrls);
-		when(imageStorage.getAllUrls()).thenReturn(fullListOfUrls);
+//		when(imageStorage.getRemainingUrls()).thenReturn(remainingUrls);
+		when(imageStorage.getAllChosenFolderUrls()).thenReturn(fullListOfUrls);
 	}
 
 	private void populateUrlLists() {
@@ -71,12 +70,12 @@ public final class ImageStorageManagerTest {
 	}
 
 	private void thenRetrievesImageFromStorage() {
-		verify(imageStorage).getRemainingUrls();
+//		verify(imageStorage).getRemainingUrls();
 		assertThat(originalRemainingUrls.contains(takenUrl)).isTrue();
 	}
 
 	private void thenSavesThemToStorageWithoutTheTakenOne() {
-        verify(imageStorage).saveRemainingUrls(captor.capture());
+//        verify(imageStorage).saveRemainingUrls(captor.capture());
 		ArrayList<String> savedRemainingUrls = captor.getValue();
 
 		assertThat(savedRemainingUrls.contains(takenUrl)).isFalse();
@@ -105,8 +104,8 @@ public final class ImageStorageManagerTest {
 	}
 
 	private void thenFullListIsSavedToRemainingList() {
-		verify(imageStorage).getAllUrls();
-		verify(imageStorage).saveRemainingUrls(fullListOfUrls);
+		verify(imageStorage).getAllChosenFolderUrls();
+//		verify(imageStorage).saveRemainingUrls(fullListOfUrls);
 	}
 
 	@Test
@@ -115,8 +114,8 @@ public final class ImageStorageManagerTest {
 		manager.saveUserChosenUrls(urlsArray);
 
 		//THEN
-		verify(imageStorage).saveAllUrls(urlsArray);
-		verify(imageStorage).saveRemainingUrls(anyList());
+		verify(imageStorage).saveAllChosenFolderUrls(urlsArray);
+//		verify(imageStorage).saveRemainingUrls(anyList());
 
 		// todo verify same list was called
 

@@ -2,6 +2,9 @@ package com.martynaskairys.walltip.images
 
 
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.martynaskairys.walltip.DataTypes.Folder
 import java.util.*
 
 /**
@@ -14,29 +17,36 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
      * original full state */
     fun takeRandomImage(): String {
 
-        val allUrls = imageStorage.getAllUrls()
-        val shownUrls = imageStorage.getShownUrls()
+        val folderListString = imageStorage.getAllChosenFolderString()
+        val listType = object : TypeToken<ArrayList<Folder>>() {
 
-        val availableUrls = ArrayList(allUrls)  // copy allUrls list, so original arrayList would not be modified
-        for (shownUrl in shownUrls) {
-            availableUrls.remove(shownUrl)
+        }.type
+
+        val folderList = Gson().fromJson<List<Folder>>(folderListString, listType)
+
+        val showUrls = imageStorage.getShownUrls()
+
+        val availableUrls = ArrayList<String>()
+
+        for (folder in folderList) {
+            availableUrls.addAll(folder.urls)
         }
 
-        if (allUrls.size > 0 && availableUrls.size == 0) {
+        availableUrls.removeAll(showUrls)
 
-            Log.d ("tes", "test")
-            // shown urls list needs to be reset
-//            imageStorage.saveShownUrls(ArrayList<String>())
+        if (availableUrls.isEmpty()) {
+            for (folder in folderList) {
+                availableUrls.addAll(folder.urls)
+            }
 
-            availableUrls.addAll(allUrls)
-            shownUrls.clear()
-
+            showUrls.clear()
         }
 
         val randomImage = getRandomImage(availableUrls)
 
-        shownUrls.add(randomImage)
-        imageStorage.saveShownUrls(shownUrls)
+        showUrls.add(randomImage)
+
+        imageStorage.saveShownUrls(showUrls)
 
         return randomImage
     }
@@ -44,16 +54,19 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
     private fun getRandomImage(urls: List<String>): String {
 
 
-         val randomNumber = Random().nextInt(urls.size)
-            return urls[randomNumber]
-
+        val randomNumber = Random().nextInt(urls.size)
+        return urls[randomNumber]
 
 
     }
 
     /** Saves urls of images chosen by user */
     fun saveUserChosenUrls(imageUrls: Array<String>) {
-        imageStorage.saveAllUrls(imageUrls)
+        imageStorage.saveAllChosenFolderUrls(imageUrls)
+    }
+
+    fun saveUserChosenFolders(folderListString: String) {
+        imageStorage.saveFolderList(folderListString)
     }
 
     //todo  same method exists in other classes - remove duplication

@@ -10,9 +10,14 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
+import com.martynaskairys.walltip.DataTypes.Folder
 import com.martynaskairys.walltip.images.ImageStorage
 import com.martynaskairys.walltip.images.ImageStorageImpl
 import com.martynaskairys.walltip.images.ImageStorageManager
+import com.martynaskairys.walltip.networking.RetrofitSetup
+import retrofit.Callback
+import retrofit.RetrofitError
+import retrofit.client.Response
 
 
 class ExitAppActivity : AppCompatActivity() {
@@ -22,7 +27,7 @@ class ExitAppActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_exit_app)
         showArrow()
-        setupExiButton()
+        setupExitButton()
 
         saveUrls()
         changeWallpaperNow()
@@ -35,7 +40,7 @@ class ExitAppActivity : AppCompatActivity() {
         supportActionBar!!.setHomeAsUpIndicator(upArrow)
     }
 
-    private fun setupExiButton() {
+    private fun setupExitButton() {
         findViewById(R.id.buttonExitApp)!!.setOnClickListener {
             val intent = Intent (this@ExitAppActivity, LauncherInfoActivity::class.java)
             startActivity(intent)
@@ -43,13 +48,14 @@ class ExitAppActivity : AppCompatActivity() {
     }
 
     private fun saveUrls() {
-        val imageUrls = intent.getStringArrayExtra("images")
-        if (imageUrls.isEmpty()) {
-            throw IllegalArgumentException("ExitAppActivity received empty urls list: " + imageUrls)
+        val folderListString = intent.getStringExtra("images")
+
+        if (folderListString.isEmpty()) {
+            throw IllegalArgumentException("ExitAppActivity received empty urls list: " + folderListString)
         }
         else{
             val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
-            imageStorageManager.saveUserChosenUrls(imageUrls)
+            imageStorageManager.saveUserChosenFolders(folderListString)
 
         }
 
