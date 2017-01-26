@@ -14,21 +14,20 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
      * original full state */
     fun takeRandomImage(): String {
 
-        val allUrls = imageStorage.getAllUrls()
+        val allChosenFolderUrls = imageStorage.getAllChosenFolderUrls()
         val shownUrls = imageStorage.getShownUrls()
 
-        val availableUrls = ArrayList(allUrls)  // copy allUrls list, so original arrayList would not be modified
+        val availableUrls = ArrayList(allChosenFolderUrls)  // copy allUrls list, so original arrayList would not be modified
         for (shownUrl in shownUrls) {
             availableUrls.remove(shownUrl)
         }
+        Log.d("debug", "Chosen Folder pictures number that changes in the app = " + allChosenFolderUrls.size)
 
-        if (allUrls.size > 0 && availableUrls.size == 0) {
 
-            Log.d ("tes", "test")
-            // shown urls list needs to be reset
-//            imageStorage.saveShownUrls(ArrayList<String>())
+        if (allChosenFolderUrls.size > 0 && availableUrls.size == 0) {
 
-            availableUrls.addAll(allUrls)
+
+            availableUrls.addAll(allChosenFolderUrls)
             shownUrls.clear()
 
         }
@@ -53,7 +52,7 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
 
     /** Saves urls of images chosen by user */
     fun saveUserChosenUrls(imageUrls: Array<String>) {
-        imageStorage.saveAllUrls(imageUrls)
+        imageStorage.saveAllChosenFolderUrls(imageUrls)
     }
 
     //todo  same method exists in other classes - remove duplication
@@ -64,5 +63,13 @@ class ImageStorageManager(private val imageStorage: ImageStorage) {
             arrayList.add(url)
         }
         return arrayList
+    }
+
+    fun saveUserChosenFolderIndex(folderIndex: Int) {
+        imageStorage.saveUserChosenFolderIndex(folderIndex)
+    }
+
+    fun getUserChosenFolderIndex(): Int {
+        return imageStorage.getUserChosenFolderIndex()
     }
 }

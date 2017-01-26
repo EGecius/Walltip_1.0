@@ -9,8 +9,8 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.widget.Toast
-import com.martynaskairys.walltip.images.ImageStorage
+import com.martynaskairys.walltip.ThumbnailActivity.FOLDER_INDEX
+import com.martynaskairys.walltip.ThumbnailActivity.IMAGES
 import com.martynaskairys.walltip.images.ImageStorageImpl
 import com.martynaskairys.walltip.images.ImageStorageManager
 
@@ -22,9 +22,9 @@ class ExitAppActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_exit_app)
         showArrow()
-        setupExiButton()
+        setupExitButton()
 
-        saveUrls()
+        saveFolderIndexAndUrls()
         changeWallpaperNow()
         scheduleRegularWallpaperUpdates()
     }
@@ -35,24 +35,23 @@ class ExitAppActivity : AppCompatActivity() {
         supportActionBar!!.setHomeAsUpIndicator(upArrow)
     }
 
-    private fun setupExiButton() {
+    private fun setupExitButton() {
         findViewById(R.id.buttonExitApp)!!.setOnClickListener {
-            val intent = Intent (this@ExitAppActivity, LauncherInfoActivity::class.java)
+            val intent = Intent(this@ExitAppActivity, LauncherInfoActivity::class.java)
             startActivity(intent)
         }
     }
 
-    private fun saveUrls() {
-        val imageUrls = intent.getStringArrayExtra("images")
-        if (imageUrls.isEmpty()) {
-            throw IllegalArgumentException("ExitAppActivity received empty urls list: " + imageUrls)
-        }
-        else{
-            val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
-            imageStorageManager.saveUserChosenUrls(imageUrls)
+    private fun saveFolderIndexAndUrls() {
+        val imageUrls = intent.getStringArrayExtra(IMAGES)
+        val folderIndex = intent.getIntExtra(FOLDER_INDEX, -1)
 
-        }
+        if (folderIndex == -1) throw IllegalArgumentException("folder index not found")
+        if (imageUrls.isEmpty()) throw IllegalArgumentException("ExitAppActivity received empty urls list: " + imageUrls)
 
+        val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
+        imageStorageManager.saveUserChosenUrls(imageUrls)
+        imageStorageManager.saveUserChosenFolderIndex(folderIndex)
     }
 
     private fun changeWallpaperNow() {

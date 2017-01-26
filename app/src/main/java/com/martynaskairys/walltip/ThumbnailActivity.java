@@ -17,145 +17,151 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.ContentViewEvent;
 import com.martynaskairys.walltip.networking.NetworkingUtils;
 import com.martynaskairys.walltip.tracking.UserTracker;
 import com.martynaskairys.walltip.tracking.UserTrackerImpl;
 
 
-/** Shows a list of pictures */
+/**
+ * Shows a list of pictures
+ */
 public class ThumbnailActivity extends AppCompatActivity {
-
+    // TODO: 03/01/2017 explain public static final (what does it mean)
     public static final String EXPLANATION = "explanation";
     public static final String TEXTS = "texts";
-	public static final String IMAGES = "images";
-	public static final String THUMB_IDS = "thumb_ids";
+    public static final String IMAGES = "images";
+    public static final String THUMB_IDS = "thumb_ids";
+    public static final String FOLDER_INDEX = "folder_index";
+    // FIXME: 03/01/2017
+    private int[] thumbIds;
+    private ViewGroup rootView;
+    private ProgressBar progressBar;
 
-	private int[] thumbIds;
-	private ViewGroup rootView;
-	private ProgressBar progressBar;
-	private View makeMagicButtonContainer;
+    private UserTracker userTracker = new UserTrackerImpl();
+    private int folderIndex;
 
-	private UserTracker userTracker = new UserTrackerImpl();
-
-	@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-		userTracker.reportInThumbnailActivityOnCreate();
+        userTracker.reportInThumbnailActivityOnCreate();
 
-		thumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
+        thumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
+        folderIndex = getIntent().getIntExtra(FOLDER_INDEX, -1);
+        if (folderIndex == -1) throw new IllegalArgumentException("folder index was not found");
 
         setContentView(R.layout.activity_thumbnail);
-		findViews();
+        findViews();
 
-		setActionBar();
-		setExplanationText();
-		setTitle();
-		setGridView();
-		setupShowingRetryMessageIfThereIsNoNetwork();
-	}
+        setActionBar();
+        setExplanationText();
+        setTitle();
+        setGridView();
+        setupShowingRetryMessageIfThereIsNoNetwork();
+    }
 
-	private void findViews() {
-		rootView = (ViewGroup) findViewById(R.id.root);
-		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		makeMagicButtonContainer = findViewById(R.id.make_magic_button_container);
-	}
 
-	private void setActionBar() {
-		final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-		upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
-		getSupportActionBar().setHomeAsUpIndicator(upArrow);
-	}
+    private void findViews() {
+        rootView = (ViewGroup) findViewById(R.id.root);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+    }
 
-	private void setExplanationText() {
-		TextView textExplainingFolderChoice = (TextView) findViewById(R.id.text_explaining_folder_content);
+    private void setActionBar() {
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+    }
 
-		Intent intent = getIntent();
-		Bundle b = intent.getExtras();
+    private void setExplanationText() {
+        TextView textExplainingFolderChoice = (TextView) findViewById(R.id.text_explaining_folder_content);
 
-		if (b != null) {
-			String j = (String) b.get(EXPLANATION);
-			textExplainingFolderChoice.setText(j);
-		}
-	}
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
 
-	private void setTitle(){
+        if (b != null) {
+            String j = (String) b.get(EXPLANATION);
+            textExplainingFolderChoice.setText(j);
+        }
+    }
 
-		Intent intent = getIntent();
-		Bundle b = intent.getExtras();
+    private void setTitle() {
 
-		if (b != null) {
-			String j = (String) b.get(TEXTS);
-			setTitle(j);
-		}
-	}
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
 
-	private void setGridView() {
+        if (b != null) {
+            String j = (String) b.get(TEXTS);
+            setTitle(j);
+        }
+    }
 
-		final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-		recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
-		final ImageAdapter adapter = new ImageAdapter(ThumbnailActivity.this);
-		recyclerView.setAdapter(adapter);
+    private void setGridView() {
 
-		setThumbnailsSmoothly(adapter);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+        final ImageAdapter adapter = new ImageAdapter(ThumbnailActivity.this);
+        recyclerView.setAdapter(adapter);
 
-	}
+        setThumbnailsSmoothly(adapter);
 
-	/** set thumbnails while minimizing chances of frame loss. Since we are loading images from drawables, once set,
-	 * they are immediately loaded on the main thread, thus adding a long queue of work immediately on the main
-	 * thread. Testing has shown activity loads faster if setting of drawables is delayed */
-	private void setThumbnailsSmoothly(final ImageAdapter adapter) {
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				adapter.setData(thumbIds);
-				progressBar.setVisibility(View.GONE);
-			}
-		}, 1000 /* ms */ );
-	}
+    }
 
-	private void setupShowingRetryMessageIfThereIsNoNetwork() {
-		//noinspection ConstantConditions
-		makeMagicButtonContainer.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				onUserClickedMakeMagicButton();
-			}
-		});
-	}
+    /**
+     * set thumbnails while minimizing chances of frame loss. Since we are loading images from drawables, once set,
+     * they are immediately loaded on the main thread, thus adding a long queue of work immediately on the main
+     * thread. Testing has shown activity loads faster if setting of drawables is delayed
+     */
+    private void setThumbnailsSmoothly(final ImageAdapter adapter) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.setData(thumbIds);
+                progressBar.setVisibility(View.GONE);
+            }
+        }, 1000 /* ms */);
+    }
 
-	private void onUserClickedMakeMagicButton() {
-		if (isConnectedToNetwork()) {
-			goToExitAppActivity();
-		} else {
-			showRetryButtonOnly();
-		}
-	}
+    private void setupShowingRetryMessageIfThereIsNoNetwork() {
+        //noinspection ConstantConditions
+        findViewById(R.id.RL).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onUserClickedMakeMagicButton();
+            }
+        });
+    }
 
-	private void goToExitAppActivity() {
-		final String[] images = getIntent().getStringArrayExtra(IMAGES);
-		Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
-		intent.putExtra("images", images);
-		startActivity(intent);
-	}
+    private void onUserClickedMakeMagicButton() {
+        if (isConnectedToNetwork()) {
+            goToExitAppActivity();
+        } else {
+            showRetryButtonOnly();
+        }
+    }
 
-	private boolean isConnectedToNetwork() {
-		return new NetworkingUtils(getApplicationContext()).isConnectedToNetwork();
-	}
+    private void goToExitAppActivity() {
+        final String[] images = getIntent().getStringArrayExtra(IMAGES);
+        Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
+        intent.putExtra(IMAGES, images);
+        intent.putExtra(FOLDER_INDEX, folderIndex);
 
-	private void showRetryButtonOnly() {
-		Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE)
-				.setAction(R.string.retry, new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						onUserClickedMakeMagicButton();
-					}
-		}).show();
-	}
+        startActivity(intent);
+    }
+
+    private boolean isConnectedToNetwork() {
+        return new NetworkingUtils(getApplicationContext()).isConnectedToNetwork();
+    }
+
+    private void showRetryButtonOnly() {
+        Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.retry, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onUserClickedMakeMagicButton();
+                    }
+                }).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -166,21 +172,21 @@ public class ThumbnailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-		if (id == R.id.questions) {
-			composeEmail();
-		}
+        if (id == R.id.questions) {
+            composeEmail();
+        }
         return super.onOptionsItemSelected(item);
     }
 
-	public void composeEmail() {
-		Intent intent = new Intent(Intent.ACTION_SENDTO);
-		intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-		intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "martynaskairys@gmail.com" });
-		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line));
-		if (intent.resolveActivity(getPackageManager()) != null) {
-			startActivity(intent);
-		}
-	}
+    public void composeEmail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"martynaskairys@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 
 }
 

@@ -6,9 +6,20 @@ import java.util.*
 /** Store image Urls */
 internal class ImageStorageImpl(val context: Context) : ImageStorage {
 
-    override fun saveAllUrls(imageUrls: Array<String>) {
+    override fun getUserChosenFolderIndex(): Int {
+        val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
+        val index = preferences.getInt(KEY_CHOSEN_FOLDER_INDEX, -1)
+        if (index == -1) throw IllegalArgumentException("user did not selected folder yet")
+        return index
+    }
+
+    override fun saveUserChosenFolderIndex(folderIndex: Int) {
+        saveToSharedPreferences(KEY_CHOSEN_FOLDER_INDEX, folderIndex)
+    }
+
+    override fun saveAllChosenFolderUrls(imageUrls: Array<String>) {
         val imagesList = toList(imageUrls)
-        saveInternal(ALL_CHOSEN_FOLDER_URLS, imagesList)
+        saveToSharedPreferences(KEY_ALL_CHOSEN_FOLDER_URLS, imagesList)
     }
 
     private fun toList(imageUrls: Array<String>): List<String> {
@@ -20,11 +31,11 @@ internal class ImageStorageImpl(val context: Context) : ImageStorage {
     }
 
     override fun saveShownUrls(imageUrls: List<String>) {
-        saveInternal(SHOWN_URLS, imageUrls)
+        saveToSharedPreferences(SHOWN_URLS, imageUrls)
     }
 
-    private fun saveInternal(key: String, imageUrls: List<String>) {
-        val urlsSet = HashSet<String>(imageUrls)
+    private fun saveToSharedPreferences(key: String, stringList: List<String>) {
+        val urlsSet = HashSet<String>(stringList)
 
         val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
         val edit = preferences.edit()
@@ -32,24 +43,33 @@ internal class ImageStorageImpl(val context: Context) : ImageStorage {
         edit.apply()
     }
 
-    /** Returns all urls from chosen folder */
-    override fun getAllUrls() : ArrayList<String> {
+    private fun saveToSharedPreferences(key: String, intValue: Int) {
         val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
-        val stringSet = preferences.getStringSet(ALL_CHOSEN_FOLDER_URLS, Collections.emptySet())
+        val edit = preferences.edit()
+        edit.putInt(key, intValue)
+        edit.apply()
+    }
+
+    /** Returns all urls from chosen folder */
+    override fun getAllChosenFolderUrls(): ArrayList<String> {
+        val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
+        val stringSet = preferences.getStringSet(KEY_ALL_CHOSEN_FOLDER_URLS, Collections.emptySet())
         return ArrayList(stringSet)
     }
 
     // todo have every method return List
 
+
     /** TODO Update comment Returns urls from chosen folder that have not been shown yet */
-    override fun getShownUrls() : ArrayList<String> {
+    override fun getShownUrls(): ArrayList<String> {
         val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
         val stringSet = preferences.getStringSet(SHOWN_URLS, Collections.emptySet())
         return ArrayList(stringSet)
     }
 
     companion object {
-        val ALL_CHOSEN_FOLDER_URLS = "chosen_folder_urls"
+        val KEY_ALL_CHOSEN_FOLDER_URLS = "chosen_folder_urls"
+        val KEY_CHOSEN_FOLDER_INDEX = "chosen_folder_index"
         val SHOWN_URLS = "shown_urls"
         val STANDARD = "standard"
     }
@@ -58,10 +78,15 @@ internal class ImageStorageImpl(val context: Context) : ImageStorage {
 
 interface ImageStorage {
     /** Saves full list image urls chose by user */
-    fun saveAllUrls(imageUrls: Array<String>)
+    fun saveAllChosenFolderUrls(imageUrls: Array<String>)
+
     fun saveShownUrls(imageUrls: List<String>)
     /** Returns all urls from chosen folder */
-    fun getAllUrls() : ArrayList<String>
+    fun getAllChosenFolderUrls(): ArrayList<String>
+
     /** Returns urls from chosen folder that have been shown already */
-    fun getShownUrls() : ArrayList<String>
+    fun getShownUrls(): ArrayList<String>
+
+    fun saveUserChosenFolderIndex(folderIndex: Int)
+    fun getUserChosenFolderIndex(): Int
 }

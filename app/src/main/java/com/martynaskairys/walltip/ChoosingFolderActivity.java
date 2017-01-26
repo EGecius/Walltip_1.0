@@ -2,6 +2,7 @@ package com.martynaskairys.walltip;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,169 +27,138 @@ import retrofit.client.Response;
  */
 public class ChoosingFolderActivity extends AppCompatActivity {
 
-	private ViewGroup content;
-	private ProgressBar progressBar;
-	private Button buttonA;
-	private Button buttonB;
-	private Button buttonC;
-	private ViewGroup rootView;
+    public static final int BUTTON_FOLDER_INDEX_A = 0;
+    public static final int BUTTON_FOLDER_INDEX_B = 1;
+    public static final int BUTTON_FOLDER_INDEX_C = 2;
+    private ViewGroup content;
+    private ProgressBar progressBar;
+    private Button buttonA;
+    private Button buttonB;
+    private Button buttonC;
+    private ViewGroup rootView;
 
-	private int[] dailyInspirationThumbIds = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4,
-			R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9, R.drawable.a10, R.drawable.a11, R.drawable.a12};
-	private int[] healthyLifeThumbIds = {R.drawable.b1,R.drawable.b2, R.drawable.b3,R.drawable.b4
-			,R.drawable.b5,R.drawable.b6,R.drawable.b7,R.drawable.b8,R.drawable.b9,R.drawable.b10,R.drawable.b11};
-	private int[] bePositiveThumbIds = {R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5, R.drawable.c6,
-			R.drawable.c7, R.drawable.c8, R.drawable.c9, R.drawable.c10, R.drawable.c11, R.drawable.c12};
+    private int[] improveWorkHabitsThumbIds = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4,
+            R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9};
+    private int[] liveHealthyThumbIds = {R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4
+            , R.drawable.b5, R.drawable.b6, R.drawable.b7, R.drawable.b8, R.drawable.b9};
+    private int[] boostPositivityThumbIds = {R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5, R.drawable.c6,
+            R.drawable.c7, R.drawable.c8, R.drawable.c9};
 
-	private UserTracker userTracker = new UserTrackerImpl();
+    private UserTracker userTracker = new UserTrackerImpl();
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choosing_folder);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_choosing_folder);
 
-		findViews();
-		fetchImageUrlsAndUpdateUiAccordingly();
-		userTracker.reportInChoosingFolderActivityOnCreate();
-	}
+        findViews();
+        fetchImageUrlsAndUpdateUiAccordingly();
+        userTracker.reportInChoosingFolderActivityOnCreate();
+    }
 
-	private void findViews() {
-		rootView = (ViewGroup) findViewById(R.id.root);
-		content = (ViewGroup) findViewById(R.id.content);
-		progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-		buttonA = (Button) findViewById(R.id.button_folder_a);
-		buttonB = (Button) findViewById(R.id.button_folder_b);
-		buttonC = (Button) findViewById(R.id.button_folder_c);
-	}
+    private void findViews() {
+        rootView = (ViewGroup) findViewById(R.id.root);
+        content = (ViewGroup) findViewById(R.id.content);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        buttonA = (Button) findViewById(R.id.button_folder_a);
+        buttonB = (Button) findViewById(R.id.button_folder_b);
+        buttonC = (Button) findViewById(R.id.button_folder_c);
 
-	private void fetchImageUrlsAndUpdateUiAccordingly() {
+        Button buttonD = (Button) findViewById(R.id.button_folder_d);
+        buttonD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChoosingFolderActivity.this, SurveyActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
-		showProgressBarOnly();
+    private void fetchImageUrlsAndUpdateUiAccordingly() {
 
-		ApiService service = new RetrofitSetup().getService();
-		service.getFolders(new Callback<List<Folder>>() {
-			@Override
-			public void success(List<Folder> folders, Response response) {
-				setupButtons(folders);
-				showContentOnly();
-			}
+        showProgressBarOnly();
+        ApiService service = new RetrofitSetup().getService();
+        service.getFolders(new Callback<List<Folder>>() {
+            @Override
+            public void success(List<Folder> folders, Response response) {
+                setupButtons(folders);
+                showContentOnly();
+            }
 
-			@Override
-			public void failure(RetrofitError error) {
-				showRetryButtonOnly();
-			}
-		});
-	}
+            @Override
+            public void failure(RetrofitError error) {
+                showRetryButtonOnly();
+            }
+        });
+    }
 
-	private void showRetryButtonOnly() {
-		content.setVisibility(View.INVISIBLE);
-		progressBar.setVisibility(View.INVISIBLE);
+    private void showRetryButtonOnly() {
+        content.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
 
-		Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE).setAction(R.string.retry, new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				fetchImageUrlsAndUpdateUiAccordingly();
-			}
-		}).show();
-	}
+        Snackbar.make(rootView, R.string.something_not_right, Snackbar.LENGTH_INDEFINITE).setAction(R.string.retry, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetchImageUrlsAndUpdateUiAccordingly();
+            }
+        }).show();
+    }
 
-	private void showContentOnly() {
-		content.setVisibility(View.VISIBLE);
-		progressBar.setVisibility(View.INVISIBLE);
-	}
+    private void showContentOnly() {
+        content.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+    }
 
-	private void showProgressBarOnly() {
-		content.setVisibility(View.INVISIBLE);
-		progressBar.setVisibility(View.VISIBLE);
-	}
+    private void showProgressBarOnly() {
+        content.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+    }
 
-	private void setupButtons(List<Folder> folders) {
+    private void setupButtons(List<Folder> folderList) {
+        String[] urlsFolderA = toArray(folderList.get(0));
+        String[] urlsFolderB = toArray(folderList.get(1));
+        String[] urlsFolderC = toArray(folderList.get(2));
 
-		String[] urlsFolderA = toArray(folders.get(0));
-		String[] urlsFolderB = toArray(folders.get(1));
-		String[] urlsFolderC = toArray(folders.get(2));
+        setupFolderButton(urlsFolderA, buttonA, BUTTON_FOLDER_INDEX_A, R.string.folder_a, improveWorkHabitsThumbIds);
+        setupFolderButton(urlsFolderB, buttonB, BUTTON_FOLDER_INDEX_B, R.string.folder_b, liveHealthyThumbIds);
+        setupFolderButton(urlsFolderC, buttonC, BUTTON_FOLDER_INDEX_C, R.string.folder_c, boostPositivityThumbIds);
 
-		setupFolderAButton(urlsFolderA);
-		setupFolderBButton(urlsFolderB);
-		setupFolderCButton(urlsFolderC);
-	}
+    }
 
-	private String[] toArray(Folder folder) {
+    /**
+     * Convert list of image urls to string array.
+     * @param folder with image urls
+     * @return array of urls
+     */
+    private String[] toArray(Folder folder) {
 
-		List<String> urlsList = folder.getUrls();
+        List<String> urlsList = folder.getUrls();
 
-		String[] strings = new String[urlsList.size()];
-		for (int i = 0; i < urlsList.size(); i++) {
-			strings[i] = urlsList.get(i);
-		}
+        String[] strings = new String[urlsList.size()];
+        for (int i = 0; i < urlsList.size(); i++) {
+            strings[i] = urlsList.get(i);
+        }
 
-		return strings;
-	}
+        return strings;
+    }
 
+    private void setupFolderButton(final String[] urlsFolder, Button button, final int buttonFolderIndex, @StringRes final int folderDescription, final int[] thumbIds) {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-	private void setupFolderAButton(final String[] urlsFolderA) {
-		buttonA.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
+                Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
+                intent.putExtra(ThumbnailActivity.EXPLANATION, getString(R.string.text_explaining_folder_content_a));
+                intent.putExtra(ThumbnailActivity.IMAGES, urlsFolder);
+                intent.putExtra(ThumbnailActivity.FOLDER_INDEX, buttonFolderIndex);
+                intent.putExtra(ThumbnailActivity.TEXTS, getString(folderDescription));
+                intent.putExtra(ThumbnailActivity.THUMB_IDS, thumbIds);
 
-				String folderA = getString(R.string.text_explaining_folder_content_a);
-				//Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
-				Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
-				intent.putExtra(ThumbnailActivity.EXPLANATION, folderA);
-				intent.putExtra(ThumbnailActivity.IMAGES, urlsFolderA);
-				intent.putExtra(ThumbnailActivity.TEXTS, getString(R.string.folder_a));
-				intent.putExtra(ThumbnailActivity.THUMB_IDS, dailyInspirationThumbIds);
-				Bundle bundle = new Bundle();
-				bundle.putInt("image", R.drawable.pic1a);
-				intent.putExtras(bundle);
+                userTracker.reportInChoosingFolderActivityFolderA();
 
-				userTracker.reportInChoosingFolderActivityFolderA();
-
-				startActivity(intent);
-			}
-		});
-	}
-
-	private void setupFolderBButton(final String[] urlsFolderB) {
-		buttonB.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String folderB = getString(R.string.text_explaining_folder_content_b);
-				Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
-				intent.putExtra(ThumbnailActivity.EXPLANATION, folderB);
-				intent.putExtra(ThumbnailActivity.IMAGES, urlsFolderB);
-				intent.putExtra(ThumbnailActivity.TEXTS, getString(R.string.folder_b));
-				intent.putExtra(ThumbnailActivity.THUMB_IDS, healthyLifeThumbIds);
-				Bundle bundle = new Bundle();
-				bundle.putInt("image", R.drawable.pic1b);
-				intent.putExtras(bundle);
-
-				userTracker.reportInChoosingFolderActivityFolderB();
-
-				startActivity(intent);
-			}
-		});
-	}
-
-	private void setupFolderCButton(final String[] urlsFolderC) {
-		buttonC.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String folderC = getString(R.string.text_explaining_folder_content_c);
-				Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
-				intent.putExtra(ThumbnailActivity.EXPLANATION, folderC);
-				intent.putExtra(ThumbnailActivity.IMAGES, urlsFolderC);
-				intent.putExtra(ThumbnailActivity.TEXTS, getString(R.string.folder_c));
-				intent.putExtra(ThumbnailActivity.THUMB_IDS, bePositiveThumbIds);
-				Bundle bundle = new Bundle();
-				bundle.putInt("image", R.drawable.pic1c);
-				intent.putExtras(bundle);
-
-				userTracker.reportInChoosingFolderActivityFolderC();
-
-				startActivity(intent);
-			}
-		});
-	}
+                startActivity(intent);
+            }
+        });
+    }
 
 }

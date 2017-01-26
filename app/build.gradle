@@ -25,8 +25,8 @@ android {
         applicationId "com.martynaskairys.walltip"
         minSdkVersion 19
         targetSdkVersion 23
-        versionName '1.6.2'
-        versionCode 26
+        versionName '1.6.7'
+        versionCode 31
     }
     buildTypes {
         release {
@@ -45,7 +45,6 @@ ext {
 }
 
 dependencies {
-
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
@@ -53,9 +52,11 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.3.2'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') { transitive = true }
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar')
+    {
+        transitive = true
+    }
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
-
     testCompile 'junit:junit:4.12'
     testCompile("com.squareup.assertj:assertj-android:${assertJVersion}") {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -63,5 +64,4 @@ dependencies {
     testCompile("org.mockito:mockito-core:${mockitoVersion}") {
         exclude group: 'org.hamcrest'
     }
-
 }
