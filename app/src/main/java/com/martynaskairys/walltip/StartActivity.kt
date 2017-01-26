@@ -1,13 +1,10 @@
 package com.martynaskairys.walltip
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.crashlytics.android.Crashlytics
-import com.martynaskairys.walltip.images.ImageStorageImpl.Companion.STANDARD
 import io.fabric.sdk.android.Fabric
 
 class StartActivity : AppCompatActivity() {
@@ -16,9 +13,6 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Fabric.with(this, Crashlytics())
         setContentView(R.layout.activity_start)
-
-        val preferences = getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
-        preferences.edit().clear().commit()
 
         setOnClickListeners()
     }

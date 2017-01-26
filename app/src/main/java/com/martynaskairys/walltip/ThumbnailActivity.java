@@ -1,13 +1,11 @@
 package com.martynaskairys.walltip;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,35 +17,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.ContentViewEvent;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.martynaskairys.walltip.DataTypes.Folder;
 import com.martynaskairys.walltip.networking.NetworkingUtils;
 import com.martynaskairys.walltip.tracking.UserTracker;
 import com.martynaskairys.walltip.tracking.UserTrackerImpl;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * Shows a list of pictures
  */
 public class ThumbnailActivity extends AppCompatActivity {
+    // TODO: 03/01/2017 explain public static final (what does it mean)
     public static final String EXPLANATION = "explanation";
     public static final String TEXTS = "texts";
     public static final String IMAGES = "images";
     public static final String THUMB_IDS = "thumb_ids";
+    public static final String FOLDER_INDEX = "folder_index";
+    // FIXME: 03/01/2017
     private int[] thumbIds;
     private ViewGroup rootView;
     private ProgressBar progressBar;
 
     private UserTracker userTracker = new UserTrackerImpl();
+    private int folderIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +48,8 @@ public class ThumbnailActivity extends AppCompatActivity {
         userTracker.reportInThumbnailActivityOnCreate();
 
         thumbIds = getIntent().getIntArrayExtra(THUMB_IDS);
+        folderIndex = getIntent().getIntExtra(FOLDER_INDEX, -1);
+        if (folderIndex == -1) throw new IllegalArgumentException("folder index was not found");
 
         setContentView(R.layout.activity_thumbnail);
         findViews();
@@ -147,11 +141,12 @@ public class ThumbnailActivity extends AppCompatActivity {
     }
 
     private void goToExitAppActivity() {
-        final String folderListString = getIntent().getStringExtra(IMAGES);
+        final String[] images = getIntent().getStringArrayExtra(IMAGES);
         Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
-        intent.putExtra(IMAGES, folderListString);
-        startActivity(intent);
+        intent.putExtra(IMAGES, images);
+        intent.putExtra(FOLDER_INDEX, folderIndex);
 
+        startActivity(intent);
     }
 
     private boolean isConnectedToNetwork() {
