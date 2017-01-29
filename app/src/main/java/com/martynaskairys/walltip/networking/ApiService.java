@@ -15,7 +15,7 @@ public interface ApiService {
 //	@GET ("/folders.json.json?search=${searchParam}")
 //	void getFolders(Callback<List<Folder>> callback, @Query("searchParam") String searchKeyword);
 
-	@GET ("/nuodaia")
-//	@GET ("/folders.json.json")
+//	@GET ("/nuodaia")
+	@GET ("/folders.json.json")
 	void getFolders(Callback<List<Folder>> callback);
 }
