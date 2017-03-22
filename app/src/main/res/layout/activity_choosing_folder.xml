@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root"
+    android:id="@+id/content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:layout_height="wrap_content"
+
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+
+    android:background="@drawable/choosing_folder_gradient"
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     tools:context=".ChoosingFolderActivity">
 
-    <RelativeLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="invisible" />
-
-<ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
 
         <LinearLayout
@@ -36,82 +34,212 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button_folder_a"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/small_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_description_start_screen"
+                    android:src="@drawable/small_bg" />
+
+                <TextView
+                    android:id="@+id/walltip_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="56dp"
+                    android:text="@string/walltip"
+                    android:textColor="#ffc127"
+                    android:textSize="63sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="140dp"
+                    android:text="@string/your_daily_advisor"
+                    android:textAllCaps="true"
+                    android:textColor="#ffc127"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="220dp"
+                    android:layout_marginTop="56dp"
+                    android:contentDescription="@string/wand"
+                    android:src="@drawable/wand" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/small_bg"
+                    android:layout_marginStart="24dp"
+                    android:text="@string/select_category"
+                    android:textAllCaps="true"
+                    android:textColor="#575871"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/button_menu"
+                    android:layout_width="25dp"
+                    android:layout_height="23dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/ic_settings"
+                    android:paddingBottom="15dp"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.martynaskairys.walltip.utils.ImageHelper
+
+                    android:id="@+id/button_folder_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/category_cover_height"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pic1a"
+
+
+                    android:transitionName="@string/transition_cover"
+                    tools:targetApi="lollipop" />
+
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:gravity="bottom"
+                    android:paddingBottom="16dp"
+                    android:paddingEnd="40dp"
+                    android:paddingStart="40dp"
+                    android:text="@string/folder_a"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.martynaskairys.walltip.utils.ImageHelper
+                    android:id="@+id/button_folder_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/category_cover_height"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pic1b"
+
+                    android:transitionName="@string/transition_cover"
+                    tools:targetApi="lollipop" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:gravity="bottom"
+                    android:paddingBottom="16dp"
+                    android:paddingEnd="40dp"
+                    android:paddingStart="40dp"
+                    android:text="@string/folder_b"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.martynaskairys.walltip.utils.ImageHelper
+                    android:id="@+id/button_folder_c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/category_cover_height"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+
+
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pic1c"
+
+                    android:transitionName="@string/transition_cover"
+                    tools:targetApi="lollipop" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:gravity="bottom"
+                    android:paddingBottom="16dp"
+                    android:paddingEnd="40dp"
+                    android:paddingStart="40dp"
+                    android:text="@string/folder_c"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="22sp" />
+
+
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/button_folder_make_your_suggestion"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/pic1a"
-                android:padding="16dp"
-                android:text="@string/folder_a"
-                android:textColor="#ffffff"
-                android:textSize="32sp" />
-
-
-            <Button
-                android:id="@+id/button_folder_b"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/pic1b"
-                android:padding="16dp"
-                android:text="@string/folder_b"
-                android:textColor="#ffffff"
-                android:textSize="32sp" />
-
-
-            <Button
-                android:id="@+id/button_folder_c"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/pic1c"
-                android:padding="16dp"
-                android:text="@string/folder_c"
-                android:textColor="#ffffff"
-                android:textSize="32sp" />
-
-            <Button
-                android:id="@+id/button_folder_d"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:padding="16dp"
+                android:background="@drawable/button_border"
                 android:text="@string/folder_d"
                 android:textColor="#ffffff"
-                android:textSize="32sp"
-                android:background="@color/colorPrimaryDark" />
+                android:textSize="16sp" />
 
 
         </LinearLayout>
-</ScrollView>
-
-    </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
+
 
 
