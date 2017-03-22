@@ -30,7 +30,7 @@ class ExitAppActivity : AppCompatActivity() {
     }
 
     private fun showArrow() {
-        val upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_mtrl_am_alpha)
+        val upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP)
         supportActionBar!!.setHomeAsUpIndicator(upArrow)
     }

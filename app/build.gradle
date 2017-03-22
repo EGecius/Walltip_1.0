@@ -19,12 +19,12 @@ repositories {
 
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '24.0.1'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.martynaskairys.walltip"
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionName '1.6.7'
         versionCode 31
     }
@@ -39,7 +39,7 @@ android {
 }
 
 ext {
-    supportLibraryVersion = "23.4.0"
+    supportLibraryVersion = "25.3.0"
     assertJVersion = '1.1.0'
     mockitoVersion = '1.10.19'
 }
@@ -56,7 +56,7 @@ dependencies {
     {
         transitive = true
     }
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     testCompile("com.squareup.assertj:assertj-android:${assertJVersion}") {
         exclude group: 'com.android.support', module: 'support-annotations'
