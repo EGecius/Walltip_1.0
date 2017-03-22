@@ -1,23 +1,32 @@
 package com.martynaskairys.walltip;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.martynaskairys.walltip.DataTypes.Folder;
 import com.martynaskairys.walltip.networking.ApiService;
 import com.martynaskairys.walltip.networking.RetrofitSetup;
-import com.martynaskairys.walltip.tracking.UserTracker;
-import com.martynaskairys.walltip.tracking.UserTrackerImpl;
+import com.martynaskairys.walltip.utils.ActivityUtils;
+import com.martynaskairys.walltip.utils.Utils;
 
 import java.util.List;
 
+import io.fabric.sdk.android.Fabric;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -27,15 +36,25 @@ import retrofit.client.Response;
  */
 public class ChoosingFolderActivity extends AppCompatActivity {
 
+    public static final String PREF_USER_FIRST_TIME = "user_first_time";
+    boolean isUserFirstTime;
+//    private UserTracker userTracker = new UserTrackerImpl();
+
     public static final int BUTTON_FOLDER_INDEX_A = 0;
     public static final int BUTTON_FOLDER_INDEX_B = 1;
     public static final int BUTTON_FOLDER_INDEX_C = 2;
     private ViewGroup content;
     private ProgressBar progressBar;
-    private Button buttonA;
-    private Button buttonB;
-    private Button buttonC;
+    private ImageView buttonA;
+    private ImageView buttonB;
+    private ImageView buttonC;
+    private Button buttonMenu;
     private ViewGroup rootView;
+    private TextView textView;
+
+    private int improveWorkHabitsImage = R.drawable.pic1a;
+    private int liveHealthyImage = R.drawable.pic1b;
+    private int boostPositivityImage = R.drawable.pic1c;
 
     private int[] improveWorkHabitsThumbIds = {R.drawable.a1, R.drawable.a2, R.drawable.a3, R.drawable.a4,
             R.drawable.a5, R.drawable.a6, R.drawable.a7, R.drawable.a8, R.drawable.a9};
@@ -44,27 +63,113 @@ public class ChoosingFolderActivity extends AppCompatActivity {
     private int[] boostPositivityThumbIds = {R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5, R.drawable.c6,
             R.drawable.c7, R.drawable.c8, R.drawable.c9};
 
-    private UserTracker userTracker = new UserTrackerImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Wallpee);
         super.onCreate(savedInstanceState);
+
+        //Checks if user is first time here
+        isUserFirstTime = Boolean.valueOf(Utils.readSharedSetting(ChoosingFolderActivity.this, PREF_USER_FIRST_TIME, "true"));
+        Intent introIntent = new Intent(ChoosingFolderActivity.this, PagerActivity.class);
+        introIntent.putExtra(PREF_USER_FIRST_TIME, isUserFirstTime);
+        if (isUserFirstTime) {
+            startActivity(introIntent);
+        }
+
+        Fabric.with(this, new Crashlytics());
+
         setContentView(R.layout.activity_choosing_folder);
+
+        buttonMenu = (Button) findViewById(R.id.button_menu);
+        buttonMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(ChoosingFolderActivity.this, buttonMenu);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.popup_menu, popup.getMenu());
+
+
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+
+                            case R.id.one:
+                                openAboutActivityFromMenuClick();
+                                return true;
+                            case R.id.two:
+                                openAboutActivityFromMenuClick();
+                                return true;
+                            case R.id.three:
+                                composeEmail();
+                                return true;
+
+                        }
+                        return true;
+
+                    }
+
+                });
+
+                popup.show(); //showing popup menu
+            }
+        });
+
 
         findViews();
         fetchImageUrlsAndUpdateUiAccordingly();
-        userTracker.reportInChoosingFolderActivityOnCreate();
+//        userTracker.reportInChoosingFolderActivityOnCreate();
     }
+
+    public void openAboutActivityFromMenuClick() {
+
+        Intent intent = new Intent(ChoosingFolderActivity.this, AboutActivity.class);
+        startActivity(intent);
+
+    }
+
+/*
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.one:
+                composeEmail();
+                return true;
+            case R.id.two:
+                composeEmail();
+                return true;
+            case R.id.three:
+                composeEmail();
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+*/
+
+
 
     private void findViews() {
         rootView = (ViewGroup) findViewById(R.id.root);
         content = (ViewGroup) findViewById(R.id.content);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        buttonA = (Button) findViewById(R.id.button_folder_a);
-        buttonB = (Button) findViewById(R.id.button_folder_b);
-        buttonC = (Button) findViewById(R.id.button_folder_c);
+        textView = (TextView) findViewById(R.id.walltip_text);
 
-        Button buttonD = (Button) findViewById(R.id.button_folder_d);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/bernadette.ttf");
+        textView.setTypeface(tf);
+
+
+        buttonA = (ImageView) findViewById(R.id.button_folder_a);
+        buttonB = (ImageView) findViewById(R.id.button_folder_b);
+        buttonC = (ImageView) findViewById(R.id.button_folder_c);
+
+
+        Button buttonD = (Button) findViewById(R.id.button_folder_make_your_suggestion);
         buttonD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,14 +224,15 @@ public class ChoosingFolderActivity extends AppCompatActivity {
         String[] urlsFolderB = toArray(folderList.get(1));
         String[] urlsFolderC = toArray(folderList.get(2));
 
-        setupFolderButton(urlsFolderA, buttonA, BUTTON_FOLDER_INDEX_A, R.string.folder_a, improveWorkHabitsThumbIds);
-        setupFolderButton(urlsFolderB, buttonB, BUTTON_FOLDER_INDEX_B, R.string.folder_b, liveHealthyThumbIds);
-        setupFolderButton(urlsFolderC, buttonC, BUTTON_FOLDER_INDEX_C, R.string.folder_c, boostPositivityThumbIds);
+        setupFolderButton(urlsFolderA, buttonA, BUTTON_FOLDER_INDEX_A, R.string.folder_a, improveWorkHabitsThumbIds, improveWorkHabitsImage);
+        setupFolderButton(urlsFolderB, buttonB, BUTTON_FOLDER_INDEX_B, R.string.folder_b, liveHealthyThumbIds, liveHealthyImage);
+        setupFolderButton(urlsFolderC, buttonC, BUTTON_FOLDER_INDEX_C, R.string.folder_c, boostPositivityThumbIds, boostPositivityImage);
 
     }
 
     /**
      * Convert list of image urls to string array.
+     *
      * @param folder with image urls
      * @return array of urls
      */
@@ -142,7 +248,8 @@ public class ChoosingFolderActivity extends AppCompatActivity {
         return strings;
     }
 
-    private void setupFolderButton(final String[] urlsFolder, Button button, final int buttonFolderIndex, @StringRes final int folderDescription, final int[] thumbIds) {
+    private void setupFolderButton(final String[] urlsFolder, ImageView button, final int buttonFolderIndex,
+                                   @StringRes final int folderDescription, final int[] thumbIds, final int coverImage) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,12 +260,61 @@ public class ChoosingFolderActivity extends AppCompatActivity {
                 intent.putExtra(ThumbnailActivity.FOLDER_INDEX, buttonFolderIndex);
                 intent.putExtra(ThumbnailActivity.TEXTS, getString(folderDescription));
                 intent.putExtra(ThumbnailActivity.THUMB_IDS, thumbIds);
+                intent.putExtra(ThumbnailActivity.COVER_IMAGE, coverImage);
 
-                userTracker.reportInChoosingFolderActivityFolderA();
+//                userTracker.reportInChoosingFolderActivityFolderA();
 
-                startActivity(intent);
+//                startActivity(intent);
+                ActivityUtils.startActivityWithTransitionAnimation(ChoosingFolderActivity.this,
+                        intent,
+                        new Pair<View, String>(v, getString(R.string.transition_cover)));
             }
         });
     }
 
+
+
+  /*  @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.questions) {
+            composeEmail();
+        }
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void composeEmail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"martynaskairys@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }*/
+
+    public void composeEmail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"martynaskairys@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
+    }
 }

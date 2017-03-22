@@ -2,8 +2,8 @@ package com.martynaskairys.walltip;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -33,7 +33,7 @@ public class LauncherInfoActivity extends AppCompatActivity {
 
     public void exitApp (View view){
 
-        Intent intent1 = new Intent(this, StartActivity.class);
+        Intent intent1 = new Intent(this, ChoosingFolderActivity.class);
         Intent intent2 = new Intent(Intent.ACTION_MAIN);
         intent2.addCategory(Intent.CATEGORY_HOME);
         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

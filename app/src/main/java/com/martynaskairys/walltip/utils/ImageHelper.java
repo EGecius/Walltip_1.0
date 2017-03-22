@@ -1,34 +1,43 @@
 package com.martynaskairys.walltip.utils;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
+import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Bitmap.Config;
-import android.graphics.PorterDuff.Mode;
+import android.util.AttributeSet;
+import android.widget.ImageView;
 
-public class ImageHelper {
-    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
-                .getHeight(), Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
+public class ImageHelper extends ImageView {
 
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        final RectF rectF = new RectF(rect);
-        final float roundPx = pixels;
+    private float radius = 14.0f;
+    private Path path;
+    private RectF rect;
 
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+    public ImageHelper(Context context) {
+        super(context);
+        init();
+    }
 
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
+    public ImageHelper(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
 
-        return output;
+    public ImageHelper(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init();
+    }
+
+    private void init() {
+        path = new Path();
+
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        rect = new RectF(0, 0, this.getWidth(), this.getHeight());
+        path.addRoundRect(rect, radius, radius, Path.Direction.CW);
+        canvas.clipPath(path);
+        super.onDraw(canvas);
     }
 }

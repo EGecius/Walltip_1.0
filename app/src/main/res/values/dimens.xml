@@ -5,6 +5,8 @@
 
 
     <dimen name="activity_margin_half">8dp</dimen>
+    <dimen name="category_cover_height">175dp</dimen>
+    <dimen name="category_cover_height_full_screen">230dp</dimen>
 
 
 </resources>
