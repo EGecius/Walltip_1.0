@@ -45,7 +45,8 @@ public class WallpaperService extends IntentService {
 
 		String randomImageUrl = getRandomUrl();
 
-		try {
+        //predownloaded images (imtu is
+        try {
 			InputStream ins = new URL(randomImageUrl).openStream();
 
 			Bitmap tempBitmap = BitmapFactory.decodeStream(ins);
