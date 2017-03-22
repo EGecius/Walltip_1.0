@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Walltip</string>
-    <string name="folder_a">Improve work habits</string>
-    <string name="folder_b">Live healthier</string>
-    <string name="folder_c">Boost positivity</string>
-    <string name="folder_d">Make your suggestion</string>
+    <string name="folder_a">Improve Work Habits</string>
+    <string name="folder_b">Live Healthier</string>
+    <string name="folder_c">Boost Positivity</string>
+    <string name="folder_d">Make Your Suggestion</string>
     <string name="text_explaining_folder_content_a">Don\’t let distraction and procrastination define the way you work.
         Everyone has 24 hours a day, but your work life can become dramatically better with exciting results. Only one message a day.
         These walltips work like magic. Check out what your phone screen could look like.
@@ -61,7 +61,7 @@
     <string name="exit_text_small">Make the most of your day with your phone.
         Want to get the Walltips on a different theme? You can always change your choice.
     </string>
-    <string name="exit_app_greeting">Enjoy</string>
+    <string name="exit_app_greeting">Close the App and Enjoy</string>
     <string name="information_message_window_popup">"Have ideas on how Walltip could make your day even better? Let us know martynaskairys@gmail.com"
     </string>
 
@@ -117,6 +117,16 @@
     <string name="exit_button_text">Exit</string>
     <string name="exit_message">"Have a good day"</string>
     <string name="back_button_info_launcher_activity">Back to themes</string>
+    <string name="transition_cover" translatable="false">transitionCover</string>
+    <string name="about_text">Your phone is a magical thing. It must be, since you’re touching it 200 times a day. Use that magic to live your life to the max. Get practical tips and advice on your phone screen to keep focused on your goals or to find a path to success.
+        \n        \nPersonal or professional, one walltip a day on your phone screen can change the way you live it. The choice is in your hands. Literally.
+   </string>
+    <string name="make_the_magic">make the magic happen</string>
+    <string name="content_description_start_screen">This is Walltip</string>
+    <string name="walltip">Walltip</string>
+    <string name="your_daily_advisor">Your Daily Advisor</string>
+    <string name="select_category">select category</string>
+    <string name="wand">wand</string>
 
 
 </resources>

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.widget.Toast
 import com.martynaskairys.walltip.ThumbnailActivity.FOLDER_INDEX
 import com.martynaskairys.walltip.ThumbnailActivity.IMAGES
 import com.martynaskairys.walltip.images.ImageStorageImpl
@@ -37,8 +38,15 @@ class ExitAppActivity : AppCompatActivity() {
 
     private fun setupExitButton() {
         findViewById(R.id.buttonExitApp)!!.setOnClickListener {
-            val intent = Intent(this@ExitAppActivity, LauncherInfoActivity::class.java)
-            startActivity(intent)
+            val intent1 = Intent(this, ChoosingFolderActivity::class.java)
+            val intent2 = Intent(Intent.ACTION_MAIN)
+            intent2.addCategory(Intent.CATEGORY_HOME)
+            intent2.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+
+            Toast.makeText(this, R.string.exit_message, Toast.LENGTH_SHORT).show()
+
+            startActivity(intent1)
+            startActivity(intent2)
         }
     }
 

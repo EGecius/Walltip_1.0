@@ -1,9 +1,7 @@
 package com.martynaskairys.walltip;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -11,10 +9,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -33,6 +31,7 @@ public class ThumbnailActivity extends AppCompatActivity {
     public static final String IMAGES = "images";
     public static final String THUMB_IDS = "thumb_ids";
     public static final String FOLDER_INDEX = "folder_index";
+    public static final String COVER_IMAGE = "cover_image";
     // FIXME: 03/01/2017
     private int[] thumbIds;
     private ViewGroup rootView;
@@ -54,11 +53,12 @@ public class ThumbnailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_thumbnail);
         findViews();
 
-        setActionBar();
+//        setActionBar();
         setExplanationText();
         setTitle();
         setGridView();
         setupShowingRetryMessageIfThereIsNoNetwork();
+        setCoverImage();
     }
 
 
@@ -71,6 +71,19 @@ public class ThumbnailActivity extends AppCompatActivity {
         final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp);
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
+    }
+
+    private void setCoverImage() {
+        ImageView imageCover = (ImageView) findViewById(R.id.thumbnail_cover_image);
+
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+
+        if (b != null) {
+            int j = (int) b.get(COVER_IMAGE);
+            imageCover.setImageResource(j);
+        }
+
     }
 
     private void setExplanationText() {
@@ -163,30 +176,22 @@ public class ThumbnailActivity extends AppCompatActivity {
                 }).show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.questions) {
-            composeEmail();
+
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 
-    public void composeEmail() {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"martynaskairys@gmail.com"});
-        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line));
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }
 
 }
 
