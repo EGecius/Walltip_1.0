@@ -1,6 +1,7 @@
 package com.martynaskairys.walltip;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
