@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.martynaskairys.walltip.shared.tracking.UserTracker;
 import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl;
 
+/** Shows single image */
 public class PictureActivity extends AppCompatActivity {
 
 	public static final String IMAGE_INT = "Image Int";
@@ -23,15 +24,18 @@ public class PictureActivity extends AppCompatActivity {
 
         userTracker.reportInPictureActivityOnCreate();
 
-        int imageInt = getIntent().getIntExtra(IMAGE_INT, R.drawable.mok);
-        ImageView imageView = (ImageView)findViewById(R.id.imageView);
-		ViewCompat.setTransitionName(imageView, IMAGE_INT);
-        imageView.setImageResource(imageInt);
-
+		showImageProvided();
     }
 
-    public void goBack(View view) {
+    /** Shows image passed via Intent */
+	private void showImageProvided() {
+		int imageInt = getIntent().getIntExtra(IMAGE_INT, R.drawable.mok);
+		ImageView imageView = (ImageView)findViewById(R.id.imageView);
+		ViewCompat.setTransitionName(imageView, IMAGE_INT);
+		imageView.setImageResource(imageInt);
+	}
 
+	public void goBack(View view) {
         switch (android.R.id.home) {
             case android.R.id.home:
                 onBackPressed();
@@ -46,6 +50,6 @@ public class PictureActivity extends AppCompatActivity {
                 return true;
         }
 
-        return(super.onOptionsItemSelected(item));
+        return super.onOptionsItemSelected(item);
     }
 }
