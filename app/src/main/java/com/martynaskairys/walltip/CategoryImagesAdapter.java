@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Martynas on 2016-04-28.
+ * {@link RecyclerView} adapter for images shown in {@link CategoryActivity}
  */
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Holder> {
+class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.Holder> {
 
 	private Activity mActivity;
     private Context mContext;
@@ -27,7 +27,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Holder> {
 	 * @param activity activity where this adapter is used
 	 *
 	 */
-    public ImageAdapter(final Activity activity) {
+	CategoryImagesAdapter(final Activity activity) {
 		mActivity = activity;
         mContext = activity.getApplicationContext();
     }
@@ -73,7 +73,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Holder> {
 
 		final ImageView imageView;
 
-		public Holder(final View itemView) {
+		Holder(final View itemView) {
 			super(itemView);
 			imageView = (ImageView) itemView.findViewById(R.id.imageView);
 		}

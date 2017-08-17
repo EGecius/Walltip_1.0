@@ -105,7 +105,7 @@ public class CategoryActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
-        final ImageAdapter adapter = new ImageAdapter(CategoryActivity.this);
+        final CategoryImagesAdapter adapter = new CategoryImagesAdapter(CategoryActivity.this);
         recyclerView.setAdapter(adapter);
 
         setThumbnailsSmoothly(adapter);
@@ -117,7 +117,7 @@ public class CategoryActivity extends AppCompatActivity {
      * they are immediately loaded on the main thread, thus adding a long queue of work immediately on the main
      * thread. Testing has shown activity loads faster if setting of drawables is delayed
      */
-    private void setThumbnailsSmoothly(final ImageAdapter adapter) {
+    private void setThumbnailsSmoothly(final CategoryImagesAdapter adapter) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
