@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.changewallpapers;
 
 import android.app.IntentService;
 import android.app.WallpaperManager;

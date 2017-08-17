@@ -6,8 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.martynaskairys.walltip.WallpaperServiceReceiver;
-
 
 /**
  * Broadcast receiver, which notifies when the device boots.

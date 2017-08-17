@@ -13,8 +13,8 @@ import android.widget.Toast
 import com.martynaskairys.walltip.R
 import com.martynaskairys.walltip.features.selectcategory.CategoryActivity.FOLDER_INDEX
 import com.martynaskairys.walltip.features.selectcategory.CategoryActivity.IMAGES
-import com.martynaskairys.walltip.WallpaperService
-import com.martynaskairys.walltip.WallpaperServiceReceiver
+import com.martynaskairys.walltip.features.changewallpapers.WallpaperService
+import com.martynaskairys.walltip.features.changewallpapers.WallpaperServiceReceiver
 import com.martynaskairys.walltip.shared.images.ImageStorageImpl
 import com.martynaskairys.walltip.shared.images.ImageStorageManager
 

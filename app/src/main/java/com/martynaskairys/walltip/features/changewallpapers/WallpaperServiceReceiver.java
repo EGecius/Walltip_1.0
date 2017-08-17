@@ -1,11 +1,11 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.changewallpapers;
 
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-/** Launches {@link WallpaperService} when invokes */
+/** Launches {@link WallpaperService} when invoked */
 public class WallpaperServiceReceiver extends BroadcastReceiver {
 
     @Override
