@@ -26,7 +26,7 @@ class CategorySelectedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_exit_app)
-        showArrow()
+        setupUpButton()
         setupExitButton()
 
         saveFolderIndexAndUrls()
@@ -34,7 +34,7 @@ class CategorySelectedActivity : AppCompatActivity() {
         scheduleRegularWallpaperUpdates()
     }
 
-    private fun showArrow() {
+    private fun setupUpButton() {
         val upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
         upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP)
         supportActionBar!!.setHomeAsUpIndicator(upArrow)
