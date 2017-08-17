@@ -108,7 +108,7 @@
         </receiver>
 
         <activity
-            android:name=".CategorySelectedActivity"
+            android:name=".features.selectcategory.CategorySelectedActivity"
             android:label=""
             android:parentActivityName=".ThumbnailActivity"
             android:screenOrientation="portrait"

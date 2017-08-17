@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
 
-    tools:context=".CategorySelectedActivity">
+    tools:context=".features.selectcategory.CategorySelectedActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

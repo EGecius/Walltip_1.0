@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.martynaskairys.walltip.features.selectcategory.CategorySelectedActivity;
 import com.martynaskairys.walltip.shared.networking.NetworkingUtils;
 import com.martynaskairys.walltip.shared.tracking.UserTracker;
 import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl;

@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip
+package com.martynaskairys.walltip.features.selectcategory
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -10,8 +10,12 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
+import com.martynaskairys.walltip.ChoosingFolderActivity
+import com.martynaskairys.walltip.R
 import com.martynaskairys.walltip.ThumbnailActivity.FOLDER_INDEX
 import com.martynaskairys.walltip.ThumbnailActivity.IMAGES
+import com.martynaskairys.walltip.WallpaperService
+import com.martynaskairys.walltip.WallpaperServiceReceiver
 import com.martynaskairys.walltip.shared.images.ImageStorageImpl
 import com.martynaskairys.walltip.shared.images.ImageStorageManager
 
