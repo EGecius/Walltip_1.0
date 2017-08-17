@@ -19,18 +19,18 @@ import com.squareup.picasso.Picasso;
  */
 class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.Holder> {
 
-	private Activity mActivity;
-    private Context mContext;
+	private Activity activity;
+    private Context context;
 	/** references to our images */
-	private int[] mThumbIds = new int[0];
+	private int[] thumbIds = new int[0];
 
 	/**
 	 * @param activity activity where this adapter is used
 	 *
 	 */
 	CategoryImagesAdapter(final Activity activity) {
-		mActivity = activity;
-        mContext = activity.getApplicationContext();
+		this.activity = activity;
+        context = activity.getApplicationContext();
     }
 
 	@Override
@@ -41,8 +41,8 @@ class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.H
 
 	@Override
 	public void onBindViewHolder(final Holder holder, final int position) {
-		Picasso.with(mContext)
-						.load(mThumbIds[position])
+		Picasso.with(context)
+				.load(thumbIds[position])
 				.fit()
 				.centerCrop()
 				.placeholder(R.drawable.mok)
@@ -53,19 +53,19 @@ class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.H
 
 	@Override
 	public int getItemCount() {
-		return mThumbIds.length;
+		return thumbIds.length;
 	}
 
 	private void setClickListener(final ImageView imageView, final int position) {
 		imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(final View v) {
-				final Intent intent = new Intent(mActivity, SingleImageActivity.class);
-				intent.putExtra(SingleImageActivity.IMAGE_INT, mThumbIds[position]);
+				final Intent intent = new Intent(activity, SingleImageActivity.class);
+				intent.putExtra(SingleImageActivity.IMAGE_INT, thumbIds[position]);
 
-				final ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity,
+				final ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
 						imageView, SingleImageActivity.IMAGE_INT);
-				ActivityCompat.startActivity(mActivity, intent, options.toBundle());
+				ActivityCompat.startActivity(activity, intent, options.toBundle());
 			}
 		});
 	}
@@ -82,7 +82,7 @@ class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.H
 
 	/** sets thumb ids on the adapter */
 	void setData(int[] thumbIds) {
-		mThumbIds = thumbIds;
+		this.thumbIds = thumbIds;
 		notifyDataSetChanged();
 	}
 
