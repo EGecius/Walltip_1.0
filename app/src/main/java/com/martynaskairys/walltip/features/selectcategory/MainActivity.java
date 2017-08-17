@@ -100,13 +100,10 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
 
-                            case R.id.one:
+                            case R.id.about:
                                 openAboutActivityFromMenuClick();
                                 return true;
-                            case R.id.two:
-                                openAboutActivityFromMenuClick();
-                                return true;
-                            case R.id.three:
+                            case R.id.feedback:
                                 composeEmail();
                                 return true;
 
