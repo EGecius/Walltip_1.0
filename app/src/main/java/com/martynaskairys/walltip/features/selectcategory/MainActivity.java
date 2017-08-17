@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
-import com.martynaskairys.walltip.CategoryActivity;
 import com.martynaskairys.walltip.PagerActivity;
 import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.SurveyActivity;

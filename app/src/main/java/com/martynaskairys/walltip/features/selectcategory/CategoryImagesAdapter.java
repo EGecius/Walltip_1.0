@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.selectcategory;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.martynaskairys.walltip.PictureActivity;
+import com.martynaskairys.walltip.R;
 import com.squareup.picasso.Picasso;
 
 /**

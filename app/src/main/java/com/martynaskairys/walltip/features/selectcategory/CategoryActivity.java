@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.selectcategory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.martynaskairys.walltip.features.selectcategory.CategorySelectedActivity;
+import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.shared.networking.NetworkingUtils;
 import com.martynaskairys.walltip.shared.tracking.UserTracker;
 import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl;
