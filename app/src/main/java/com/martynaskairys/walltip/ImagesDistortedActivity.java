@@ -9,7 +9,8 @@ import android.widget.Toast;
 
 import com.martynaskairys.walltip.features.selectcategory.MainActivity;
 
-public class LauncherInfoActivity extends AppCompatActivity {
+/** Provides instructions to user in case images dow not show properly */
+public class ImagesDistortedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
