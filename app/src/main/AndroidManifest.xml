@@ -145,7 +145,7 @@
         </activity>
         <activity android:name=".features.provideuserinfo.ImagesDistortedActivity" />
         <activity
-            android:name=".SurveyActivity"
+            android:name=".features.allowuserfeedback.SurveyActivity"
             android:label="Make your suggestion"
             android:parentActivityName=".features.selectcategory.MainActivity"
             android:screenOrientation="portrait"

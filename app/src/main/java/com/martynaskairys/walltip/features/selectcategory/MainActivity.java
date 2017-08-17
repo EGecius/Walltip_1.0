@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.crashlytics.android.Crashlytics;
 import com.martynaskairys.walltip.features.provideuserinfo.OnboardingActivity;
 import com.martynaskairys.walltip.R;
-import com.martynaskairys.walltip.SurveyActivity;
+import com.martynaskairys.walltip.features.allowuserfeedback.SurveyActivity;
 import com.martynaskairys.walltip.features.provideuserinfo.AboutActivity;
 import com.martynaskairys.walltip.shared.datatypes.Folder;
 import com.martynaskairys.walltip.shared.networking.ApiService;
