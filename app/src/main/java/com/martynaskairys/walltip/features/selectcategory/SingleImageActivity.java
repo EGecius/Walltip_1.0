@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.selectcategory;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.shared.tracking.UserTracker;
 import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl;
 

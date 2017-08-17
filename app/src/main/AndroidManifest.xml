@@ -134,7 +134,7 @@
                 android:value="com.martynaskairys.walltip.features.selectcategory.MainActivity" />
         </activity>
         <activity
-            android:name=".SingleImageActivity"
+            android:name=".features.selectcategory.SingleImageActivity"
             android:label=""
             android:parentActivityName=".features.selectcategory.CategoryActivity"
             android:screenOrientation="portrait"
