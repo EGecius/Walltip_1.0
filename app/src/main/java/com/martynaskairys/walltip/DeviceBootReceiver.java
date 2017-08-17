@@ -8,25 +8,32 @@ import android.content.Intent;
 
 
 /**
- * <p/>
- * Broadcast receiver, starts when the device gets starts.
+ * Broadcast receiver, which notifies when the device boots.
  * Start your repeating alarm here.
  */
 public class DeviceBootReceiver extends BroadcastReceiver {
 
+	/** 1 day in milliseconds */
+	public static final int A_DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
+	public static final String DEVICE_BOOTED_ACTION = "android.intent.action.BOOT_COMPLETED";
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-
-            /* Setting the alarm here */
-			Intent alarmIntent = new Intent(context, WallpaperServiceReceiver.class);
-			PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
-
-			AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-			int interval = 1000 * 60 * 60 * 24;
-			manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-					interval, pendingIntent);
-
+		if (hasDeviceJustBooted(intent)) {
+			startChangingWallpapers(context);
 		}
+	}
+
+	private void startChangingWallpapers(final Context context) {
+		Intent alarmIntent = new Intent(context, WallpaperServiceReceiver.class);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
+
+		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+				A_DAY_IN_MILLIS, pendingIntent);
+	}
+
+	private boolean hasDeviceJustBooted(final Intent intent) {
+		return intent.getAction().equals(DEVICE_BOOTED_ACTION);
 	}
 }
