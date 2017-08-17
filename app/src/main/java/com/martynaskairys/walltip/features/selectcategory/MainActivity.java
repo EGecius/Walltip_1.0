@@ -18,10 +18,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.martynaskairys.walltip.CategoryActivity;
 import com.martynaskairys.walltip.PagerActivity;
 import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.SurveyActivity;
-import com.martynaskairys.walltip.ThumbnailActivity;
 import com.martynaskairys.walltip.features.showabout.AboutActivity;
 import com.martynaskairys.walltip.shared.datatypes.Folder;
 import com.martynaskairys.walltip.shared.networking.ApiService;
@@ -234,13 +234,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, ThumbnailActivity.class);
-                intent.putExtra(ThumbnailActivity.EXPLANATION, getString(R.string.text_explaining_folder_content_a));
-                intent.putExtra(ThumbnailActivity.IMAGES, urlsFolder);
-                intent.putExtra(ThumbnailActivity.FOLDER_INDEX, buttonFolderIndex);
-                intent.putExtra(ThumbnailActivity.TEXTS, getString(folderDescription));
-                intent.putExtra(ThumbnailActivity.THUMB_IDS, thumbIds);
-                intent.putExtra(ThumbnailActivity.COVER_IMAGE, coverImage);
+                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                intent.putExtra(CategoryActivity.EXPLANATION, getString(R.string.text_explaining_folder_content_a));
+                intent.putExtra(CategoryActivity.IMAGES, urlsFolder);
+                intent.putExtra(CategoryActivity.FOLDER_INDEX, buttonFolderIndex);
+                intent.putExtra(CategoryActivity.TEXTS, getString(folderDescription));
+                intent.putExtra(CategoryActivity.THUMB_IDS, thumbIds);
+                intent.putExtra(CategoryActivity.COVER_IMAGE, coverImage);
                 ActivityUtils.startActivityWithTransitionAnimation(MainActivity.this,
                         intent,
                         new Pair<View, String>(v, getString(R.string.transition_cover)));

@@ -58,7 +58,7 @@ public class UserTrackerImpl implements UserTracker {
 	public void reportInThumbnailActivityOnCreate() {
 		// TODO: Use your own attributes to track content views in your app
 		answers.logContentView(new ContentViewEvent()
-				.putContentName("ThumbnailActivity window")
+				.putContentName("CategoryActivity window")
 				.putContentType("Video")
 				.putContentId("1234")
 				.putCustomAttribute("Favorites Count", 15)

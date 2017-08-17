@@ -110,7 +110,7 @@
         <activity
             android:name=".features.selectcategory.CategorySelectedActivity"
             android:label=""
-            android:parentActivityName=".ThumbnailActivity"
+            android:parentActivityName=".CategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat">
             <meta-data
@@ -125,7 +125,7 @@
             android:value="eac7ab5814950a79763329837711332f2c0fdcdf" />
 
         <activity
-            android:name=".ThumbnailActivity"
+            android:name=".CategoryActivity"
             android:parentActivityName=".features.selectcategory.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat">
@@ -136,7 +136,7 @@
         <activity
             android:name=".PictureActivity"
             android:label=""
-            android:parentActivityName=".ThumbnailActivity"
+            android:parentActivityName=".CategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <meta-data

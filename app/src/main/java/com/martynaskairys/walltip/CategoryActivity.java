@@ -21,9 +21,9 @@ import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl;
 
 
 /**
- * Shows a list of pictures
+ * A screen where user can see a list of images within a single category.
  */
-public class ThumbnailActivity extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity {
     // TODO: 03/01/2017 explain public static final (what does it mean)
     public static final String EXPLANATION = "explanation";
     public static final String TEXTS = "texts";
@@ -105,7 +105,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
-        final ImageAdapter adapter = new ImageAdapter(ThumbnailActivity.this);
+        final ImageAdapter adapter = new ImageAdapter(CategoryActivity.this);
         recyclerView.setAdapter(adapter);
 
         setThumbnailsSmoothly(adapter);
@@ -147,7 +147,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 
     private void goToChangeWallpaperActivity() {
         final String[] images = getIntent().getStringArrayExtra(IMAGES);
-        Intent intent = new Intent(ThumbnailActivity.this, CategorySelectedActivity.class);
+        Intent intent = new Intent(CategoryActivity.this, CategorySelectedActivity.class);
         intent.putExtra(IMAGES, images);
         intent.putExtra(FOLDER_INDEX, folderIndex);
 
