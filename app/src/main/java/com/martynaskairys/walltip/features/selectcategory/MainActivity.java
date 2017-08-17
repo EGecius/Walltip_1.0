@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
-import com.martynaskairys.walltip.PagerActivity;
+import com.martynaskairys.walltip.OnboardingActivity;
 import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.SurveyActivity;
 import com.martynaskairys.walltip.features.provideuserinfo.AboutActivity;
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Checks if user is first time here
         isUserFirstTime = Boolean.valueOf(Utils.readSharedSetting(MainActivity.this, PREF_USER_FIRST_TIME, "true"));
-        Intent introIntent = new Intent(MainActivity.this, PagerActivity.class);
+        Intent introIntent = new Intent(MainActivity.this, OnboardingActivity.class);
         introIntent.putExtra(PREF_USER_FIRST_TIME, isUserFirstTime);
         if (isUserFirstTime) {
             startActivity(introIntent);

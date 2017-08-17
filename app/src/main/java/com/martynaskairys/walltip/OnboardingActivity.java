@@ -19,8 +19,8 @@ import android.widget.TextView;
 import com.martynaskairys.walltip.features.selectcategory.MainActivity;
 import com.martynaskairys.walltip.shared.utils.Utils;
 
-public class PagerActivity extends AppCompatActivity {
-
+/** Screen where user is introduced to the app */
+public class OnboardingActivity extends AppCompatActivity {
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -127,7 +127,7 @@ public class PagerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 //  update 1st time pref
-                Utils.saveSharedSetting(PagerActivity.this, MainActivity.PREF_USER_FIRST_TIME, "false");
+                Utils.saveSharedSetting(OnboardingActivity.this, MainActivity.PREF_USER_FIRST_TIME, "false");
 
             }
         });
