@@ -3,8 +3,8 @@ package com.martynaskairys.walltip.images
 import android.content.Context
 import java.util.*
 
-/** Store image Urls */
-internal class ImageStorageImpl(val context: Context) : ImageStorage {
+/** Stores image Urls */
+internal class ImageStorageImpl(private val context: Context) : ImageStorage {
 
     override fun getUserChosenFolderIndex(): Int {
         val preferences = context.getSharedPreferences(STANDARD, Context.MODE_PRIVATE)
