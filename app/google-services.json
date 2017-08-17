@@ -1,0 +1,57 @@
+{
+  "project_info": {
+    "project_number": "380510590349",
+    "firebase_url": "https://walltip-86e19.firebaseio.com",
+    "project_id": "walltip-86e19",
+    "storage_bucket": "walltip-86e19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380510590349:android:2dbc7b96e839693f",
+        "android_client_info": {
+          "package_name": "com.martynaskairys.walltip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380510590349-khfjj1ao37ujb50d7g4fsj5mfkffjv2n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.martynaskairys.walltip",
+            "certificate_hash": "99b09dccf1127266541f24dc8d8c427068689493"
+          }
+        },
+        {
+          "client_id": "380510590349-l10u44c7c8anlrni61p0h8791bq3okir.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "380510590349-0rcnighuhhfh1t9opl52g64pi1k7907r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQovyvjUjgOmIKjl4fdEZtINrtYNXzJ2I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-76979010-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
