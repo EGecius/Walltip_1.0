@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip.features.showabout;
+package com.martynaskairys.walltip.features.provideuserinfo;
 
 import android.content.Intent;
 import android.os.Bundle;

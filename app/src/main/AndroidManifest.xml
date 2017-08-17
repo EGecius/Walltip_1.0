@@ -156,7 +156,7 @@
         </activity>
         <activity android:name=".PagerActivity" />
         <activity
-            android:name=".features.showabout.AboutActivity"
+            android:name=".features.provideuserinfo.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat"
             android:parentActivityName=".features.selectcategory.MainActivity">

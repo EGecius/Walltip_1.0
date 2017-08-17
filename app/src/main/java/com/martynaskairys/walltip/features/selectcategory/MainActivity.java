@@ -21,7 +21,7 @@ import com.crashlytics.android.Crashlytics;
 import com.martynaskairys.walltip.PagerActivity;
 import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.SurveyActivity;
-import com.martynaskairys.walltip.features.showabout.AboutActivity;
+import com.martynaskairys.walltip.features.provideuserinfo.AboutActivity;
 import com.martynaskairys.walltip.shared.datatypes.Folder;
 import com.martynaskairys.walltip.shared.networking.ApiService;
 import com.martynaskairys.walltip.shared.networking.RetrofitSetup;
