@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.martynaskairys.walltip.PictureActivity;
+import com.martynaskairys.walltip.SingleImageActivity;
 import com.martynaskairys.walltip.R;
 import com.squareup.picasso.Picasso;
 
@@ -61,11 +61,11 @@ class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.H
 		imageView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(final View v) {
-				final Intent intent = new Intent(mActivity, PictureActivity.class);
-				intent.putExtra(PictureActivity.IMAGE_INT, mThumbIds[position]);
+				final Intent intent = new Intent(mActivity, SingleImageActivity.class);
+				intent.putExtra(SingleImageActivity.IMAGE_INT, mThumbIds[position]);
 
 				final ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity,
-						imageView, PictureActivity.IMAGE_INT);
+						imageView, SingleImageActivity.IMAGE_INT);
 				ActivityCompat.startActivity(mActivity, intent, options.toBundle());
 			}
 		});

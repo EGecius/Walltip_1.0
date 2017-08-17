@@ -11,7 +11,7 @@ import com.martynaskairys.walltip.shared.tracking.UserTracker;
 import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl;
 
 /** Shows single image */
-public class PictureActivity extends AppCompatActivity {
+public class SingleImageActivity extends AppCompatActivity {
 
 	public static final String IMAGE_INT = "Image Int";
 
