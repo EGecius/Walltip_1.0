@@ -12,11 +12,9 @@ import retrofit.http.GET;
  */
 public interface ApiService {
 
-//	@GET ("/folders.json.json?search=${searchParam}")
-//	void getFolders(Callback<List<Folder>> callback, @Query("searchParam") String searchKeyword);
+//    @GET("/walltip.json")
 
-//	@GET ("/nuodaia")
-//	@GET ("/folders.json.json")
-@GET("/bins/lj6tv")
-	void getFolders(Callback<List<Folder>> callback);
+    //    @GET("/walltipjson1.json")
+    @GET("/pictures.json")
+    void getFolders(Callback<List<Folder>> callback);
 }

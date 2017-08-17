@@ -16,7 +16,7 @@ import com.martynaskairys.walltip.images.ImageStorageImpl
 import com.martynaskairys.walltip.images.ImageStorageManager
 
 
-class ExitAppActivity : AppCompatActivity() {
+class ChangeWallpaperActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +55,7 @@ class ExitAppActivity : AppCompatActivity() {
         val folderIndex = intent.getIntExtra(FOLDER_INDEX, -1)
 
         if (folderIndex == -1) throw IllegalArgumentException("folder index not found")
-        if (imageUrls.isEmpty()) throw IllegalArgumentException("ExitAppActivity received empty urls list: " + imageUrls)
+        if (imageUrls.isEmpty()) throw IllegalArgumentException("ChangeWallpaperActivity received empty urls list: " + imageUrls)
 
         val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
         imageStorageManager.saveUserChosenUrls(imageUrls)
@@ -82,8 +82,8 @@ class ExitAppActivity : AppCompatActivity() {
 
     private fun getWallpaperPendingIntent(): PendingIntent? {
         /* Retrieve a PendingIntent that will perform a broadcast */
-        val wallpaperReceiverIntent = Intent(this@ExitAppActivity, WallpaperServiceReceiver::class.java)
-        val wallpaperReceiverPendingIntent = PendingIntent.getBroadcast(this@ExitAppActivity, 0,
+        val wallpaperReceiverIntent = Intent(this@ChangeWallpaperActivity, WallpaperServiceReceiver::class.java)
+        val wallpaperReceiverPendingIntent = PendingIntent.getBroadcast(this@ChangeWallpaperActivity, 0,
                 wallpaperReceiverIntent, 0)
         return wallpaperReceiverPendingIntent
     }

@@ -108,7 +108,7 @@
         </receiver>
 
         <activity
-            android:name=".ExitAppActivity"
+            android:name=".ChangeWallpaperActivity"
             android:label=""
             android:parentActivityName=".ThumbnailActivity"
             android:screenOrientation="portrait"

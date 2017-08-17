@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.martynaskairys.walltip.DataTypes.Folder;
@@ -25,82 +26,91 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-/** Sets wallpapers for device's home-screen */
+/**
+ * Sets wallpapers for device's home-screen
+ */
 public class WallpaperService extends IntentService {
 
-	public WallpaperService() {
-		super("WallpaperService");
-	}
+    public static final String TAG = "WallpaperService"; //vienas tagas visoje klaseje
 
-	@Override
-	protected void onHandleIntent(Intent intent) {
-		changeRandomly(this);
-	}
+    public WallpaperService() {
+        super("WallpaperService");
+    }
 
-	public void changeRandomly(Context context) {
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        changeRandomly(this);
+    }
 
-		DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-		int height = metrics.heightPixels;
-		int width = metrics.widthPixels;
+    public void changeRandomly(Context context) {
 
-		String randomImageUrl = getRandomUrl();
+        DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+        int height = metrics.heightPixels;
+        int width = metrics.widthPixels;
 
-        //predownloaded images (imtu is
+        String randomImageUrl = getRandomUrl();
+        Log.i(TAG, "Image to be shown: " + randomImageUrl);
+
         try {
-			InputStream ins = new URL(randomImageUrl).openStream();
+            InputStream ins = new URL(randomImageUrl).openStream();
 
-			Bitmap tempBitmap = BitmapFactory.decodeStream(ins);
-			Bitmap bitmap = Bitmap.createScaledBitmap(tempBitmap, width, height, true);
+            Bitmap tempBitmap = BitmapFactory.decodeStream(ins);
+            Bitmap bitmap = Bitmap.createScaledBitmap(tempBitmap, width, height, true);
 
-			WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
-			wallpaperManager.setWallpaperOffsetSteps(1, 1);
-			wallpaperManager.suggestDesiredDimensions(width, height);
-			wallpaperManager.setBitmap(bitmap);
+            Log.i(TAG, "Wallpaper size in bytes: " + bitmap.getByteCount());
 
-		} catch (IOException e) {
-			String mdh = "Exception reading image";
-			Toast.makeText(context, mdh, Toast.LENGTH_SHORT).show();
-		}
-	}
+            WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
+            wallpaperManager.setWallpaperOffsetSteps(1, 1);
+            wallpaperManager.suggestDesiredDimensions(width, height);
+            wallpaperManager.setBitmap(bitmap);
 
-	private String getRandomUrl() {
+            Log.i(TAG, "Wallpaper should appear in a sec");
 
-		ImageStorageManager randomGenerator = new ImageStorageManager(new ImageStorageImpl(getApplicationContext()));
-		fetchImageUrls();
-			return randomGenerator.takeRandomImage();
+        } catch (IOException e) {
+            String msg = "Exception reading image";
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            Log.e(TAG, msg, e);
+        }
+    }
 
+    private String getRandomUrl() {
 
-	}
-	private void fetchImageUrls() {
-		ApiService service = new RetrofitSetup().getService();
-		service.getFolders(new Callback<List<Folder>>() {
-			@Override
-			public void success(List<Folder> folders, Response response) {
-
-				ImageStorageManager manager = new ImageStorageManager(new ImageStorageImpl(getApplicationContext()));
-				int index = manager.getUserChosenFolderIndex();
-				String[] folderUrls = toArray(folders.get(index));
-
-				manager.saveUserChosenUrls(folderUrls);
-			}
-
-			@Override
-			public void failure(RetrofitError error) {
-			}
-		});
-	}
+        ImageStorageManager randomGenerator = new ImageStorageManager(new ImageStorageImpl(getApplicationContext()));
+        fetchImageUrls();
+        return randomGenerator.takeRandomImage();
 
 
+    }
 
-	private String[] toArray(Folder folder) {
+    private void fetchImageUrls() {
+        ApiService service = new RetrofitSetup().getService();
+        service.getFolders(new Callback<List<Folder>>() {
+            @Override
+            public void success(List<Folder> folders, Response response) {
 
-		List<String> urlsList = folder.getUrls();
+                ImageStorageManager manager = new ImageStorageManager(new ImageStorageImpl(getApplicationContext()));
+                int index = manager.getUserChosenFolderIndex();
+                String[] folderUrls = toArray(folders.get(index));
 
-		String[] strings = new String[urlsList.size()];
-		for (int i = 0; i < urlsList.size(); i++) {
-			strings[i] = urlsList.get(i);
-		}
+                manager.saveUserChosenUrls(folderUrls);
+            }
 
-		return strings;
-	}
+            @Override
+            public void failure(RetrofitError error) {
+            }
+        });
+    }
+
+
+    private String[] toArray(Folder folder) {
+
+        List<String> urlsList = folder.getUrls();
+
+        String[] strings = new String[urlsList.size()];
+        for (int i = 0; i < urlsList.size(); i++) {
+            strings[i] = urlsList.get(i);
+        }
+
+        return strings;
+    }
 }
