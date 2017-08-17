@@ -31,7 +31,7 @@ import retrofit.client.Response;
  */
 public class WallpaperService extends IntentService {
 
-    public static final String TAG = "WallpaperService"; //vienas tagas visoje klaseje
+    public static final String TAG = "WallpaperService";
 
     public WallpaperService() {
         super("WallpaperService");
@@ -78,8 +78,6 @@ public class WallpaperService extends IntentService {
         ImageStorageManager randomGenerator = new ImageStorageManager(new ImageStorageImpl(getApplicationContext()));
         fetchImageUrls();
         return randomGenerator.takeRandomImage();
-
-
     }
 
     private void fetchImageUrls() {

@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+// TODO: 17/08/2017 give a better name
 public class ImageHelper extends ImageView {
 
     private float radius = 14.0f;

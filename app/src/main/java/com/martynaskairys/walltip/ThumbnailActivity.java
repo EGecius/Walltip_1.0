@@ -1,12 +1,9 @@
 package com.martynaskairys.walltip;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -54,7 +51,6 @@ public class ThumbnailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_thumbnail);
         findViews();
 
-//        setActionBar();
         setExplanationText();
         setTitle();
         setGridView();
@@ -66,12 +62,6 @@ public class ThumbnailActivity extends AppCompatActivity {
     private void findViews() {
         rootView = (ViewGroup) findViewById(R.id.root);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-    }
-
-    private void setActionBar() {
-        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp);
-        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.primary), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
     private void setCoverImage() {
@@ -177,22 +167,16 @@ public class ThumbnailActivity extends AppCompatActivity {
                 }).show();
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
 
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
-
 
 }
 

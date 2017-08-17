@@ -7,9 +7,6 @@ import retrofit.RestAdapter;
 /** Prepares Retrofit to be used */
 public class RetrofitSetup {
 
-	//	private static final String BASE_URL = "http://pictex.orgfree.com/";
-//	private static final String BASE_URL = "http://api.myjson.com/";
-//	private static final String BASE_URL = "https://storage.googleapis.com/walltip-86e19.appspot.com/";
 	private static final String BASE_URL = "https://walltip-86e19.firebaseio.com/";
 
 

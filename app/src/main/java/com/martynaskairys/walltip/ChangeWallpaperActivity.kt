@@ -70,7 +70,6 @@ class ChangeWallpaperActivity : AppCompatActivity() {
     fun scheduleRegularWallpaperUpdates() {
 
         val manager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//        val dayInMillis: Long = 1000 * 60
         val dayInMillis: Long = 1000 * 60 * 60 * 24
         val firstTrigger = System.currentTimeMillis() + dayInMillis
         manager.setRepeating(AlarmManager.RTC_WAKEUP, firstTrigger, dayInMillis, getWallpaperPendingIntent())
