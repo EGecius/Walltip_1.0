@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.selectcategory;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -18,6 +18,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.martynaskairys.walltip.PagerActivity;
+import com.martynaskairys.walltip.R;
+import com.martynaskairys.walltip.SurveyActivity;
+import com.martynaskairys.walltip.ThumbnailActivity;
 import com.martynaskairys.walltip.features.showabout.AboutActivity;
 import com.martynaskairys.walltip.shared.datatypes.Folder;
 import com.martynaskairys.walltip.shared.networking.ApiService;

@@ -57,7 +57,7 @@
         android:supportsRtl="true"
         android:theme="@style/Wallpee">
         <activity
-            android:name=".ChooseCategoryActivity"
+            android:name=".features.selectcategory.ChooseCategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/splashScreenTheme">
             <intent-filter>
@@ -115,7 +115,7 @@
             android:theme="@style/Theme.AppCompat">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChooseCategoryActivity" />
+                android:value="com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity" />
         </activity>
 
         <service android:name=".WallpaperService" />
@@ -126,12 +126,12 @@
 
         <activity
             android:name=".ThumbnailActivity"
-            android:parentActivityName=".ChooseCategoryActivity"
+            android:parentActivityName=".features.selectcategory.ChooseCategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChooseCategoryActivity" />
+                android:value="com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity" />
         </activity>
         <activity
             android:name=".PictureActivity"
@@ -141,25 +141,25 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChooseCategoryActivity" />
+                android:value="com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity" />
         </activity>
         <activity android:name=".LauncherInfoActivity" />
         <activity
             android:name=".SurveyActivity"
             android:label="Make your suggestion"
-            android:parentActivityName=".ChooseCategoryActivity"
+            android:parentActivityName=".features.selectcategory.ChooseCategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChooseCategoryActivity" />
+                android:value="com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity" />
         </activity>
         <activity android:name=".PagerActivity" />
         <activity
             android:name=".features.showabout.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat"
-            android:parentActivityName=".ChooseCategoryActivity">
+            android:parentActivityName=".features.selectcategory.ChooseCategoryActivity">
 
 
         </activity>

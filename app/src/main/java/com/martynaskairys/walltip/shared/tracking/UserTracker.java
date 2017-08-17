@@ -1,6 +1,6 @@
 package com.martynaskairys.walltip.shared.tracking;
 
-import com.martynaskairys.walltip.ChooseCategoryActivity;
+import com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity;
 
 /**
  * Tracks user activity

@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity;
+
 public class LauncherInfoActivity extends AppCompatActivity {
 
     @Override
