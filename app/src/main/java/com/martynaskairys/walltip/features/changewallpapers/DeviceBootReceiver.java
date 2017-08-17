@@ -1,10 +1,12 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.changewallpapers;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.martynaskairys.walltip.WallpaperServiceReceiver;
 
 
 /**

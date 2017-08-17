@@ -67,7 +67,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".DeviceBootReceiver">
+        <receiver android:name=".features.changewallpapers.DeviceBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
