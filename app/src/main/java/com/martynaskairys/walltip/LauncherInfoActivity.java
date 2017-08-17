@@ -33,7 +33,7 @@ public class LauncherInfoActivity extends AppCompatActivity {
 
     public void exitApp (View view){
 
-        Intent intent1 = new Intent(this, ChoosingFolderActivity.class);
+        Intent intent1 = new Intent(this, ChooseCategoryActivity.class);
         Intent intent2 = new Intent(Intent.ACTION_MAIN);
         intent2.addCategory(Intent.CATEGORY_HOME);
         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

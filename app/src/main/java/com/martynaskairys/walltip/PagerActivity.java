@@ -126,7 +126,7 @@ public class PagerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 //  update 1st time pref
-                Utils.saveSharedSetting(PagerActivity.this, ChoosingFolderActivity.PREF_USER_FIRST_TIME, "false");
+                Utils.saveSharedSetting(PagerActivity.this, ChooseCategoryActivity.PREF_USER_FIRST_TIME, "false");
 
             }
         });

@@ -33,9 +33,9 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Activity for user to choose which folder he/she wants Pictures from
+ * Activity for user to choose which category they want images to be shown on their screen
  */
-public class ChoosingFolderActivity extends AppCompatActivity {
+public class ChooseCategoryActivity extends AppCompatActivity {
 
     public static final String PREF_USER_FIRST_TIME = "user_first_time";
     boolean isUserFirstTime;
@@ -70,8 +70,8 @@ public class ChoosingFolderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Checks if user is first time here
-        isUserFirstTime = Boolean.valueOf(Utils.readSharedSetting(ChoosingFolderActivity.this, PREF_USER_FIRST_TIME, "true"));
-        Intent introIntent = new Intent(ChoosingFolderActivity.this, PagerActivity.class);
+        isUserFirstTime = Boolean.valueOf(Utils.readSharedSetting(ChooseCategoryActivity.this, PREF_USER_FIRST_TIME, "true"));
+        Intent introIntent = new Intent(ChooseCategoryActivity.this, PagerActivity.class);
         introIntent.putExtra(PREF_USER_FIRST_TIME, isUserFirstTime);
         if (isUserFirstTime) {
             startActivity(introIntent);
@@ -86,7 +86,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(ChoosingFolderActivity.this, buttonMenu);
+                PopupMenu popup = new PopupMenu(ChooseCategoryActivity.this, buttonMenu);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater()
                         .inflate(R.menu.popup_menu, popup.getMenu());
@@ -125,7 +125,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 
     public void openAboutActivityFromMenuClick() {
 
-        Intent intent = new Intent(ChoosingFolderActivity.this, AboutActivity.class);
+        Intent intent = new Intent(ChooseCategoryActivity.this, AboutActivity.class);
         startActivity(intent);
 
     }
@@ -149,7 +149,7 @@ public class ChoosingFolderActivity extends AppCompatActivity {
         buttonD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChoosingFolderActivity.this, SurveyActivity.class);
+                Intent intent = new Intent(ChooseCategoryActivity.this, SurveyActivity.class);
                 startActivity(intent);
             }
         });
@@ -230,14 +230,14 @@ public class ChoosingFolderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(ChoosingFolderActivity.this, ThumbnailActivity.class);
+                Intent intent = new Intent(ChooseCategoryActivity.this, ThumbnailActivity.class);
                 intent.putExtra(ThumbnailActivity.EXPLANATION, getString(R.string.text_explaining_folder_content_a));
                 intent.putExtra(ThumbnailActivity.IMAGES, urlsFolder);
                 intent.putExtra(ThumbnailActivity.FOLDER_INDEX, buttonFolderIndex);
                 intent.putExtra(ThumbnailActivity.TEXTS, getString(folderDescription));
                 intent.putExtra(ThumbnailActivity.THUMB_IDS, thumbIds);
                 intent.putExtra(ThumbnailActivity.COVER_IMAGE, coverImage);
-                ActivityUtils.startActivityWithTransitionAnimation(ChoosingFolderActivity.this,
+                ActivityUtils.startActivityWithTransitionAnimation(ChooseCategoryActivity.this,
                         intent,
                         new Pair<View, String>(v, getString(R.string.transition_cover)));
             }

@@ -1,13 +1,13 @@
 package com.martynaskairys.walltip.shared.tracking;
 
-import com.martynaskairys.walltip.ChoosingFolderActivity;
+import com.martynaskairys.walltip.ChooseCategoryActivity;
 
 /**
  * Tracks user activity
  */
 public interface UserTracker {
 
-	/** Reports to tracking system that use has entered {@link ChoosingFolderActivity} */
+	/** Reports to tracking system that use has entered {@link ChooseCategoryActivity} */
 	void reportInChoosingFolderActivityOnCreate();
 
 	void reportInChoosingFolderActivityFolderA();
