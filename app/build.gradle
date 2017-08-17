@@ -38,7 +38,7 @@ android {
 }
 
 ext {
-    supportLibraryVersion = "25.3.0"
+    supportLibraryVersion = "25.3.1"
     assertJVersion = '1.1.0'
     mockitoVersion = '1.10.19'
 }
@@ -63,8 +63,6 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-
-
 }
 
 apply plugin: 'com.google.gms.google-services'
