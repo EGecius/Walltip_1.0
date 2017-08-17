@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip
+package com.martynaskairys.walltip.shared.views
 
 import android.content.Context
 import android.util.AttributeSet
