@@ -45,7 +45,7 @@ class CategorySelectedActivity : AppCompatActivity() {
 
     private fun setupExitButton() {
         findViewById(R.id.buttonExitApp)!!.setOnClickListener {
-            val intent1 = Intent(this, ChooseCategoryActivity::class.java)
+            val intent1 = Intent(this, MainActivity::class.java)
             val intent2 = Intent(Intent.ACTION_MAIN)
             intent2.addCategory(Intent.CATEGORY_HOME)
             intent2.flags = Intent.FLAG_ACTIVITY_NEW_TASK

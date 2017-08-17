@@ -15,7 +15,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context=".features.selectcategory.ChooseCategoryActivity">
+    tools:context=".features.selectcategory.MainActivity">
 
     <ProgressBar
         android:id="@+id/progress_bar"

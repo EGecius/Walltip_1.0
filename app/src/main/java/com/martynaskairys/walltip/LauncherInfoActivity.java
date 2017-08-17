@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity;
+import com.martynaskairys.walltip.features.selectcategory.MainActivity;
 
 public class LauncherInfoActivity extends AppCompatActivity {
 
@@ -35,7 +35,7 @@ public class LauncherInfoActivity extends AppCompatActivity {
 
     public void exitApp (View view){
 
-        Intent intent1 = new Intent(this, ChooseCategoryActivity.class);
+        Intent intent1 = new Intent(this, MainActivity.class);
         Intent intent2 = new Intent(Intent.ACTION_MAIN);
         intent2.addCategory(Intent.CATEGORY_HOME);
         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

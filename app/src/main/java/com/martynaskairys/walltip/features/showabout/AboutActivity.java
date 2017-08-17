@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity;
+import com.martynaskairys.walltip.features.selectcategory.MainActivity;
 import com.martynaskairys.walltip.R;
 
 /** Tells user about the app and how to use it */
@@ -24,7 +24,7 @@ public class AboutActivity extends AppCompatActivity {
 	}
 
 	public void selectCategory(View view) {
-        Intent intent = new Intent(this, ChooseCategoryActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

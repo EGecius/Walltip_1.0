@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.martynaskairys.walltip.features.selectcategory.ChooseCategoryActivity;
+import com.martynaskairys.walltip.features.selectcategory.MainActivity;
 import com.martynaskairys.walltip.shared.utils.Utils;
 
 public class PagerActivity extends AppCompatActivity {
@@ -127,7 +127,7 @@ public class PagerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 //  update 1st time pref
-                Utils.saveSharedSetting(PagerActivity.this, ChooseCategoryActivity.PREF_USER_FIRST_TIME, "false");
+                Utils.saveSharedSetting(PagerActivity.this, MainActivity.PREF_USER_FIRST_TIME, "false");
 
             }
         });
