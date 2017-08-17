@@ -146,7 +146,7 @@ public class ThumbnailActivity extends AppCompatActivity {
 
     private void goToChangeWallpaperActivity() {
         final String[] images = getIntent().getStringArrayExtra(IMAGES);
-        Intent intent = new Intent(ThumbnailActivity.this, ChangeWallpaperActivity.class);
+        Intent intent = new Intent(ThumbnailActivity.this, CategorySelectedActivity.class);
         intent.putExtra(IMAGES, images);
         intent.putExtra(FOLDER_INDEX, folderIndex);
 

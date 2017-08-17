@@ -20,11 +20,11 @@ import com.martynaskairys.walltip.shared.images.ImageStorageManager
  * Screen shown after user selects which images use wants to shown on his screen.
  * Images from the chosen folder will keep changing.
  * */
-class ChangeWallpaperActivity : AppCompatActivity() {
+class CategorySelectedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         setContentView(R.layout.activity_exit_app)
         showArrow()
         setupExitButton()
@@ -59,7 +59,7 @@ class ChangeWallpaperActivity : AppCompatActivity() {
         val folderIndex = intent.getIntExtra(FOLDER_INDEX, -1)
 
         if (folderIndex == -1) throw IllegalArgumentException("folder index not found")
-        if (imageUrls.isEmpty()) throw IllegalArgumentException("ChangeWallpaperActivity received empty urls list: " + imageUrls)
+        if (imageUrls.isEmpty()) throw IllegalArgumentException("CategorySelectedActivity received empty urls list: " + imageUrls)
 
         val imageStorageManager = ImageStorageManager(ImageStorageImpl(applicationContext))
         imageStorageManager.saveUserChosenUrls(imageUrls)
@@ -85,8 +85,8 @@ class ChangeWallpaperActivity : AppCompatActivity() {
 
     private fun getWallpaperPendingIntent(): PendingIntent? {
         /* Retrieve a PendingIntent that will perform a broadcast */
-        val wallpaperReceiverIntent = Intent(this@ChangeWallpaperActivity, WallpaperServiceReceiver::class.java)
-        val wallpaperReceiverPendingIntent = PendingIntent.getBroadcast(this@ChangeWallpaperActivity, 0,
+        val wallpaperReceiverIntent = Intent(this@CategorySelectedActivity, WallpaperServiceReceiver::class.java)
+        val wallpaperReceiverPendingIntent = PendingIntent.getBroadcast(this@CategorySelectedActivity, 0,
                 wallpaperReceiverIntent, 0)
         return wallpaperReceiverPendingIntent
     }
