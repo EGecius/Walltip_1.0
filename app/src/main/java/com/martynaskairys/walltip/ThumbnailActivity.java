@@ -148,15 +148,15 @@ public class ThumbnailActivity extends AppCompatActivity {
 
     private void onUserClickedMakeMagicButton() {
         if (isConnectedToNetwork()) {
-            goToExitAppActivity();
+            goToChangeWallpaperActivity();
         } else {
             showRetryButtonOnly();
         }
     }
 
-    private void goToExitAppActivity() {
+    private void goToChangeWallpaperActivity() {
         final String[] images = getIntent().getStringArrayExtra(IMAGES);
-        Intent intent = new Intent(ThumbnailActivity.this, ExitAppActivity.class);
+        Intent intent = new Intent(ThumbnailActivity.this, ChangeWallpaperActivity.class);
         intent.putExtra(IMAGES, images);
         intent.putExtra(FOLDER_INDEX, folderIndex);
 
