@@ -154,7 +154,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.martynaskairys.walltip.features.selectcategory.MainActivity" />
         </activity>
-        <activity android:name=".OnboardingActivity" />
+        <activity android:name=".features.provideuserinfo.OnboardingActivity" />
         <activity
             android:name=".features.provideuserinfo.AboutActivity"
             android:screenOrientation="portrait"

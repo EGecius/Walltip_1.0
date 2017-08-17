@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.provideuserinfo;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.features.selectcategory.MainActivity;
 import com.martynaskairys.walltip.shared.utils.Utils;
 
