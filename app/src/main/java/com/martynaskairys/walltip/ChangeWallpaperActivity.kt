@@ -16,11 +16,15 @@ import com.martynaskairys.walltip.shared.images.ImageStorageImpl
 import com.martynaskairys.walltip.shared.images.ImageStorageManager
 
 
+/**
+ * Screen shown after user selects which images use wants to shown on his screen.
+ * Images from the chosen folder will keep changing.
+ * */
 class ChangeWallpaperActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        
         setContentView(R.layout.activity_exit_app)
         showArrow()
         setupExitButton()
