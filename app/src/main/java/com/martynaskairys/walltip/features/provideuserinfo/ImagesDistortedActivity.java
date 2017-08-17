@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.provideuserinfo;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.features.selectcategory.MainActivity;
 
 /** Provides instructions to user in case images dow not show properly */
