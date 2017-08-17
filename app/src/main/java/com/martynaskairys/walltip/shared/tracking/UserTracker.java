@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip.tracking;
+package com.martynaskairys.walltip.shared.tracking;
 
 import com.martynaskairys.walltip.ChoosingFolderActivity;
 

@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip.networking;
+package com.martynaskairys.walltip.shared.networking;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

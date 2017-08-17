@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip.utils;
+package com.martynaskairys.walltip.shared.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;

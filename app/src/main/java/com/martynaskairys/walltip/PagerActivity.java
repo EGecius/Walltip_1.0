@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.martynaskairys.walltip.utils.Utils;
+import com.martynaskairys.walltip.shared.utils.Utils;
 
 public class PagerActivity extends AppCompatActivity {
 

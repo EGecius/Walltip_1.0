@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip.utils;
+package com.martynaskairys.walltip.shared.utils;
 
 import android.app.Activity;
 import android.content.Intent;

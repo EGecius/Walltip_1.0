@@ -156,7 +156,7 @@
         </activity>
         <activity android:name=".PagerActivity" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".features.showabout.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat"
             android:parentActivityName=".ChoosingFolderActivity">

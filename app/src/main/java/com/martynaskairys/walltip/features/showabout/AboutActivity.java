@@ -1,10 +1,13 @@
-package com.martynaskairys.walltip;
+package com.martynaskairys.walltip.features.showabout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.martynaskairys.walltip.ChoosingFolderActivity;
+import com.martynaskairys.walltip.R;
 
 /** Tells user about the app and how to use it */
 public class AboutActivity extends AppCompatActivity {

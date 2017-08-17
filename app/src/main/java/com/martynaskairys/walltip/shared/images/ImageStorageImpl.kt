@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip.images
+package com.martynaskairys.walltip.shared.images
 
 import android.content.Context
 import java.util.*

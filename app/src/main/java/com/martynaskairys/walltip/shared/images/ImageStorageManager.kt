@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip.images
+package com.martynaskairys.walltip.shared.images
 
 
 import android.util.Log

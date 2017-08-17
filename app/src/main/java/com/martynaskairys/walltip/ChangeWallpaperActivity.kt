@@ -12,8 +12,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.martynaskairys.walltip.ThumbnailActivity.FOLDER_INDEX
 import com.martynaskairys.walltip.ThumbnailActivity.IMAGES
-import com.martynaskairys.walltip.images.ImageStorageImpl
-import com.martynaskairys.walltip.images.ImageStorageManager
+import com.martynaskairys.walltip.shared.images.ImageStorageImpl
+import com.martynaskairys.walltip.shared.images.ImageStorageManager
 
 
 class ChangeWallpaperActivity : AppCompatActivity() {

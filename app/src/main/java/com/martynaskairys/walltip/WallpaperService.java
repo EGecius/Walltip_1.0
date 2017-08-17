@@ -11,11 +11,11 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.martynaskairys.walltip.datatypes.Folder;
-import com.martynaskairys.walltip.images.ImageStorageImpl;
-import com.martynaskairys.walltip.images.ImageStorageManager;
-import com.martynaskairys.walltip.networking.ApiService;
-import com.martynaskairys.walltip.networking.RetrofitSetup;
+import com.martynaskairys.walltip.shared.datatypes.Folder;
+import com.martynaskairys.walltip.shared.images.ImageStorageImpl;
+import com.martynaskairys.walltip.shared.images.ImageStorageManager;
+import com.martynaskairys.walltip.shared.networking.ApiService;
+import com.martynaskairys.walltip.shared.networking.RetrofitSetup;
 
 import java.io.IOException;
 import java.io.InputStream;

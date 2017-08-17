@@ -7,8 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.martynaskairys.walltip.tracking.UserTracker;
-import com.martynaskairys.walltip.tracking.UserTrackerImpl;
+import com.martynaskairys.walltip.shared.tracking.UserTracker;
+import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl;
 
 public class PictureActivity extends AppCompatActivity {
 

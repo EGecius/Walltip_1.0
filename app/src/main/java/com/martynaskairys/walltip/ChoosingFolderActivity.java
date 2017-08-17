@@ -18,11 +18,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
-import com.martynaskairys.walltip.datatypes.Folder;
-import com.martynaskairys.walltip.networking.ApiService;
-import com.martynaskairys.walltip.networking.RetrofitSetup;
-import com.martynaskairys.walltip.utils.ActivityUtils;
-import com.martynaskairys.walltip.utils.Utils;
+import com.martynaskairys.walltip.features.showabout.AboutActivity;
+import com.martynaskairys.walltip.shared.datatypes.Folder;
+import com.martynaskairys.walltip.shared.networking.ApiService;
+import com.martynaskairys.walltip.shared.networking.RetrofitSetup;
+import com.martynaskairys.walltip.shared.utils.ActivityUtils;
+import com.martynaskairys.walltip.shared.utils.Utils;
 
 import java.util.List;
 
