@@ -1,6 +1,6 @@
 package com.martynaskairys.walltip.networking;
 
-import com.martynaskairys.walltip.DataTypes.Folder;
+import com.martynaskairys.walltip.datatypes.Folder;
 
 import java.util.List;
 

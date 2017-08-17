@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
-import com.martynaskairys.walltip.DataTypes.Folder;
+import com.martynaskairys.walltip.datatypes.Folder;
 import com.martynaskairys.walltip.networking.ApiService;
 import com.martynaskairys.walltip.networking.RetrofitSetup;
 import com.martynaskairys.walltip.utils.ActivityUtils;

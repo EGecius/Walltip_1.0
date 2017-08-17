@@ -11,7 +11,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.martynaskairys.walltip.DataTypes.Folder;
+import com.martynaskairys.walltip.datatypes.Folder;
 import com.martynaskairys.walltip.images.ImageStorageImpl;
 import com.martynaskairys.walltip.images.ImageStorageManager;
 import com.martynaskairys.walltip.networking.ApiService;

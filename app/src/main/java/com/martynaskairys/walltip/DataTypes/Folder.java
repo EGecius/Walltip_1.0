@@ -1,4 +1,4 @@
-package com.martynaskairys.walltip.DataTypes;
+package com.martynaskairys.walltip.datatypes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
