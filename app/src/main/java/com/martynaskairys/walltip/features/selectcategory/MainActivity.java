@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -234,7 +235,10 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(CategoryActivity.TEXTS, getString(folderDescription));
                 intent.putExtra(CategoryActivity.THUMB_IDS, thumbIds);
                 intent.putExtra(CategoryActivity.COVER_IMAGE, coverImage);
-                ActivityUtils.startActivityWithTransitionAnimation(MainActivity.this,
+
+	            Log.i("Eg:MainActivity:238", "onClick ImagesDistortedActivity " + "startActivityWithTransitionAnimation");
+
+                ActivityUtils.INSTANCE.startActivityWithTransitionAnimation(MainActivity.this,
                         intent,
                         new Pair<View, String>(v, getString(R.string.transition_cover)));
             }
