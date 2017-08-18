@@ -36,7 +36,6 @@
 
     <style name="MainActivityTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
-        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppCompat.Light.Walltip" parent="Theme.AppCompat.Light.NoActionBar" />
