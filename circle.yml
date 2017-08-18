@@ -9,6 +9,8 @@ general:
 machine:
     environment:
         ANDROID_HOME: /usr/local/android-sdk-linux
+    java:
+        version: openjdk8
 
 dependencies:
     pre:
