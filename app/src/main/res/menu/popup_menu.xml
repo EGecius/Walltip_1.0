@@ -1,15 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/one"
+        android:id="@+id/about"
         android:title="About" />
 
     <item
-        android:id="@+id/two"
-        android:title="Settings" />
-
-    <item
-        android:id="@+id/three"
+        android:id="@+id/feedback"
         android:title="Feedback" />
 
 </menu>

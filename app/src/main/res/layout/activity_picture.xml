@@ -6,6 +6,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scaleType="centerCrop"
-    tools:context=".PictureActivity"
+    tools:context=".features.selectcategory.SingleImageActivity"
     android:onClick="goBack"
     />

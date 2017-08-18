@@ -127,6 +127,6 @@
     <string name="your_daily_advisor">Your Daily Advisor</string>
     <string name="select_category">select category</string>
     <string name="wand">wand</string>
-
+    <string name="about_screen_title">About Walltip</string>
 
 </resources>

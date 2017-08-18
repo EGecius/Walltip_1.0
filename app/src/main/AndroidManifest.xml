@@ -57,7 +57,7 @@
         android:supportsRtl="true"
         android:theme="@style/Wallpee">
         <activity
-            android:name=".ChoosingFolderActivity"
+            android:name=".features.selectcategory.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/splashScreenTheme">
             <intent-filter>
@@ -67,12 +67,12 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".DeviceBootReceiver">
+        <receiver android:name=".features.changewallpapers.DeviceBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".WallpaperServiceReceiver" />
+        <receiver android:name=".features.changewallpapers.WallpaperServiceReceiver" />
         <receiver
             android:name=".widgets.WidgetInspiration"
             android:label="Inspiration">
@@ -108,58 +108,58 @@
         </receiver>
 
         <activity
-            android:name=".ChangeWallpaperActivity"
+            android:name=".features.selectcategory.CategorySelectedActivity"
             android:label=""
-            android:parentActivityName=".ThumbnailActivity"
+            android:parentActivityName=".features.selectcategory.CategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+                android:value="com.martynaskairys.walltip.features.selectcategory.MainActivity" />
         </activity>
 
-        <service android:name=".WallpaperService" />
+        <service android:name=".features.changewallpapers.WallpaperService" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="eac7ab5814950a79763329837711332f2c0fdcdf" />
 
         <activity
-            android:name=".ThumbnailActivity"
-            android:parentActivityName=".ChoosingFolderActivity"
+            android:name=".features.selectcategory.CategoryActivity"
+            android:parentActivityName=".features.selectcategory.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+                android:value="com.martynaskairys.walltip.features.selectcategory.MainActivity" />
         </activity>
         <activity
-            android:name=".PictureActivity"
+            android:name=".features.selectcategory.SingleImageActivity"
             android:label=""
-            android:parentActivityName=".ThumbnailActivity"
+            android:parentActivityName=".features.selectcategory.CategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+                android:value="com.martynaskairys.walltip.features.selectcategory.MainActivity" />
         </activity>
-        <activity android:name=".LauncherInfoActivity" />
+        <activity android:name=".features.provideuserinfo.ImagesDistortedActivity" />
         <activity
-            android:name=".SurveyActivity"
+            android:name=".features.allowuserfeedback.SurveyActivity"
             android:label="Make your suggestion"
-            android:parentActivityName=".ChoosingFolderActivity"
+            android:parentActivityName=".features.selectcategory.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.martynaskairys.walltip.ChoosingFolderActivity" />
+                android:value="com.martynaskairys.walltip.features.selectcategory.MainActivity" />
         </activity>
-        <activity android:name=".PagerActivity" />
+        <activity android:name=".features.provideuserinfo.OnboardingActivity" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".features.provideuserinfo.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat"
-            android:parentActivityName=".ChoosingFolderActivity">
+            android:parentActivityName=".features.selectcategory.MainActivity">
 
 
         </activity>
