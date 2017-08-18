@@ -17,33 +17,44 @@ public class SingleImageActivity extends AppCompatActivity {
 	public static final String IMAGE_INT = "Image Int";
 
 	private UserTracker userTracker = new UserTrackerImpl();
+	private ImageView imageView;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture);
 
-        userTracker.reportInPictureActivityOnCreate();
+		trackScreen();
+		setupImage();
+	}
 
+	private void trackScreen() {
+		userTracker.reportInPictureActivityOnCreate();
+	}
+
+	private void setupImage() {
+		imageView = (ImageView)findViewById(R.id.imageView);
 		showImageProvided();
-    }
+		setImageListener();
+	}
 
-    /** Shows image passed via Intent */
+	/** Shows image passed via Intent */
 	private void showImageProvided() {
 		int imageInt = getIntent().getIntExtra(IMAGE_INT, R.drawable.mok);
-		ImageView imageView = (ImageView)findViewById(R.id.imageView);
 		ViewCompat.setTransitionName(imageView, IMAGE_INT);
 		imageView.setImageResource(imageInt);
 	}
 
-	public void goBack(View view) {
-        switch (android.R.id.home) {
-            case android.R.id.home:
-                onBackPressed();
-        }
-    }
+	private void setImageListener() {
+		imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(final View v) {
+				onBackPressed();
+			}
+		});
+	}
 
-    @Override
+	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
