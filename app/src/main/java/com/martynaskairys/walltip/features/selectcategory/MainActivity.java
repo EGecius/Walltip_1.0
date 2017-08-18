@@ -17,11 +17,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
-import com.martynaskairys.walltip.features.provideuserinfo.OnboardingActivity;
 import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.features.allowuserfeedback.SurveyActivity;
 import com.martynaskairys.walltip.features.provideuserinfo.AboutActivity;
+import com.martynaskairys.walltip.features.provideuserinfo.OnboardingActivity;
 import com.martynaskairys.walltip.shared.datatypes.Folder;
 import com.martynaskairys.walltip.shared.networking.ApiService;
 import com.martynaskairys.walltip.shared.networking.RetrofitSetup;
@@ -30,7 +29,6 @@ import com.martynaskairys.walltip.shared.utils.Utils;
 
 import java.util.List;
 
-import io.fabric.sdk.android.Fabric;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -80,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(introIntent);
         }
 
-        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_choosing_folder);
 
