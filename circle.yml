@@ -10,10 +10,10 @@ machine:
     environment:
         ANDROID_HOME: /usr/local/android-sdk-linux
 
-dependencies:
-    pre:
+#dependencies:
+#    pre:
         - echo yes | android update sdk --no-ui --all --filter build-tools-25.0.2
-        - echo yes | android update sdk --no-ui --all --filter extra-android-m2repository,extra-google-m2repository
+#        - echo yes | android update sdk --no-ui --all --filter extra-android-m2repository,extra-google-m2repository
 
 test:
     override:
