@@ -38,7 +38,6 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 
     public static final String PREF_USER_FIRST_TIME = "user_first_time";
     boolean isUserFirstTime;
-//    private UserTracker userTracker = new UserTrackerImpl();
 
     public static final int BUTTON_FOLDER_INDEX_A = 0;
     public static final int BUTTON_FOLDER_INDEX_B = 1;
@@ -121,7 +120,6 @@ public class ChoosingFolderActivity extends AppCompatActivity {
 
         findViews();
         fetchImageUrlsAndUpdateUiAccordingly();
-//        userTracker.reportInChoosingFolderActivityOnCreate();
     }
 
     public void openAboutActivityFromMenuClick() {
@@ -130,29 +128,6 @@ public class ChoosingFolderActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.one:
-                composeEmail();
-                return true;
-            case R.id.two:
-                composeEmail();
-                return true;
-            case R.id.three:
-                composeEmail();
-                return true;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-*/
-
-
 
     private void findViews() {
         rootView = (ViewGroup) findViewById(R.id.root);
@@ -261,51 +236,12 @@ public class ChoosingFolderActivity extends AppCompatActivity {
                 intent.putExtra(ThumbnailActivity.TEXTS, getString(folderDescription));
                 intent.putExtra(ThumbnailActivity.THUMB_IDS, thumbIds);
                 intent.putExtra(ThumbnailActivity.COVER_IMAGE, coverImage);
-
-//                userTracker.reportInChoosingFolderActivityFolderA();
-
-//                startActivity(intent);
                 ActivityUtils.startActivityWithTransitionAnimation(ChoosingFolderActivity.this,
                         intent,
                         new Pair<View, String>(v, getString(R.string.transition_cover)));
             }
         });
     }
-
-
-
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.questions) {
-            composeEmail();
-        }
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-        }
-
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void composeEmail() {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"martynaskairys@gmail.com"});
-        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject_line));
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }*/
 
     public void composeEmail() {
         Intent intent = new Intent(Intent.ACTION_SENDTO);

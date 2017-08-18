@@ -1,6 +1,5 @@
 package com.martynaskairys.walltip;
 
-import android.animation.ArgbEvaluator;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -31,10 +30,7 @@ public class PagerActivity extends AppCompatActivity {
     ImageView zero, one, two;
     ImageView[] indicators;
 
-    int lastLeftValue = 0;
-
     CoordinatorLayout mCoordinator;
-    static final String TAG = "PagerActivity";
     int page = 0;   //  to track page position
 
     @Override
@@ -73,7 +69,6 @@ public class PagerActivity extends AppCompatActivity {
         updateIndicators(page);
 
 
-        final ArgbEvaluator evaluator = new ArgbEvaluator();
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -157,7 +152,6 @@ public class PagerActivity extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        ImageView img;
         TextView txt;
 
 
@@ -192,9 +186,6 @@ public class PagerActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_pager, container, false);
 
-//            img = (ImageView) rootView.findViewById(R.id.section_img);
-//            img.setBackgroundResource(R.drawable.a1);
-
             txt = (TextView) rootView.findViewById(R.id.section_label);
             txt.setText(textsHeaders[getArguments().getInt(ARG_SECTION_NUMBER) - 1]);
 
@@ -212,10 +203,9 @@ public class PagerActivity extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-
-        public SectionsPagerAdapter(FragmentManager fm) {
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 

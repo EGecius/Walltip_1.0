@@ -14,27 +14,21 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         this.setTitle("About Walltip");
-
     }
 
     public void selectCategory(View view) {
-
         Intent intent = new Intent(this, ChoosingFolderActivity.class);
         startActivity(intent);
     }
 
-
-    //up buttons behave like bak button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         switch (item.getItemId()) {
             case android.R.id.home:
+	            //up buttons behave like back button
                 onBackPressed();
                 return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

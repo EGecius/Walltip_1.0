@@ -12,9 +12,6 @@ import retrofit.http.GET;
  */
 public interface ApiService {
 
-//    @GET("/walltip.json")
-
-    //    @GET("/walltipjson1.json")
     @GET("/pictures.json")
     void getFolders(Callback<List<Folder>> callback);
 }

@@ -24,9 +24,6 @@ class SquareImageView : ImageView {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-//        val width = measuredWidth
-//        setMeasuredDimension(width, width)
-
         val height = measuredHeight
         setMeasuredDimension(height, height)
     }
