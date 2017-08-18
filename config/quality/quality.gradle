@@ -1,13 +1,20 @@
 
 check.dependsOn 'lint'
 
+ext.lintchecks = [
+        'ExportedReceiver',
+        'GradleDeprecated',
+        'ShowToast'
+] as String[]
+
 android {
+
     lintOptions {
-        abortOnError true
-        warningsAsErrors false
-        xmlReport false
         htmlReport true
         lintConfig file("${project.rootDir}/config/quality/lint/lint-config.xml")
         htmlOutput file("${project.buildDir}/reports/lint/lint-result.html")
+        warningsAsErrors true
+        abortOnError true
+        check lintchecks
     }
 }
