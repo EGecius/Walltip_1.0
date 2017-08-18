@@ -2,6 +2,14 @@
 check.dependsOn 'lint'
 
 ext.lintchecks = [
+
+        /*Correctness*/
+
+        'AppCompatCustomView',
+        'NewApi',
+
+        /* Other */
+
         'ExportedReceiver',
         'GradleDeprecated',
         'ShowToast'
