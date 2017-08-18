@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 
 import com.martynaskairys.walltip.R
-import com.martynaskairys.walltip.shared.tracking.UserTracker
 import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl
 
 /** Shows single image  */
@@ -19,7 +17,7 @@ class SingleImageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_picture)
+        setContentView(R.layout.activity_single_image)
 
         trackScreen()
         setupImage()
