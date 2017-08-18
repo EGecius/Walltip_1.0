@@ -34,7 +34,7 @@
         <item name="background">@android:color/transparent</item>
     </style>
 
-    <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+    <style name="MainActivityTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
