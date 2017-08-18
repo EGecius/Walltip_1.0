@@ -76,7 +76,7 @@ class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.H
 
 		Holder(final View itemView) {
 			super(itemView);
-			imageView = (ImageView) itemView.findViewById(R.id.image);
+			imageView = (ImageView) itemView.findViewById(R.id.imageView);
 		}
 	}
 
