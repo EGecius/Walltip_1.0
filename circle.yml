@@ -12,6 +12,10 @@ machine:
     java:
         version: openjdk8
 
+checkout:
+   post:
+        - cp -r licenses/. $ANDROID_HOME/licenses
+
 dependencies:
     pre:
         - echo yes | android update sdk --no-ui --all --filter build-tools-25.0.2
