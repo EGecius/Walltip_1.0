@@ -24,7 +24,7 @@ dependencies:
 
 test:
     override:
-        - (./gradlew assemble test -PdisablePreDex):
+        - (./gradlew assemble test lint -PdisablePreDex):
             timeout: 600
 
 #        - emulator -avd circleci-android22 -no-audio -no-window:
