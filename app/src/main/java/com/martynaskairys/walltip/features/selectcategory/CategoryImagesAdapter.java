@@ -61,10 +61,10 @@ class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.H
 			@Override
 			public void onClick(final View v) {
 				final Intent intent = new Intent(activity, SingleImageActivity.class);
-				intent.putExtra(SingleImageActivity.IMAGE_INT, thumbIds[position]);
+				intent.putExtra(SingleImageActivity.Companion.getIMAGE_INT(), thumbIds[position]);
 
 				final ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
-						imageView, SingleImageActivity.IMAGE_INT);
+						imageView, SingleImageActivity.Companion.getIMAGE_INT());
 				ActivityCompat.startActivity(activity, intent, options.toBundle());
 			}
 		});
