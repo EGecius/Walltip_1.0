@@ -23,8 +23,8 @@ checkout:
 
 dependencies:
     pre:
-        - echo yes | android update sdk --no-ui --all --filter platform-tools-25.0.2
-        - echo yes | android update sdk --no-ui --all --filter build-tools-25.0.2
+        - echo yes | android update sdk --no-ui --all --filter platform-tools-25.0.5
+        - echo yes | android update sdk --no-ui --all --filter build-tools-25.0.3
         - echo yes | android update sdk --no-ui --all --filter extra-android-m2repository
         - echo yes | android update sdk --no-ui --all --filter extra-google-m2repository
 
