@@ -14,11 +14,6 @@ machine:
 
 checkout:
    post:
-        - echo "Egis says ECHO!!!"
-        - mkdir $CIRCLE_ARTIFACTS/img
-#        - curl "http://weknowyourdreams.com/images/world/world-05.jpg" \
-#            > $CIRCLE_ARTIFACTS/img/world.jpg
-        - curl http://udacity.github.io/ud595-shell/stuff.zip -o $CIRCLE_ARTIFACTS/things.zip
         - cp -r licenses/. $ANDROID_HOME/licenses
 
 dependencies:
@@ -30,13 +25,8 @@ dependencies:
 
 test:
     override:
-
-#        - echo "<p>Hello, <img width=80 src='img/world.svg'></p>" \
-#              > $CIRCLE_ARTIFACTS/hello.html
-#        - (./gradlew assemble test lint -PdisablePreDex):
         - (./gradlew assemble lint -PdisablePreDex):
             timeout: 600
-#        Wrote HTML report to file:///home/ubuntu/Walltip_1.0/app/build/reports/lint/lint-result.html
         - cp -r /home/ubuntu/Walltip_1.0/app/build/reports/ $CIRCLE_ARTIFACTS
 
 #        - emulator -avd circleci-android22 -no-audio -no-window:
