@@ -28,8 +28,8 @@ test:
 #        - echo "<p>Hello, <img width=80 src='img/world.svg'></p>" \
 #              > $CIRCLE_ARTIFACTS/hello.html
          - mkdir $CIRCLE_ARTIFACTS/img
-         - curl "http://www.definicionabc.com/wp-content/uploads/mundo.jpg" \
-              > $CIRCLE_ARTIFACTS/img/world.svg
+         - curl "http://www.definicionabc.com/wp-content/uploads/mundo.jpg" 
+         $CIRCLE_ARTIFACTS/img/world.svg
 
         - (./gradlew assemble test lint -PdisablePreDex):
             timeout: 600
