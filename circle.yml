@@ -36,7 +36,7 @@ test:
         - (./gradlew assemble lint -PdisablePreDex):
             timeout: 600
 #        Wrote HTML report to file:///home/ubuntu/Walltip_1.0/app/build/reports/lint/lint-result.html
-        - cp -r file:///home/ubuntu/Walltip_1.0/app/build/reports/ $CIRCLE_ARTIFACTS
+        - cp -r /home/ubuntu/Walltip_1.0/app/build/reports/ $CIRCLE_ARTIFACTS
 
 #        - emulator -avd circleci-android22 -no-audio -no-window:
 #            background: true
