@@ -17,7 +17,7 @@ checkout:
         - echo "Egis says ECHO!!!"
         - mkdir $CIRCLE_ARTIFACTS/img
         - curl "http://weknowyourdreams.com/images/world/world-05.jpg" \
-            > $CIRCLE_ARTIFACTS/img/world.svg
+            > $CIRCLE_ARTIFACTS/img/world.jpg
         - cp -r licenses/. $ANDROID_HOME/licenses
 
 dependencies:
