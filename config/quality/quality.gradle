@@ -22,7 +22,7 @@ android {
         lintConfig file("${project.rootDir}/config/quality/lint/lint-config.xml")
         htmlOutput file("${project.buildDir}/reports/lint/lint-result.html")
         warningsAsErrors true
-        abortOnError true
+        abortOnError false
         check lintchecks
     }
 }
