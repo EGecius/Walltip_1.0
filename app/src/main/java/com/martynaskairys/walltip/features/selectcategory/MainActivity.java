@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        setContentView(R.layout.activity_choosing_folder);
+        setContentView(R.layout.activity_main);
 
         buttonMenu = (Button) findViewById(R.id.button_menu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {

@@ -4,27 +4,27 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 // TODO: 17/08/2017 give a better name
-public class ImageHelper extends ImageView {
+public class CustomImageView extends AppCompatImageView {
 
     private float radius = 14.0f;
     private Path path;
     private RectF rect;
 
-    public ImageHelper(Context context) {
+    public CustomImageView(Context context) {
         super(context);
         init();
     }
 
-    public ImageHelper(Context context, AttributeSet attrs) {
+    public CustomImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public ImageHelper(Context context, AttributeSet attrs, int defStyle) {
+    public CustomImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }

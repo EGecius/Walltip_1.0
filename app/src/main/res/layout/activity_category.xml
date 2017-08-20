@@ -113,7 +113,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
-                        tools:listitem="@layout/image_adapter_item" />
+                        tools:listitem="@layout/category_images_adapter_item" />
 
                     <ProgressBar
                         android:id="@+id/progressBar"

@@ -35,7 +35,7 @@ class CategoryImagesAdapter extends RecyclerView.Adapter<CategoryImagesAdapter.H
 
 	@Override
 	public Holder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_adapter_item, parent, false);
+		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_images_adapter_item, parent, false);
 		return new Holder(view);
 	}
 

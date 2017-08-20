@@ -18,14 +18,16 @@ checkout:
 
 dependencies:
     pre:
-        - echo yes | android update sdk --no-ui --all --filter build-tools-25.0.2
+        - echo yes | android update sdk --no-ui --all --filter platform-tools-25.0.5
+        - echo yes | android update sdk --no-ui --all --filter build-tools-25.0.3
         - echo yes | android update sdk --no-ui --all --filter extra-android-m2repository
         - echo yes | android update sdk --no-ui --all --filter extra-google-m2repository
 
 test:
     override:
-        - (./gradlew assemble test -PdisablePreDex):
+        - (./gradlew assemble lint -PdisablePreDex):
             timeout: 600
+        - cp -r /home/ubuntu/Walltip_1.0/app/build/reports/ $CIRCLE_ARTIFACTS
 
 #        - emulator -avd circleci-android22 -no-audio -no-window:
 #            background: true

@@ -1,0 +1,13 @@
+
+check.dependsOn 'lint'
+
+android {
+
+    lintOptions {
+        htmlReport true
+        lintConfig file("${project.rootDir}/config/quality/lint/lint-config.xml")
+        htmlOutput file("${project.buildDir}/reports/lint/lint-result.html")
+        warningsAsErrors false
+        abortOnError true
+    }
+}

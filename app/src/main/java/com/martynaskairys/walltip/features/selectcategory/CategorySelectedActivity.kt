@@ -11,10 +11,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
 import com.martynaskairys.walltip.R
-import com.martynaskairys.walltip.features.selectcategory.CategoryActivity.FOLDER_INDEX
-import com.martynaskairys.walltip.features.selectcategory.CategoryActivity.IMAGES
 import com.martynaskairys.walltip.features.changewallpapers.WallpaperService
 import com.martynaskairys.walltip.features.changewallpapers.WallpaperServiceReceiver
+import com.martynaskairys.walltip.features.selectcategory.CategoryActivity.FOLDER_INDEX
+import com.martynaskairys.walltip.features.selectcategory.CategoryActivity.IMAGES
 import com.martynaskairys.walltip.shared.images.ImageStorageImpl
 import com.martynaskairys.walltip.shared.images.ImageStorageManager
 
@@ -28,7 +28,7 @@ class CategorySelectedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_exit_app)
+        setContentView(R.layout.activity_category_selected)
         setupUpButton()
         setupExitButton()
 

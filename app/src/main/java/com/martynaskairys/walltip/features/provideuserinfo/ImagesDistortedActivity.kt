@@ -15,7 +15,7 @@ class ImagesDistortedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_launcher_info)
+        setContentView(R.layout.activity_images_distorted)
     }
 
     fun downloadGoogleLauncher(view: View) {

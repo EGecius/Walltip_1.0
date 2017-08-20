@@ -49,7 +49,7 @@ public class CategoryActivity extends AppCompatActivity {
         folderIndex = getIntent().getIntExtra(FOLDER_INDEX, -1);
         if (folderIndex == -1) throw new IllegalArgumentException("folder index was not found");
 
-        setContentView(R.layout.activity_thumbnail);
+        setContentView(R.layout.activity_category);
         findViews();
 
         setExplanationText();

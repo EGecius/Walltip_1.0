@@ -60,7 +60,7 @@
         <activity
             android:name=".features.selectcategory.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/splashScreenTheme">
+            android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,7 +3,7 @@ apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 
-apply from: '../config/quality.gradle'
+apply from: '../config/quality/quality.gradle'
 
 buildscript {
     repositories {
