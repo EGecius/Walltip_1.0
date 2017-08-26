@@ -29,13 +29,12 @@ test:
             timeout: 600
         - cp -r /home/ubuntu/Walltip_1.0/app/build/reports/ $CIRCLE_ARTIFACTS
 
-#        - emulator -avd circleci-android22 -no-audio -no-window:
-#            background: true
-#            parallel: true
-#        - circle-android wait-for-boot
-#
-#        - adb install /home/ubuntu/Demo_CircleCI_Android/app/build/outputs/apk/app-debug.apk
-#
-#        - (./gradlew connectedAndroidTest):
-#            timeout: 360
-#
+        - emulator -avd circleci-android25 -no-audio -no-window:
+            background: true
+            parallel: true
+        - circle-android wait-for-boot
+
+#        - adb install /home/ubuntu/Walltip_1.0/app/build/outputs/apk/app-debug.apk
+
+        - (./gradlew connectedAndroidTest):
+            timeout: 360
