@@ -148,22 +148,24 @@ public class OnboardingActivity extends AppCompatActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class OnboardingPagerFragment extends Fragment {
-        /**
+	    /**
          * The fragment argument representing the section number for this
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+	    public static final String ONBOARDING_TITLE_1 = "NEW INSPIRING MESSAGE EVERYDAY";
+	    public static final String ONBOARDING_TEXT_1 = "Get practical tips and advice on your phone screen to keep focused on your goals";
 
-        TextView txt;
+	    TextView txt;
 
 
         String[] textsHeaders = new String[]{
-                "NEW INSPIRING MESSAGE EVERYDAY",
+		        ONBOARDING_TITLE_1,
                 "PATH TO SUCCESS IS EASY AS 1 2 3 ",
                 "START MOTIVATING YOURSELF"};
 
         String[] texts = new String[]{
-                "Get practical tips and advice on your phone screen to keep focused on your goals",
+		        ONBOARDING_TEXT_1,
                 "Choose category you like. Close the app and enjoy the power of words",
                 "You check your mobile phone more than 200 times a day - make the best of it!"};
 
