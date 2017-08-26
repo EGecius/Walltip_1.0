@@ -28,6 +28,7 @@ android {
         targetSdkVersion 25
         versionName '1.7.1'
         versionCode 34
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -70,5 +71,9 @@ dependencies {
     }
     testCompile("org.mockito:mockito-core:${mockitoVersion}") {
         exclude group: 'org.hamcrest'
+    }
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude module: 'support-annotations'
     }
 }
