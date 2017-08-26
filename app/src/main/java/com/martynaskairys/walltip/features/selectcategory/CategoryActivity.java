@@ -17,7 +17,9 @@ import android.widget.TextView;
 import com.martynaskairys.walltip.R;
 import com.martynaskairys.walltip.shared.networking.NetworkingUtils;
 import com.martynaskairys.walltip.shared.tracking.UserTracker;
-import com.martynaskairys.walltip.shared.tracking.UserTrackerImpl;
+import com.martynaskairys.walltip.shared.tracking.UserTrackerModule;
+
+import javax.inject.Inject;
 
 
 /**
@@ -36,12 +38,14 @@ public class CategoryActivity extends AppCompatActivity {
     private ViewGroup rootView;
     private ProgressBar progressBar;
 
-    private UserTracker userTracker = new UserTrackerImpl();
+    @Inject UserTracker userTracker;
     private int folderIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+	    injectDependencies();
 
         userTracker.reportInThumbnailActivityOnCreate();
 
@@ -59,8 +63,14 @@ public class CategoryActivity extends AppCompatActivity {
         setCoverImage();
     }
 
+	private void injectDependencies() {
+		DaggerSelectCategoryDiComponent.builder()
+				.userTrackerModule(new UserTrackerModule())
+				.build()
+				.inject(this);
+	}
 
-    private void findViews() {
+	private void findViews() {
         rootView = (ViewGroup) findViewById(R.id.root);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }

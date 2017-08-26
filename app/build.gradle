@@ -40,9 +40,10 @@ android {
 }
 
 ext {
-    supportLibraryVersion = "25.3.1"
     assertJVersion = '1.1.0'
+    daggerVersion = "2.11"
     mockitoVersion = '1.10.19'
+    supportLibraryVersion = "25.3.1"
 }
 
 dependencies {
@@ -51,18 +52,23 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
     compile "com.android.support:design:${supportLibraryVersion}"
     compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar')
-            {
-                transitive = true
-            }
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true
+    }
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    /* Testing */
+
+    testCompile 'junit:junit:4.12'
     testCompile("com.squareup.assertj:assertj-android:${assertJVersion}") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
     testCompile("org.mockito:mockito-core:${mockitoVersion}") {
         exclude group: 'org.hamcrest'
     }
-    compile 'com.squareup.picasso:picasso:2.3.2'
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
 }
